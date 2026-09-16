@@ -1,0 +1,950 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python for Complete Beginners &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Your First Program" href="content/01_first_program.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="content/01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="content/projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="content/appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python for Complete Beginners</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-python">What is Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-learn-python">Why learn Python?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-people-build-with-python">What people build with Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-s-limitations">Python’s limitations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-python-compare-with-other-languages">How does Python compare with other languages?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-writing-python">Tools for writing Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programs-with-windows-and-buttons-guis">Programs with windows and buttons (GUIs)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-google-colab">Getting started with Google Colab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-on-your-own-computer-optional">Working on your own computer (optional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-this-course-is-for">Who this course is for</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-course-is-organised">How the course is organised</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-course">How to use this course</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-this-course">About this course</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-for-complete-beginners">
+<h1>Python for Complete Beginners<a class="headerlink" href="#python-for-complete-beginners" title="Link to this heading">#</a></h1>
+<p>Welcome! This course teaches you to program in Python 3 <strong>from zero</strong>. You don’t need to know anything about computers or code to start — only how to type, how to read carefully, and how to keep going when something doesn’t work the first time.</p>
+<p>All you need is a web browser: the whole course runs in <strong>Google Colab</strong> notebooks, so you can follow it on a laptop, a lab or cybercafé computer, a tablet or even a phone.</p>
+<section id="what-is-python">
+<h2>What is Python?<a class="headerlink" href="#what-is-python" title="Link to this heading">#</a></h2>
+<p><strong>Python</strong> is a programming language: a way of writing instructions that a computer can carry out. It was created by the Dutch programmer <strong>Guido van Rossum</strong> and first released in <strong>1991</strong>. Its name has nothing to do with snakes — it comes from the British comedy group <em>Monty Python’s Flying Circus</em>.</p>
+<p>Python was designed to be <strong>easy to read and write</strong>. A Python program often looks almost like plain English:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Amina"</span><span class="p">,</span> <span class="s2">"Brian"</span><span class="p">,</span> <span class="s2">"Chen"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A few words you will hear about Python:</p>
+<ul class="simple">
+<li><p><strong>High-level</strong> — you describe <em>what</em> you want in human-friendly terms; Python takes care of the low-level details such as memory.</p></li>
+<li><p><strong>Interpreted</strong> — you can run a program straight away, without a separate “compile” step. A program called the <strong>interpreter</strong> reads your code and carries it out line by line.</p></li>
+<li><p><strong>Dynamically typed</strong> — you don’t have to declare whether a variable holds a number or text; Python works it out.</p></li>
+<li><p><strong>General-purpose</strong> — it isn’t limited to one kind of task. The same language is used for websites, science, games, automation and artificial intelligence.</p></li>
+<li><p><strong>Free and open source</strong> — anyone can download, use and share it, managed by the non-profit Python Software Foundation.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This course uses <strong>Python 3</strong>. An older version, Python 2, stopped being supported in 2020. If you find old examples online where <code class="docutils literal notranslate"><span class="pre">print</span></code> is written without brackets (<code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">&quot;hello&quot;</span></code>), they are Python 2 and won’t work as written.</p>
+</div>
+<p>Python even has a short philosophy built in. Run <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">this</span></code> in a notebook cell and you’ll see <em>The Zen of Python</em>, which includes lines such as <em>“Beautiful is better than ugly”</em>, <em>“Simple is better than complex”</em> and <em>“Readability counts.”</em></p>
+</section>
+<section id="why-learn-python">
+<h2>Why learn Python?<a class="headerlink" href="#why-learn-python" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>It’s beginner-friendly.</strong> Clean, readable syntax lets you focus on <em>thinking like a programmer</em> instead of fighting punctuation.</p></li>
+<li><p><strong>It’s everywhere.</strong> Python is consistently ranked among the most popular programming languages in the world, in rankings such as the TIOBE index and the Stack Overflow developer survey.</p></li>
+<li><p><strong>It opens many doors.</strong> The skills you learn here carry straight into data science, artificial intelligence, web development, research and automation.</p></li>
+<li><p><strong>It saves time at work.</strong> Even if you never become a professional programmer, a short Python script can rename a thousand files, clean a spreadsheet or analyse survey results in seconds.</p></li>
+<li><p><strong>Huge community and free libraries.</strong> Hundreds of thousands of ready-made packages are available from the Python Package Index (PyPI), and almost any question you have has already been answered online.</p></li>
+<li><p><strong>It’s the language of science and AI.</strong> Most machine-learning and data tools — and the department’s AI, Machine Learning and Deep Learning courses — use Python.</p></li>
+</ul>
+<section id="what-people-build-with-python">
+<h3>What people build with Python<a class="headerlink" href="#what-people-build-with-python" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Area</p></th>
+<th class="head"><p>Examples of what Python is used for</p></th>
+<th class="head"><p>Popular tools</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data science and statistics</p></td>
+<td><p>cleaning data, charts, reports</p></td>
+<td><p>pandas, NumPy, matplotlib</p></td>
+</tr>
+<tr class="row-odd"><td><p>Artificial intelligence</p></td>
+<td><p>machine learning, image and speech recognition</p></td>
+<td><p>scikit-learn, PyTorch, TensorFlow</p></td>
+</tr>
+<tr class="row-even"><td><p>Web development</p></td>
+<td><p>the “back end” of websites and apps</p></td>
+<td><p>Django, Flask, FastAPI</p></td>
+</tr>
+<tr class="row-odd"><td><p>Science and engineering</p></td>
+<td><p>simulations, physics, astronomy, bioinformatics</p></td>
+<td><p>SciPy, Astropy, Biopython</p></td>
+</tr>
+<tr class="row-even"><td><p>Automation and scripting</p></td>
+<td><p>processing files, sending emails, testing software</p></td>
+<td><p>the standard library</p></td>
+</tr>
+<tr class="row-odd"><td><p>Education</p></td>
+<td><p>teaching programming and algorithms</p></td>
+<td><p>Jupyter, Colab, Thonny</p></td>
+</tr>
+<tr class="row-even"><td><p>Games and graphics</p></td>
+<td><p>small games, simulations, animations</p></td>
+<td><p>pygame</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hardware and electronics</p></td>
+<td><p>robots and sensors on small computers</p></td>
+<td><p>Raspberry Pi, MicroPython</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="python-s-limitations">
+<h3>Python’s limitations<a class="headerlink" href="#python-s-limitations" title="Link to this heading">#</a></h3>
+<p>No language is perfect for everything. It’s good to know Python’s weak points too:</p>
+<ul class="simple">
+<li><p><strong>Speed:</strong> Python code usually runs slower than C, C++ or Java. For most tasks this doesn’t matter, and the heavy-lifting libraries are written in fast languages underneath.</p></li>
+<li><p><strong>Mobile apps and web browsers:</strong> apps for phones are usually written in Kotlin, Java or Swift, and code that runs <em>inside</em> a web browser is written in JavaScript.</p></li>
+<li><p><strong>Errors appear at run time:</strong> because types aren’t declared, some mistakes only show up when the program runs. Good testing habits (which this course teaches) help a lot.</p></li>
+</ul>
+</section>
+</section>
+<section id="how-does-python-compare-with-other-languages">
+<h2>How does Python compare with other languages?<a class="headerlink" href="#how-does-python-compare-with-other-languages" title="Link to this heading">#</a></h2>
+<p>Here is the classic first program — printing “Hello, World!” — in four languages.</p>
+<p><strong>C</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Hello, World!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Java</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Hello</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>JavaScript</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hello, World!"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Python</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, World!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All four do the same thing. Python needs the least “ceremony”, which is why it’s such a good first language.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Language</p></th>
+<th class="head"><p>Typically used for</p></th>
+<th class="head"><p>Compared with Python</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>C</strong></p></td>
+<td><p>operating systems, devices, embedded electronics</p></td>
+<td><p>much faster, but you manage memory yourself and write a lot more code</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>C++</strong></p></td>
+<td><p>game engines, high-performance software</p></td>
+<td><p>fast and powerful, but much harder to learn</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Java</strong></p></td>
+<td><p>large business systems, Android apps</p></td>
+<td><p>more verbose; types must be declared; compiled before running</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>JavaScript</strong></p></td>
+<td><p>interactive websites (runs in the browser)</p></td>
+<td><p>the language of the web browser; Python is more common for data and science</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>R</strong></p></td>
+<td><p>statistics and data analysis</p></td>
+<td><p>excellent for statistics, but less general-purpose</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>MATLAB</strong></p></td>
+<td><p>engineering and numerical computing</p></td>
+<td><p>requires a paid licence; Python with NumPy and SciPy does similar work for free</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A few terms used in the table:</p>
+<ul class="simple">
+<li><p>A <strong>compiled</strong> language (C, C++, Java) is translated into machine instructions <em>before</em> it runs. An <strong>interpreted</strong> language (Python, JavaScript) is run directly by an interpreter. Compiled programs are usually faster; interpreted ones are quicker to write and test.</p></li>
+<li><p>A <strong>statically typed</strong> language makes you declare types (<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">count</span> <span class="pre">=</span> <span class="pre">0;</span></code>). In a <strong>dynamically typed</strong> language like Python, you just write <code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The concepts you learn in this course — variables, decisions, loops, functions, lists, objects — exist in almost every language. Once you know them in Python, learning a second language is much easier.</p>
+</div>
+</section>
+<section id="tools-for-writing-python">
+<h2>Tools for writing Python<a class="headerlink" href="#tools-for-writing-python" title="Link to this heading">#</a></h2>
+<p>You write Python in a <strong>notebook</strong>, a <strong>text editor</strong> or an <strong>IDE</strong> (Integrated Development Environment — an editor with extra tools such as a “Run” button and a debugger). Here are the most common choices:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>What it is</p></th>
+<th class="head"><p>Good for</p></th>
+<th class="head"><p>Cost</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Google Colab</strong></p></td>
+<td><p>Jupyter notebooks running in your web browser</p></td>
+<td><p><strong>this course</strong> — nothing to install, works on any device</p></td>
+<td><p>free</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Jupyter Notebook / JupyterLab</strong></p></td>
+<td><p>notebooks on your own computer</p></td>
+<td><p>data analysis, science, working offline</p></td>
+<td><p>free</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Thonny</strong></p></td>
+<td><p>a beginner IDE that includes Python</p></td>
+<td><p>writing <code class="docutils literal notranslate"><span class="pre">.py</span></code> programs offline on your own computer</p></td>
+<td><p>free</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>IDLE</strong></p></td>
+<td><p>the simple editor that comes with Python</p></td>
+<td><p>quick experiments</p></td>
+<td><p>free</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Visual Studio Code</strong></p></td>
+<td><p>a powerful general-purpose editor (with the Python extension)</p></td>
+<td><p>larger projects</p></td>
+<td><p>free</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PyCharm</strong></p></td>
+<td><p>a full professional Python IDE</p></td>
+<td><p>big projects, professional work</p></td>
+<td><p>free Community edition</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Spyder</strong></p></td>
+<td><p>a scientific IDE, similar to MATLAB (comes with Anaconda)</p></td>
+<td><p>science and engineering</p></td>
+<td><p>free</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>In this course we use Google Colab.</strong> A notebook is made of <strong>cells</strong>: you type code into a cell, run it, and the result appears right underneath. That makes it easy to try things, change them and try again. If you have your own computer and want to work offline, Thonny or Jupyter work too — the Python is exactly the same.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Python Tutor</strong> (pythontutor.com) is a free website that draws pictures of your program as it runs, showing every variable. It’s excellent for understanding loops, lists and functions.</p>
+</div>
+<section id="programs-with-windows-and-buttons-guis">
+<h3>Programs with windows and buttons (GUIs)<a class="headerlink" href="#programs-with-windows-and-buttons-guis" title="Link to this heading">#</a></h3>
+<p>In this course, your programs talk to the user through text: the output appears under the notebook cell, and questions are answered in a small text box. That’s how almost everyone learns, because it lets you concentrate on the logic. Later, you can give programs a <strong>graphical user interface (GUI)</strong> — windows, buttons and menus — using a GUI library:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Library</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Tkinter</strong></p></td>
+<td><p>included with Python; simple windows and forms</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PyQt / PySide</strong></p></td>
+<td><p>professional-looking desktop applications</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Kivy</strong></p></td>
+<td><p>apps that also run on touch screens and phones</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>pygame</strong></p></td>
+<td><p>games and animations</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here’s a taste — a complete Tkinter program that opens a small window:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+
+<span class="n">window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">window</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"My first window"</span><span class="p">)</span>
+<span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">"Hello, World!"</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">padx</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">window</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Programs like this open a window on the screen, so they need Python installed on a computer — they don’t run in Colab. You don’t need to understand this yet; by the end of the course (after Topic 17), code like this will make sense.</p>
+</section>
+</section>
+<section id="getting-started-with-google-colab">
+<h2>Getting started with Google Colab<a class="headerlink" href="#getting-started-with-google-colab" title="Link to this heading">#</a></h2>
+<p><strong>Google Colab</strong> (<a class="reference external" href="https://colab.research.google.com">colab.research.google.com</a>) runs Python in your web browser, on Google’s computers. It’s free and needs no installation — only a browser, an internet connection and a free Google account. You can use it on:</p>
+<ul class="simple">
+<li><p>your own laptop,</p></li>
+<li><p>a school, university or library computer,</p></li>
+<li><p>a cybercafé computer,</p></li>
+<li><p>a tablet or a smartphone (turn it sideways for more room).</p></li>
+</ul>
+<p>Your notebooks are saved automatically in your Google Drive, so you can start in the computer lab and continue on your phone.</p>
+<p><strong>Quick start:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to <a class="reference external" href="https://colab.research.google.com">colab.research.google.com</a> and sign in with your Google account.</p></li>
+<li><p>Click <strong>New notebook</strong>.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">print(&quot;Hello</span> <span class="pre">World!&quot;)</span></code> in the grey cell.</p></li>
+<li><p>Press the <strong>▶ play button</strong> (or <strong>Shift + Enter</strong>). The output appears under the cell.</p></li>
+</ol>
+<p>Topic 1 walks you through this step by step, and the appendix page <strong><a class="reference internal" href="content/appendix/google_colab.html"><span class="std std-doc">Using Google Colab</span></a></strong> explains everything else you’ll need: saving files, uploading data, and more.</p>
+<section id="working-on-your-own-computer-optional">
+<h3>Working on your own computer (optional)<a class="headerlink" href="#working-on-your-own-computer-optional" title="Link to this heading">#</a></h3>
+<p>If you’d rather work offline on your own computer, install <strong>Thonny</strong> from <a class="reference external" href="https://thonny.org">thonny.org</a>: it comes with Python included. Type each example into Thonny’s editor, save it as a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file, and press the green <strong>Run</strong> button. Everything in the course works the same way, except for the few Colab-only commands that start with <code class="docutils literal notranslate"><span class="pre">%</span></code> (Topic 1 and the Colab appendix explain the Thonny equivalents).</p>
+</section>
+</section>
+<section id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Link to this heading">#</a></h2>
+<p>By the end of this course, you will be able to:</p>
+<ol class="arabic simple">
+<li><p><strong>Explain</strong> what a program and an algorithm are, and <strong>write, run and save</strong> Python programs in Colab notebooks (or an editor on your own computer). <em>(Topic 1)</em></p></li>
+<li><p><strong>Use</strong> numbers, arithmetic, variables, strings and keyboard input to write short interactive programs. <em>(Topics 2–5)</em></p></li>
+<li><p><strong>Write and call functions</strong> with parameters and return values, and <strong>use modules</strong> from Python’s standard library. <em>(Topics 6–7)</em></p></li>
+<li><p><strong>Build Boolean conditions</strong> and control the flow of a program with <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code> loops and <code class="docutils literal notranslate"><span class="pre">while</span></code> loops. <em>(Topics 8–10)</em></p></li>
+<li><p><strong>Store and process data</strong> using lists, strings, tuples and dictionaries. <em>(Topics 11, 13 and 14)</em></p></li>
+<li><p><strong>Plan a program</strong> with pseudocode and <strong>build it step by step</strong> from small, tested functions. <em>(Topic 12 and the projects)</em></p></li>
+<li><p><strong>Read from and write to text files.</strong> <em>(Topic 15)</em></p></li>
+<li><p><strong>Read error messages and tracebacks</strong>, find and fix bugs, and <strong>handle exceptions</strong> so programs don’t crash on bad input. <em>(Topic 16)</em></p></li>
+<li><p><strong>Create classes and objects</strong>, and <strong>use inheritance and composition</strong> to organise larger programs. <em>(Topics 17–18)</em></p></li>
+<li><p><strong>Combine all these skills</strong> to complete multi-step projects such as a DNA analysis toolkit, a password generator and a Tic Tac Toe game. <em>(Practice Projects)</em></p></li>
+</ol>
+</section>
+<section id="who-this-course-is-for">
+<h2>Who this course is for<a class="headerlink" href="#who-this-course-is-for" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Complete beginners who have <strong>never programmed</strong> before.</p></li>
+<li><p>Students preparing for courses that use Python, such as Artificial Intelligence, Machine Learning, Deep Learning, data analysis or computational science.</p></li>
+<li><p>Anyone who wants to automate boring tasks with a computer.</p></li>
+</ul>
+<p><strong>Prerequisites:</strong> none, apart from basic computer use (opening a web browser, typing) and primary-school arithmetic.</p>
+</section>
+<section id="how-the-course-is-organised">
+<h2>How the course is organised<a class="headerlink" href="#how-the-course-is-organised" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Part</p></th>
+<th class="head"><p>Topics</p></th>
+<th class="head"><p>What you’ll learn</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Getting started</p></td>
+<td><p>1–5</p></td>
+<td><p>printing, numbers, variables, text and asking the user questions</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reusing code</p></td>
+<td><p>6–7</p></td>
+<td><p>writing functions and using modules</p></td>
+</tr>
+<tr class="row-even"><td><p>Decisions and repetition</p></td>
+<td><p>8–12</p></td>
+<td><p>logic, <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, loops, lists, and building a small game</p></td>
+</tr>
+<tr class="row-odd"><td><p>Organising data</p></td>
+<td><p>13–16</p></td>
+<td><p>strings, tuples, dictionaries, files, and handling errors</p></td>
+</tr>
+<tr class="row-even"><td><p>Objects</p></td>
+<td><p>17–18</p></td>
+<td><p>classes, objects, inheritance and composition</p></td>
+</tr>
+<tr class="row-odd"><td><p>Practice projects</p></td>
+<td><p>19–24</p></td>
+<td><p>bigger guided programs that combine everything</p></td>
+</tr>
+<tr class="row-even"><td><p>Appendix</p></td>
+<td><p>—</p></td>
+<td><p>using Google Colab, symbols and keywords, common errors, glossary</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each topic builds on the ones before it, so <strong>work through them in order</strong>. A good habit is to make <strong>one Colab notebook per topic</strong>, for example <code class="docutils literal notranslate"><span class="pre">Topic</span> <span class="pre">03</span> <span class="pre">-</span> <span class="pre">Variables</span></code>.</p>
+</section>
+<section id="how-to-use-this-course">
+<h2>How to use this course<a class="headerlink" href="#how-to-use-this-course" title="Link to this heading">#</a></h2>
+<p>Every topic follows the same rhythm:</p>
+<ol class="arabic simple">
+<li><p><strong>Type the example into a code cell.</strong> Type it yourself, exactly, character by character. Do <strong>not</strong> copy and paste — typing is how your fingers and brain learn.</p></li>
+<li><p><strong>Run the cell and compare.</strong> Check the output under the cell against <strong>“What you should see”</strong>. If they differ, find the difference.</p></li>
+<li><p><strong>Break it.</strong> Change something on purpose, run the cell again, and see what happens. Then fix it.</p></li>
+<li><p><strong>Do the exercises.</strong> Each topic has exercises embedded in the text. Try every one in its own cell <em>before</em> opening its solution.</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>From a certain perspective, programming is a craft. A carpenter cannot learn to make a chair by watching videos of other carpenters, and you cannot learn to program by reading, sitting in class, or watching your neighbour type. <strong>Be active. Type, run, break, fix.</strong></p>
+</div>
+<p>Solutions are hidden in boxes like the one below. Open them only after you have honestly tried.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>Well done for trying first! Every solution in this course looks like this.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"I tried it myself first."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="getting-help">
+<h2>Getting help<a class="headerlink" href="#getting-help" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Read the error message</strong>, starting with its last line. The appendix <em>Common Errors</em> explains the most frequent ones.</p></li>
+<li><p><strong>Use <code class="docutils literal notranslate"><span class="pre">help()</span></code></strong> in a cell, for example <code class="docutils literal notranslate"><span class="pre">help(print)</span></code> or <code class="docutils literal notranslate"><span class="pre">help(str)</span></code>, to read Python’s built-in documentation.</p></li>
+<li><p><strong>Search online</strong> for the last line of an error message. Someone has almost certainly had the same problem.</p></li>
+<li><p><strong>The official documentation</strong> at <a class="reference external" href="https://docs.python.org/3/">docs.python.org</a> — especially <em>The Python Tutorial</em> — is the reference for exact details.</p></li>
+<li><p><strong>Ask a classmate or your instructor</strong>, and show them your code <em>and</em> the full error message. In Colab you can share a notebook with the <strong>Share</strong> button.</p></li>
+</ul>
+</section>
+<section id="about-this-course">
+<h2>About this course<a class="headerlink" href="#about-this-course" title="Link to this heading">#</a></h2>
+<p>The hands-on approach of this course — type every example yourself, compare the output, then break it and fix it — is inspired by Zed A. Shaw’s book <em>Learn Python the Hard Way</em>. All the examples, explanations and exercises have been written for this course and ordered for complete beginners.</p>
+<p>If you’d like a book to read alongside the course, Allen B. Downey’s <em>Think Python</em> is free to read online and very gentle.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="content/01_first_program.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Your First Program</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-python">What is Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-learn-python">Why learn Python?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-people-build-with-python">What people build with Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-s-limitations">Python’s limitations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-python-compare-with-other-languages">How does Python compare with other languages?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-writing-python">Tools for writing Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programs-with-windows-and-buttons-guis">Programs with windows and buttons (GUIs)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-google-colab">Getting started with Google Colab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-on-your-own-computer-optional">Working on your own computer (optional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-this-course-is-for">Who this course is for</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-course-is-organised">How the course is organised</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-this-course">How to use this course</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-this-course">About this course</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

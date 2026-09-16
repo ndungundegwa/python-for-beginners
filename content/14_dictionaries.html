@@ -1,0 +1,873 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>14. Dictionaries &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/14_dictionaries';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="15. Reading and Writing Files" href="15_files.html" />
+    <link rel="prev" title="13. Strings, Tuples and Slices" href="13_strings_tuples_slices.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/14_dictionaries.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dictionaries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-versus-dictionaries">14.1. Lists versus dictionaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-checking-and-safe-lookups">14.2. Removing, checking and safe lookups</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-dictionary-example-students-subjects-and-teachers">14.3. A dictionary example: students, subjects and teachers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">14.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-a-dictionary">14.4. Looping over a dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-with-a-dictionary">14.5. Counting with a dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#records-dictionaries-in-a-list">14.6. Records: dictionaries in a list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-a-dictionary">14.7. When to use a dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">14.8. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-counties-and-their-headquarters">14.8.1. Exercise: counties and their headquarters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-phone-book">14.8.2. Exercise: a phone book</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-letter-counter">14.8.3. Exercise: letter counter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-class-average">14.8.4. Exercise: the class average</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-shop-inventory">14.8.5. Exercise: a shop inventory</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dictionaries">
+<h1><span class="section-number">14. </span>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h1>
+<p>A list lets you find things by their <strong>position</strong>: item 0, item 1, item 2. But often you want to find things by a <strong>name</strong> instead: a phone number by a person’s name, a price by a product, a headquarters by a county. For that, Python has the <strong>dictionary</strong>.</p>
+<section id="lists-versus-dictionaries">
+<h2><span class="section-number">14.1. </span>Lists versus dictionaries<a class="headerlink" href="#lists-versus-dictionaries" title="Link to this heading">#</a></h2>
+<p>Imagine storing facts about a student in a list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">student</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"S1023"</span><span class="p">,</span> <span class="s2">"Wanjiru"</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="s2">"Nyeri"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Wanjiru
+</pre></div>
+</div>
+<p>It works, but you have to <em>remember</em> that index 1 means “name” and index 3 means “county”. A <strong>dictionary</strong> (or <strong>dict</strong>) lets you look things up by a meaningful <strong>key</strong> — very often a string — instead of a number. You write a dictionary with curly braces, as pairs of <strong>key: value</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">student</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="s2">"S1023"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Wanjiru"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">:</span> <span class="mi">19</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s2">"name"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s2">"age"</span><span class="p">])</span>
+
+<span class="n">student</span><span class="p">[</span><span class="s2">"county"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Nyeri"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s2">"county"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Wanjiru
+19
+Nyeri
+{'id': 'S1023', 'name': 'Wanjiru', 'age': 19, 'county': 'Nyeri'}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Each <strong>key</strong> (<code class="docutils literal notranslate"><span class="pre">&quot;id&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code>, …) is linked to a <strong>value</strong> (<code class="docutils literal notranslate"><span class="pre">&quot;S1023&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Wanjiru&quot;</span></code>, …).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">student[&quot;name&quot;]</span></code> looks up the value for the key <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">student[&quot;county&quot;]</span> <span class="pre">=</span> <span class="pre">&quot;Nyeri&quot;</span></code> adds a new pair — or replaces the value if the key already exists.</p></li>
+</ul>
+<p>Keys must be unique: a dictionary can’t have two <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code> keys. Values can be anything, including lists and other dictionaries.</p>
+</section>
+<section id="removing-checking-and-safe-lookups">
+<h2><span class="section-number">14.2. </span>Removing, checking and safe lookups<a class="headerlink" href="#removing-checking-and-safe-lookups" title="Link to this heading">#</a></h2>
+<p>Continue in a new cell, using the same <code class="docutils literal notranslate"><span class="pre">student</span></code> dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"county"</span><span class="p">))</span>    <span class="c1"># remove a key and return its value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"age"</span> <span class="ow">in</span> <span class="n">student</span><span class="p">)</span>         <span class="c1"># is this key in the dictionary?</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Wanjiru"</span> <span class="ow">in</span> <span class="n">student</span><span class="p">)</span>     <span class="c1"># 'in' checks keys, not values</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">student</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Nyeri
+True
+False
+3
+</pre></div>
+</div>
+<p>Looking up a key that isn’t there is an error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">student</span><span class="p">[</span><span class="s2">"phone"</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>KeyError: 'phone'
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">get</span></code> method avoids the error: it returns the value if the key exists, or a default value if it doesn’t:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"phone"</span><span class="p">,</span> <span class="s2">"unknown"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="s2">"unknown"</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unknown
+Wanjiru
+</pre></div>
+</div>
+</section>
+<section id="a-dictionary-example-students-subjects-and-teachers">
+<h2><span class="section-number">14.3. </span>A dictionary example: students, subjects and teachers<a class="headerlink" href="#a-dictionary-example-students-subjects-and-teachers" title="Link to this heading">#</a></h2>
+<p>This program uses <strong>two</strong> dictionaries: one links each student to their favourite subject, and the other links each subject to its teacher. Type it into a new cell and study it carefully.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">favourite_subject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Amina"</span><span class="p">:</span> <span class="s2">"Maths"</span><span class="p">,</span>
+    <span class="s2">"Brian"</span><span class="p">:</span> <span class="s2">"Biology"</span><span class="p">,</span>
+    <span class="s2">"Chebet"</span><span class="p">:</span> <span class="s2">"Chemistry"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">teacher</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Maths"</span><span class="p">:</span> <span class="s2">"Mr. Kamau"</span><span class="p">,</span>
+    <span class="s2">"Biology"</span><span class="p">:</span> <span class="s2">"Mrs. Otieno"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># add more pairs after creating the dictionaries</span>
+<span class="n">favourite_subject</span><span class="p">[</span><span class="s2">"Daudi"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Maths"</span>
+<span class="n">teacher</span><span class="p">[</span><span class="s2">"Chemistry"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Ms. Wairimu"</span>
+
+<span class="c1"># simple look-ups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Amina likes"</span><span class="p">,</span> <span class="n">favourite_subject</span><span class="p">[</span><span class="s2">"Amina"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Biology is taught by"</span><span class="p">,</span> <span class="n">teacher</span><span class="p">[</span><span class="s2">"Biology"</span><span class="p">])</span>
+
+<span class="c1"># one look-up inside another</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Chebet's favourite teacher is"</span><span class="p">,</span> <span class="n">teacher</span><span class="p">[</span><span class="n">favourite_subject</span><span class="p">[</span><span class="s2">"Chebet"</span><span class="p">]])</span>
+
+<span class="c1"># go through every pair</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">subject</span> <span class="ow">in</span> <span class="n">favourite_subject</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> likes </span><span class="si">{</span><span class="n">subject</span><span class="si">}</span><span class="s2">, taught by </span><span class="si">{</span><span class="n">teacher</span><span class="p">[</span><span class="n">subject</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># safe look-ups for keys that might not be there</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">subject</span> <span class="o">=</span> <span class="n">favourite_subject</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Esther"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">subject</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"We don't know Esther's favourite subject yet."</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Physics teacher:"</span><span class="p">,</span> <span class="n">teacher</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Physics"</span><span class="p">,</span> <span class="s2">"not assigned yet"</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="what-you-should-see">
+<h3><span class="section-number">14.3.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Amina likes Maths
+Biology is taught by Mrs. Otieno
+Chebet's favourite teacher is Ms. Wairimu
+--------------------
+Amina likes Maths, taught by Mr. Kamau
+Brian likes Biology, taught by Mrs. Otieno
+Chebet likes Chemistry, taught by Ms. Wairimu
+Daudi likes Maths, taught by Mr. Kamau
+--------------------
+We don't know Esther's favourite subject yet.
+Physics teacher: not assigned yet
+</pre></div>
+</div>
+<p>Look closely at <code class="docutils literal notranslate"><span class="pre">teacher[favourite_subject[&quot;Chebet&quot;]]</span></code>. Python works from the inside out: <code class="docutils literal notranslate"><span class="pre">favourite_subject[&quot;Chebet&quot;]</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;Chemistry&quot;</span></code>, so this becomes <code class="docutils literal notranslate"><span class="pre">teacher[&quot;Chemistry&quot;]</span></code>, which is <code class="docutils literal notranslate"><span class="pre">&quot;Ms.</span> <span class="pre">Wairimu&quot;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">favourite_subject.get(&quot;Esther&quot;)</span></code> with no default gives back <code class="docutils literal notranslate"><span class="pre">None</span></code> when the key is missing — the same “nothing” value you met in Topic 6.</p>
+</section>
+</section>
+<section id="looping-over-a-dictionary">
+<h2><span class="section-number">14.4. </span>Looping over a dictionary<a class="headerlink" href="#looping-over-a-dictionary" title="Link to this heading">#</a></h2>
+<p>There are three ways to go through a dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"bread"</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span> <span class="s2">"milk"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s2">"eggs"</span><span class="p">:</span> <span class="mi">15</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">prices</span><span class="p">:</span>                 <span class="c1"># the keys</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>       <span class="c1"># the values</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">prices</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># key and value together</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2"> costs </span><span class="si">{</span><span class="n">price</span><span class="si">}</span><span class="s2"> shillings"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bread
+milk
+eggs
+65
+60
+15
+bread costs 65 shillings
+milk costs 60 shillings
+eggs costs 15 shillings
+</pre></div>
+</div>
+<p>Dictionaries remember the order in which you added the keys, so the loops go through them in that order.</p>
+</section>
+<section id="counting-with-a-dictionary">
+<h2><span class="section-number">14.5. </span>Counting with a dictionary<a class="headerlink" href="#counting-with-a-dictionary" title="Link to this heading">#</a></h2>
+<p>One of the most common uses of a dictionary is <strong>counting</strong> how many times things appear. This pattern is worth memorising:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sold</span> <span class="o">=</span> <span class="s2">"mango banana mango orange banana mango"</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">sold</span><span class="p">:</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">fruit</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fruit</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{'mango': 3, 'banana': 2, 'orange': 1}
+</pre></div>
+</div>
+<p>The first time a fruit appears, <code class="docutils literal notranslate"><span class="pre">counts.get(fruit,</span> <span class="pre">0)</span></code> gives 0, so its count becomes 1. Each later time, the count goes up by one.</p>
+</section>
+<section id="records-dictionaries-in-a-list">
+<h2><span class="section-number">14.6. </span>Records: dictionaries in a list<a class="headerlink" href="#records-dictionaries-in-a-list" title="Link to this heading">#</a></h2>
+<p>A dictionary keeps the facts about <strong>one thing</strong> together, with a name for each fact — like the <code class="docutils literal notranslate"><span class="pre">student</span></code> dictionary at the start of this topic. A <strong>list of dictionaries</strong> then holds many such records:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Amina"</span><span class="p">,</span> <span class="s2">"mark"</span><span class="p">:</span> <span class="mi">78</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Brian"</span><span class="p">,</span> <span class="s2">"mark"</span><span class="p">:</span> <span class="mi">64</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Chebet"</span><span class="p">,</span> <span class="s2">"mark"</span><span class="p">:</span> <span class="mi">91</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s1">'mark'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Amina: 78
+Brian: 64
+Chebet: 91
+</pre></div>
+</div>
+<p>Notice the quotes: the f-string uses double quotes, so the keys inside it use single quotes, <code class="docutils literal notranslate"><span class="pre">student['name']</span></code>.</p>
+</section>
+<section id="when-to-use-a-dictionary">
+<h2><span class="section-number">14.7. </span>When to use a dictionary<a class="headerlink" href="#when-to-use-a-dictionary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use a <strong>list</strong> for things in order that you look up by position.</p></li>
+<li><p>Use a <strong>dictionary</strong> when you have one value and want to <strong>look up</strong> another value by it. You could call dictionaries “look-up tables”.</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h2><span class="section-number">14.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-counties-and-their-headquarters">
+<h3><span class="section-number">14.8.1. </span>Exercise: counties and their headquarters<a class="headerlink" href="#exercise-counties-and-their-headquarters" title="Link to this heading">#</a></h3>
+<p>Create a dictionary linking some Kenyan counties to their county headquarters (for example <code class="docutils literal notranslate"><span class="pre">&quot;Uasin</span> <span class="pre">Gishu&quot;:</span> <span class="pre">&quot;Eldoret&quot;</span></code>), add two more pairs after creating it, then print every pair with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. Finally, use <code class="docutils literal notranslate"><span class="pre">get</span></code> to look up a county that isn’t in your dictionary.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">headquarters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Nairobi"</span><span class="p">:</span> <span class="s2">"Nairobi"</span><span class="p">,</span>
+    <span class="s2">"Mombasa"</span><span class="p">:</span> <span class="s2">"Mombasa"</span><span class="p">,</span>
+    <span class="s2">"Uasin Gishu"</span><span class="p">:</span> <span class="s2">"Eldoret"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">headquarters</span><span class="p">[</span><span class="s2">"Nyeri"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Nyeri"</span>
+<span class="n">headquarters</span><span class="p">[</span><span class="s2">"Kakamega"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Kakamega"</span>
+
+<span class="k">for</span> <span class="n">county</span><span class="p">,</span> <span class="n">town</span> <span class="ow">in</span> <span class="n">headquarters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The headquarters of </span><span class="si">{</span><span class="n">county</span><span class="si">}</span><span class="s2"> County is </span><span class="si">{</span><span class="n">town</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">headquarters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Turkana"</span><span class="p">,</span> <span class="s2">"Not in the dictionary yet"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-a-phone-book">
+<h3><span class="section-number">14.8.2. </span>Exercise: a phone book<a class="headerlink" href="#exercise-a-phone-book" title="Link to this heading">#</a></h3>
+<p>Write a program with a dictionary of names and phone numbers. Ask the user for a name, and print the number, or <code class="docutils literal notranslate"><span class="pre">Sorry,</span> <span class="pre">I</span> <span class="pre">don't</span> <span class="pre">know</span> <span class="pre">&lt;name&gt;</span></code> if the name isn’t in the phone book.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">phone_book</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Amina"</span><span class="p">:</span> <span class="s2">"0712 345 678"</span><span class="p">,</span>
+    <span class="s2">"Brian"</span><span class="p">:</span> <span class="s2">"0723 456 789"</span><span class="p">,</span>
+    <span class="s2">"Chebet"</span><span class="p">:</span> <span class="s2">"0734 567 890"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Whose number? "</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">phone_book</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">phone_book</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sorry, I don't know </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Checking with <code class="docutils literal notranslate"><span class="pre">in</span></code> first avoids a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code>.</p>
+</div>
+</section>
+<section id="exercise-letter-counter">
+<h3><span class="section-number">14.8.3. </span>Exercise: letter counter<a class="headerlink" href="#exercise-letter-counter" title="Link to this heading">#</a></h3>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">letter_counts(text)</span></code> that returns a dictionary counting how many times each letter appears in a string, ignoring spaces. <code class="docutils literal notranslate"><span class="pre">letter_counts(&quot;banana&quot;)</span></code> should give <code class="docutils literal notranslate"><span class="pre">{'b':</span> <span class="pre">1,</span> <span class="pre">'a':</span> <span class="pre">3,</span> <span class="pre">'n':</span> <span class="pre">2}</span></code>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">letter_counts</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">letter</span> <span class="o">!=</span> <span class="s2">" "</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">counts</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">letter_counts</span><span class="p">(</span><span class="s2">"banana"</span><span class="p">))</span>   <span class="c1"># {'b': 1, 'a': 3, 'n': 2}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-the-class-average">
+<h3><span class="section-number">14.8.4. </span>Exercise: the class average<a class="headerlink" href="#exercise-the-class-average" title="Link to this heading">#</a></h3>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">students</span></code> list of dictionaries from this topic, write a program that prints the average mark and the name of the student with the highest mark.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Amina"</span><span class="p">,</span> <span class="s2">"mark"</span><span class="p">:</span> <span class="mi">78</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Brian"</span><span class="p">,</span> <span class="s2">"mark"</span><span class="p">:</span> <span class="mi">64</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Chebet"</span><span class="p">,</span> <span class="s2">"mark"</span><span class="p">:</span> <span class="mi">91</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">students</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">student</span><span class="p">[</span><span class="s2">"mark"</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">student</span><span class="p">[</span><span class="s2">"mark"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">best</span><span class="p">[</span><span class="s2">"mark"</span><span class="p">]:</span>
+        <span class="n">best</span> <span class="o">=</span> <span class="n">student</span>
+
+<span class="n">average</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">students</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Average mark: </span><span class="si">{</span><span class="n">average</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Top student: </span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="s1">'mark'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This prints an average of <code class="docutils literal notranslate"><span class="pre">77.7</span></code> and <code class="docutils literal notranslate"><span class="pre">Chebet</span></code> as the top student.</p>
+</div>
+</section>
+<section id="exercise-a-shop-inventory">
+<h3><span class="section-number">14.8.5. </span>Exercise: a shop inventory<a class="headerlink" href="#exercise-a-shop-inventory" title="Link to this heading">#</a></h3>
+<p>A shop’s stock is <code class="docutils literal notranslate"><span class="pre">stock</span> <span class="pre">=</span> <span class="pre">{&quot;pens&quot;:</span> <span class="pre">40,</span> <span class="pre">&quot;books&quot;:</span> <span class="pre">12,</span> <span class="pre">&quot;rulers&quot;:</span> <span class="pre">25}</span></code>. Write a function <code class="docutils literal notranslate"><span class="pre">sell(stock,</span> <span class="pre">item,</span> <span class="pre">quantity)</span></code> that reduces the stock of <code class="docutils literal notranslate"><span class="pre">item</span></code> by <code class="docutils literal notranslate"><span class="pre">quantity</span></code> and returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, or prints a message and returns <code class="docutils literal notranslate"><span class="pre">False</span></code> if the item doesn’t exist or there isn’t enough of it.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sell</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">quantity</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stock</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"We don't sell </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">stock</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">quantity</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Only </span><span class="si">{</span><span class="n">stock</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2"> left."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">stock</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">stock</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">-</span> <span class="n">quantity</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="n">stock</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"pens"</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s2">"books"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">"rulers"</span><span class="p">:</span> <span class="mi">25</span><span class="p">}</span>
+<span class="n">sell</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span> <span class="s2">"books"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sell</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span> <span class="s2">"books"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>     <span class="c1"># Only 7 books left.</span>
+<span class="n">sell</span><span class="p">(</span><span class="n">stock</span><span class="p">,</span> <span class="s2">"erasers"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>    <span class="c1"># We don't sell erasers.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>                 <span class="c1"># {'pens': 40, 'books': 7, 'rulers': 25}</span>
+</pre></div>
+</div>
+<p>Notice that the function changes the dictionary it was given: the caller’s <code class="docutils literal notranslate"><span class="pre">stock</span></code> really is updated.</p>
+<p>In a notebook, remember that the last line of a cell is displayed: a cell ending with <code class="docutils literal notranslate"><span class="pre">sell(stock,</span> <span class="pre">&quot;books&quot;,</span> <span class="pre">5)</span></code> would also show <code class="docutils literal notranslate"><span class="pre">True</span></code> below it.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="13_strings_tuples_slices.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>Strings, Tuples and Slices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="15_files.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Reading and Writing Files</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-versus-dictionaries">14.1. Lists versus dictionaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-checking-and-safe-lookups">14.2. Removing, checking and safe lookups</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-dictionary-example-students-subjects-and-teachers">14.3. A dictionary example: students, subjects and teachers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">14.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-a-dictionary">14.4. Looping over a dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-with-a-dictionary">14.5. Counting with a dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#records-dictionaries-in-a-list">14.6. Records: dictionaries in a list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-a-dictionary">14.7. When to use a dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">14.8. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-counties-and-their-headquarters">14.8.1. Exercise: counties and their headquarters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-phone-book">14.8.2. Exercise: a phone book</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-letter-counter">14.8.3. Exercise: letter counter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-class-average">14.8.4. Exercise: the class average</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-shop-inventory">14.8.5. Exercise: a shop inventory</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

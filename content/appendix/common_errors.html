@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Common Errors &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/appendix/common_errors';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Symbols and Keywords Review" href="symbols_and_keywords.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/appendix/common_errors.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Common Errors</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntaxerror">SyntaxError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indentationerror">IndentationError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nameerror">NameError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typeerror">TypeError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valueerror">ValueError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexerror">IndexError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyerror">KeyError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributeerror">AttributeError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zerodivisionerror">ZeroDivisionError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filenotfounderror">FileNotFoundError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-program-prints-none">My program prints None</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-program-does-nothing-never-stops">My program does nothing / never stops</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="common-errors">
+<h1>Common Errors<a class="headerlink" href="#common-errors" title="Link to this heading">#</a></h1>
+<p>This page explains the error messages beginners meet most often: what they mean, a typical example, and how to fix them. When Python shows you an error (in Colab, a red box below the cell), <strong>read the last line first</strong>, then look for that error below.</p>
+<section id="syntaxerror">
+<h2>SyntaxError<a class="headerlink" href="#syntaxerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> your code breaks Python’s grammar rules, so Python can’t even start running it.</p>
+<p><strong>Typical examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Hello"</span>                  <span class="c1"># SyntaxError: '(' was never closed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"I like typing this.)    # SyntaxError: unterminated string literal</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">3</span>                       <span class="c1"># SyntaxError: expected ':'</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong></p>
+<ul class="simple">
+<li><p>Look at the line Python shows <strong>and the line just above it</strong>. A missing bracket or quote on one line is often only noticed on the next.</p></li>
+<li><p>Check that every <code class="docutils literal notranslate"><span class="pre">(</span></code>, <code class="docutils literal notranslate"><span class="pre">[</span></code>, <code class="docutils literal notranslate"><span class="pre">{</span></code> and quote is closed, and that <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>, <code class="docutils literal notranslate"><span class="pre">def</span></code> and <code class="docutils literal notranslate"><span class="pre">class</span></code> lines end with <code class="docutils literal notranslate"><span class="pre">:</span></code>.</p></li>
+<li><p>In Colab, <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> must be the <strong>very first line</strong> of its cell. Anywhere else, Python tries to read it as code and reports a <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>.</p></li>
+</ul>
+</section>
+<section id="indentationerror">
+<h2>IndentationError<a class="headerlink" href="#indentationerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> the indentation (spaces at the start of lines) is wrong.</p>
+<p><strong>Typical examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">():</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"hi"</span><span class="p">)</span>        <span class="c1"># IndentationError: expected an indented block after function definition</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"positive"</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">"big"</span><span class="p">)</span>  <span class="c1"># IndentationError: unexpected indent</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong> indent every line of a block by exactly four spaces, and keep lines of the same block lined up. Don’t mix tabs and spaces. Colab (and Thonny, if you use your own computer) inserts four spaces when you press Tab, and indents automatically after a line ending in <code class="docutils literal notranslate"><span class="pre">:</span></code>. To move several lines at once, select them and press Tab or Shift + Tab.</p>
+</section>
+<section id="nameerror">
+<h2>NameError<a class="headerlink" href="#nameerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> you used a name Python doesn’t know: a variable that hasn’t been created yet, a misspelt name, or a function you forgot to import.</p>
+<p><strong>Typical examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>          <span class="c1"># NameError: name 'total' is not defined</span>
+<span class="n">Print</span><span class="p">(</span><span class="s2">"hi"</span><span class="p">)</span>           <span class="c1"># NameError: name 'Print' is not defined. Did you mean: 'print'?</span>
+<span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>         <span class="c1"># NameError, if you forgot: from random import randint</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong></p>
+<ul class="simple">
+<li><p>Check the spelling, including capital letters: <code class="docutils literal notranslate"><span class="pre">Total</span></code> and <code class="docutils literal notranslate"><span class="pre">total</span></code> are different names.</p></li>
+<li><p>Make sure the variable is created <strong>before</strong> the line that uses it. In a notebook, make sure the cell that creates it has been <strong>run</strong> — after a restart, every variable is forgotten until you run its cell again.</p></li>
+<li><p>A variable created inside a function doesn’t exist outside it: return the value instead.</p></li>
+<li><p>Add the missing <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p></li>
+</ul>
+</section>
+<section id="typeerror">
+<h2>TypeError<a class="headerlink" href="#typeerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> you used an operation on a type of value that doesn’t support it.</p>
+<p><strong>Typical examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">"Age: "</span> <span class="o">+</span> <span class="mi">19</span>               <span class="c1"># TypeError: can only concatenate str (not "int") to str</span>
+<span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Age? "</span><span class="p">)</span>
+<span class="n">age</span> <span class="o">+</span> <span class="mi">1</span>                    <span class="c1"># TypeError: input() gives a string, not a number</span>
+<span class="nb">len</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>                     <span class="c1"># TypeError: object of type 'int' has no len()</span>
+<span class="n">greet</span><span class="p">(</span><span class="s2">"Amina"</span><span class="p">,</span> <span class="s2">"Brian"</span><span class="p">)</span>    <span class="c1"># TypeError: greet() takes 1 positional argument but 2 were given</span>
+<span class="kc">None</span> <span class="o">*</span> <span class="mi">2</span>                   <span class="c1"># TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong></p>
+<ul class="simple">
+<li><p>Check the types involved with <code class="docutils literal notranslate"><span class="pre">print(type(x))</span></code>.</p></li>
+<li><p>Convert where needed: <code class="docutils literal notranslate"><span class="pre">int(...)</span></code>, <code class="docutils literal notranslate"><span class="pre">float(...)</span></code>, <code class="docutils literal notranslate"><span class="pre">str(...)</span></code>, or use an f-string.</p></li>
+<li><p>Check that you call functions with the right number of arguments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NoneType</span></code> in the message usually means a function forgot to <code class="docutils literal notranslate"><span class="pre">return</span></code> a value.</p></li>
+</ul>
+</section>
+<section id="valueerror">
+<h2>ValueError<a class="headerlink" href="#valueerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> the type of value is right, but the value itself can’t be used.</p>
+<p><strong>Typical examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">"twelve"</span><span class="p">)</span>                 <span class="c1"># ValueError: invalid literal for int() with base 10: 'twelve'</span>
+<span class="nb">int</span><span class="p">(</span><span class="s2">"3.5"</span><span class="p">)</span>                    <span class="c1"># ValueError: use float("3.5") instead</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>              <span class="c1"># ValueError: too many values to unpack (expected 2)</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong> check the input before converting (for example with <code class="docutils literal notranslate"><span class="pre">.isdigit()</span></code>), use <code class="docutils literal notranslate"><span class="pre">float</span></code> when decimals are allowed, or catch the error with <code class="docutils literal notranslate"><span class="pre">try</span></code>/<code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">ValueError</span></code> and ask again. For unpacking, make sure there are exactly as many variables as values.</p>
+</section>
+<section id="indexerror">
+<h2>IndexError<a class="headerlink" href="#indexerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> you asked for a position that doesn’t exist in a list, tuple or string.</p>
+<p><strong>Typical examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"bear"</span><span class="p">,</span> <span class="s2">"tiger"</span><span class="p">,</span> <span class="s2">"penguin"</span><span class="p">]</span>
+<span class="n">animals</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>         <span class="c1"># IndexError: list index out of range</span>
+<span class="p">[]</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>           <span class="c1"># IndexError: pop from empty list</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong> remember that indices start at 0, so the last valid index is <code class="docutils literal notranslate"><span class="pre">len(animals)</span> <span class="pre">-</span> <span class="pre">1</span></code>. Check that a list isn’t empty before popping from it. And don’t remove items from a list while looping over its positions.</p>
+</section>
+<section id="keyerror">
+<h2>KeyError<a class="headerlink" href="#keyerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> you looked up a key that isn’t in a dictionary.</p>
+<p><strong>Typical example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"bread"</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span> <span class="s2">"milk"</span><span class="p">:</span> <span class="mi">60</span><span class="p">}</span>
+<span class="n">prices</span><span class="p">[</span><span class="s2">"eggs"</span><span class="p">]</span>     <span class="c1"># KeyError: 'eggs'</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong> check first with <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">&quot;eggs&quot;</span> <span class="pre">in</span> <span class="pre">prices:</span></code>, or use <code class="docutils literal notranslate"><span class="pre">prices.get(&quot;eggs&quot;,</span> <span class="pre">0)</span></code> to get a default value instead of an error. Also check spelling and capitals: <code class="docutils literal notranslate"><span class="pre">&quot;Milk&quot;</span></code> is not <code class="docutils literal notranslate"><span class="pre">&quot;milk&quot;</span></code>.</p>
+</section>
+<section id="attributeerror">
+<h2>AttributeError<a class="headerlink" href="#attributeerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> a value doesn’t have the method or attribute you asked for.</p>
+<p><strong>Typical examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">"hello"</span><span class="o">.</span><span class="n">uppper</span><span class="p">()</span>               <span class="c1"># AttributeError: 'str' object has no attribute 'uppper'</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>              <span class="c1"># AttributeError: 'tuple' object has no attribute 'append'</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong> check the spelling of the method, and check the type of the value — tuples can’t be changed, so they have no <code class="docutils literal notranslate"><span class="pre">append</span></code>. In your own classes, make sure every attribute is created with <code class="docutils literal notranslate"><span class="pre">self.</span></code> in <code class="docutils literal notranslate"><span class="pre">__init__</span></code>.</p>
+</section>
+<section id="zerodivisionerror">
+<h2>ZeroDivisionError<a class="headerlink" href="#zerodivisionerror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> you divided by zero (or used <code class="docutils literal notranslate"><span class="pre">%</span></code> or <code class="docutils literal notranslate"><span class="pre">//</span></code> with zero).</p>
+<p><strong>Typical example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">marks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">average</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">marks</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">marks</span><span class="p">)</span>   <span class="c1"># ZeroDivisionError: division by zero</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong> check the divisor first (<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">len(marks)</span> <span class="pre">&gt;</span> <span class="pre">0:</span></code>), or catch the error with <code class="docutils literal notranslate"><span class="pre">try</span></code>/<code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">ZeroDivisionError</span></code>.</p>
+</section>
+<section id="filenotfounderror">
+<h2>FileNotFoundError<a class="headerlink" href="#filenotfounderror" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> Python couldn’t find the file you tried to open.</p>
+<p><strong>Typical example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="s2">"marks.txt"</span><span class="p">)</span>   <span class="c1"># FileNotFoundError: [Errno 2] No such file or directory: 'marks.txt'</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong></p>
+<ul class="simple">
+<li><p>Check the file name and extension (<code class="docutils literal notranslate"><span class="pre">marks.txt</span></code> vs <code class="docutils literal notranslate"><span class="pre">Marks.txt</span></code> vs <code class="docutils literal notranslate"><span class="pre">marks.txt.txt</span></code>).</p></li>
+<li><p>In Colab, open the <strong>Files</strong> panel (folder icon) and check that the file is really there. Files there are deleted when the session ends, so you may need to upload it or run its <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> cell again.</p></li>
+<li><p>For a file in Google Drive, give the full path, such as <code class="docutils literal notranslate"><span class="pre">/content/drive/MyDrive/marks.txt</span></code>, and make sure Drive is connected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'...'</span></code> is the same problem for a module you wrote: run its <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> cell first.</p></li>
+</ul>
+</section>
+<section id="my-program-prints-none">
+<h2>My program prints None<a class="headerlink" href="#my-program-prints-none" title="Link to this heading">#</a></h2>
+<p><strong>Meaning:</strong> not an error message, but a very common surprise. A function that doesn’t use <code class="docutils literal notranslate"><span class="pre">return</span></code> gives back <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>   <span class="c1"># prints 8</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>        <span class="c1"># None</span>
+</pre></div>
+</div>
+<p><strong>How to fix:</strong> if the caller needs the value, use <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">2</span></code> instead of <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p>
+</section>
+<section id="my-program-does-nothing-never-stops">
+<h2>My program does nothing / never stops<a class="headerlink" href="#my-program-does-nothing-never-stops" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Nothing happens:</strong> you may have defined functions but never called them. Is there a <code class="docutils literal notranslate"><span class="pre">main()</span></code> (or other call) at the bottom of the cell?</p></li>
+<li><p><strong>It never stops:</strong> you probably have an infinite <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. Click the cell’s stop button (■) or choose <strong>Runtime → Interrupt execution</strong>, then check that something inside the loop changes the condition — and that the condition can’t skip past the value that ends it (use <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">0</span></code> rather than <code class="docutils literal notranslate"><span class="pre">!=</span> <span class="pre">0</span></code>).</p></li>
+<li><p><strong>It’s waiting:</strong> a program paused at <code class="docutils literal notranslate"><span class="pre">input()</span></code> looks frozen until you type something in the text box below the cell and press Enter.</p></li>
+<li><p><strong>My change had no effect:</strong> in a notebook, did you run the cell again after editing it? For a class or function, also re-run the cells that use it; for a module, restart the session.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="symbols_and_keywords.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Symbols and Keywords Review</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="glossary.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Glossary</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntaxerror">SyntaxError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indentationerror">IndentationError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nameerror">NameError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typeerror">TypeError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valueerror">ValueError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexerror">IndexError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyerror">KeyError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributeerror">AttributeError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zerodivisionerror">ZeroDivisionError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filenotfounderror">FileNotFoundError</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-program-prints-none">My program prints None</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-program-does-nothing-never-stops">My program does nothing / never stops</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

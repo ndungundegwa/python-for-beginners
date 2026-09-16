@@ -1,0 +1,886 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10. Loops: Doing Things Again and Again &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/10_loops';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. Lists" href="11_lists.html" />
+    <link rel="prev" title="9. Making Decisions: if, elif and else" href="09_making_decisions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/10_loops.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Loops: Doing Things Again and Again</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-first-look-at-lists">10.1. A first look at lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-loop">10.2. The for loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">10.2.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-with-range">10.3. Counting with range</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-things-up-in-a-loop">10.4. Adding things up in a loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-while-loop">10.5. The while loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-or-while">10.6. for or while?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops-that-never-stop">10.7. Loops that never stop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leaving-a-loop-early-break">10.8. Leaving a loop early: break</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">10.9. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-multiplication-table">10.9.1. Exercise: multiplication table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-add-up-the-numbers">10.9.2. Exercise: add up the numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-savings-as-a-function">10.9.3. Exercise: savings as a function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-countdown">10.9.4. Exercise: countdown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-password-guard">10.9.5. Exercise: the password guard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-count-the-vowels">10.9.6. Exercise: count the vowels</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="loops-doing-things-again-and-again">
+<h1><span class="section-number">10. </span>Loops: Doing Things Again and Again<a class="headerlink" href="#loops-doing-things-again-and-again" title="Link to this heading">#</a></h1>
+<p>Computers never get bored. They can repeat the same work thousands of times without a mistake — as long as you tell them how. In this topic you’ll learn the two kinds of <strong>loops</strong> in Python, <code class="docutils literal notranslate"><span class="pre">for</span></code> and <code class="docutils literal notranslate"><span class="pre">while</span></code>, and meet your first <strong>lists</strong> along the way.</p>
+<section id="a-first-look-at-lists">
+<h2><span class="section-number">10.1. </span>A first look at lists<a class="headerlink" href="#a-first-look-at-lists" title="Link to this heading">#</a></h2>
+<p>Before we can loop over things, we need somewhere to keep several things together. A <strong>list</strong> is exactly what its name says: a collection of items in order. You write a list with square brackets, separating the items with commas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">counties</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Nairobi"</span><span class="p">,</span> <span class="s2">"Kisumu"</span><span class="p">,</span> <span class="s2">"Nakuru"</span><span class="p">]</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">92</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>That’s all you need for now; Topic 11 is all about lists.</p>
+</section>
+<section id="the-for-loop">
+<h2><span class="section-number">10.2. </span>The for loop<a class="headerlink" href="#the-for-loop" title="Link to this heading">#</a></h2>
+<p>Type this into a new code cell and run it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">54</span><span class="p">]</span>
+<span class="n">counties</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Nairobi"</span><span class="p">,</span> <span class="s2">"Kisumu"</span><span class="p">,</span> <span class="s2">"Nakuru"</span><span class="p">,</span> <span class="s2">"Mombasa"</span><span class="p">]</span>
+<span class="n">student</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Amina"</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="s2">"Form 3"</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+
+<span class="c1"># go through a list of numbers</span>
+<span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Score: </span><span class="si">{</span><span class="n">score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># go through a list of strings</span>
+<span class="k">for</span> <span class="n">county</span> <span class="ow">in</span> <span class="n">counties</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hello from </span><span class="si">{</span><span class="n">county</span><span class="si">}</span><span class="s2">!"</span><span class="p">)</span>
+
+<span class="c1"># a list can hold different kinds of values</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">student</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Item: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># build a new list, starting with an empty one</span>
+<span class="n">squares</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Adding </span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="si">}</span><span class="s2"> to the list."</span><span class="p">)</span>
+    <span class="n">squares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>    <span class="c1"># append adds an item to the end of a list</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The squares are:"</span><span class="p">,</span> <span class="n">squares</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="what-you-should-see">
+<h3><span class="section-number">10.2.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Score: 65
+Score: 78
+Score: 92
+Score: 54
+Hello from Nairobi!
+Hello from Kisumu!
+Hello from Nakuru!
+Hello from Mombasa!
+Item: Amina
+Item: 17
+Item: Form 3
+Item: True
+Adding 1 to the list.
+Adding 4 to the list.
+Adding 9 to the list.
+Adding 16 to the list.
+Adding 25 to the list.
+The squares are: [1, 4, 9, 16, 25]
+</pre></div>
+</div>
+<p>Read <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">county</span> <span class="pre">in</span> <span class="pre">counties:</span></code> as “<strong>for each</strong> county in the list of counties, do the indented block”. Python takes the first item, puts it in the variable <code class="docutils literal notranslate"><span class="pre">county</span></code>, runs the block, then takes the next item, and so on until the list is used up. You choose the variable’s name; it’s created by the loop itself.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">for</span></code> loop works on any sequence, including strings — it then goes through the characters one by one:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="s2">"Jambo"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>J
+a
+m
+b
+o
+</pre></div>
+</div>
+</section>
+</section>
+<section id="counting-with-range">
+<h2><span class="section-number">10.3. </span>Counting with range<a class="headerlink" href="#counting-with-range" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">range</span></code> produces a sequence of whole numbers for a loop to walk through:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">range(5)</span></code> gives 0, 1, 2, 3, 4 — it starts at 0 and <strong>stops before</strong> 5.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">6)</span></code> gives 1, 2, 3, 4, 5.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range(0,</span> <span class="pre">20,</span> <span class="pre">5)</span></code> gives 0, 5, 10, 15 — the third number is the step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range(10,</span> <span class="pre">0,</span> <span class="pre">-1)</span></code> counts down: 10, 9, …, 1.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> x 7 = </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">7</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1 x 7 = 7
+2 x 7 = 14
+3 x 7 = 21
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Why does <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">3)</span></code> only give 1 and 2? <code class="docutils literal notranslate"><span class="pre">range</span></code> always stops <strong>before</strong> its end number. This feels odd at first, but it means <code class="docutils literal notranslate"><span class="pre">range(n)</span></code> gives exactly <code class="docutils literal notranslate"><span class="pre">n</span></code> numbers, which turns out to be very convenient.</p>
+</div>
+</section>
+<section id="adding-things-up-in-a-loop">
+<h2><span class="section-number">10.4. </span>Adding things up in a loop<a class="headerlink" href="#adding-things-up-in-a-loop" title="Link to this heading">#</a></h2>
+<p>A very common pattern is to keep a <strong>running total</strong>: start a variable at 0 before the loop, and add to it each time around.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">54</span><span class="p">]</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">score</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Added </span><span class="si">{</span><span class="n">score</span><span class="si">}</span><span class="s2">, total is now </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Average score:"</span><span class="p">,</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Added 65, total is now 65
+Added 78, total is now 143
+Added 92, total is now 235
+Added 54, total is now 289
+Average score: 72.25
+</pre></div>
+</div>
+</section>
+<section id="the-while-loop">
+<h2><span class="section-number">10.5. </span>The while loop<a class="headerlink" href="#the-while-loop" title="Link to this heading">#</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">while</span></code> loop keeps running its block <strong>as long as</strong> a Boolean expression is <code class="docutils literal notranslate"><span class="pre">True</span></code>. It checks the condition, runs the block, jumps back to the top, checks again, and so on.</p>
+<p>Suppose you save 150 shillings every week, and you want to know how long it takes to save 1000:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">savings</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">week</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">savings</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+    <span class="n">week</span> <span class="o">=</span> <span class="n">week</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">savings</span> <span class="o">=</span> <span class="n">savings</span> <span class="o">+</span> <span class="mi">150</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Week </span><span class="si">{</span><span class="n">week</span><span class="si">}</span><span class="s2">: you have saved </span><span class="si">{</span><span class="n">savings</span><span class="si">}</span><span class="s2"> shillings"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You reached </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> shillings after </span><span class="si">{</span><span class="n">week</span><span class="si">}</span><span class="s2"> weeks!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Week 1: you have saved 150 shillings
+Week 2: you have saved 300 shillings
+Week 3: you have saved 450 shillings
+Week 4: you have saved 600 shillings
+Week 5: you have saved 750 shillings
+Week 6: you have saved 900 shillings
+Week 7: you have saved 1050 shillings
+You reached 1000 shillings after 7 weeks!
+</pre></div>
+</div>
+<p>At the start of week 7 <code class="docutils literal notranslate"><span class="pre">savings</span></code> is 900, which is still less than 1000, so the block runs once more. Then <code class="docutils literal notranslate"><span class="pre">savings</span></code> is 1050, the condition <code class="docutils literal notranslate"><span class="pre">savings</span> <span class="pre">&lt;</span> <span class="pre">target</span></code> becomes <code class="docutils literal notranslate"><span class="pre">False</span></code>, and the loop stops.</p>
+</section>
+<section id="for-or-while">
+<h2><span class="section-number">10.6. </span>for or while?<a class="headerlink" href="#for-or-while" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use a <strong><code class="docutils literal notranslate"><span class="pre">for</span></code> loop</strong> when you’re going through a collection of things, or when you know how many times to repeat. This is most of the time.</p></li>
+<li><p>Use a <strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop</strong> when you must keep going <strong>until something happens</strong> and you can’t know in advance how many repetitions that will take — like the savings above, or “keep asking until the user types a valid answer”.</p></li>
+</ul>
+<p>Here’s another good use of <code class="docutils literal notranslate"><span class="pre">while</span></code>: finding the integer square root of a number — the biggest whole number whose square isn’t larger than it. We can’t know in advance how many steps that takes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Number: "</span><span class="p">))</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The integer square root of </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For 30 it prints 5, because 5 × 5 = 25 is at most 30, but 6 × 6 = 36 is too big.</p>
+</section>
+<section id="loops-that-never-stop">
+<h2><span class="section-number">10.7. </span>Loops that never stop<a class="headerlink" href="#loops-that-never-stop" title="Link to this heading">#</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">while</span></code> loop only stops when its condition becomes <code class="docutils literal notranslate"><span class="pre">False</span></code>. If nothing in the block ever changes that, you get an <strong>infinite loop</strong>: the cell keeps running and the output grows and grows. In Colab, click the <strong>stop</strong> button (■) next to the cell, or choose <strong>Runtime → Interrupt execution</strong>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">while</span> <span class="n">count</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">-</span> <span class="mi">3</span>    <span class="c1"># 10, 7, 4, 1, -2, -5 ... never exactly 0!</span>
+</pre></div>
+</div>
+<p>The count jumps straight past zero, so <code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">!=</span> <span class="pre">0</span></code> stays <code class="docutils literal notranslate"><span class="pre">True</span></code> forever. A safer condition is <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">count</span> <span class="pre">&gt;</span> <span class="pre">0:</span></code>.</p>
+<p>Whenever you write a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, ask yourself two questions:</p>
+<ol class="arabic simple">
+<li><p>What makes the condition become <code class="docutils literal notranslate"><span class="pre">False</span></code>?</p></li>
+<li><p>Is that <strong>guaranteed</strong> to happen?</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If a loop behaves strangely, add <code class="docutils literal notranslate"><span class="pre">print</span></code> calls inside the loop body to show the values of your variables each time around, as the savings program does. Watching the numbers change is the fastest way to understand a loop.</p>
+</div>
+</section>
+<section id="leaving-a-loop-early-break">
+<h2><span class="section-number">10.8. </span>Leaving a loop early: break<a class="headerlink" href="#leaving-a-loop-early-break" title="Link to this heading">#</a></h2>
+<p>Sometimes the natural place to decide “stop now” is in the middle of the loop. The <code class="docutils literal notranslate"><span class="pre">break</span></code> statement exits a loop immediately:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Type 'quit' to stop: "</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">answer</span> <span class="o">==</span> <span class="s2">"quit"</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You typed </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Bye!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> would loop forever on its own; the <code class="docutils literal notranslate"><span class="pre">break</span></code> is what ends it.</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">10.9. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-multiplication-table">
+<h3><span class="section-number">10.9.1. </span>Exercise: multiplication table<a class="headerlink" href="#exercise-multiplication-table" title="Link to this heading">#</a></h3>
+<p>Ask the user for a number and use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop with <code class="docutils literal notranslate"><span class="pre">range</span></code> to print its multiplication table from 1 to 10, like <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">x</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">7</span></code> … <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">x</span> <span class="pre">10</span> <span class="pre">=</span> <span class="pre">70</span></code>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Which table? "</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">11)</span></code> is needed to include 10.</p>
+</div>
+</section>
+<section id="exercise-add-up-the-numbers">
+<h3><span class="section-number">10.9.2. </span>Exercise: add up the numbers<a class="headerlink" href="#exercise-add-up-the-numbers" title="Link to this heading">#</a></h3>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">sum_to(n)</span></code> that returns 1 + 2 + … + n. Write it <strong>twice</strong>: once with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and once with a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. Check that <code class="docutils literal notranslate"><span class="pre">sum_to(10)</span></code> is 55 and <code class="docutils literal notranslate"><span class="pre">sum_to(100)</span></code> is 5050.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_to</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sum_to_while</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sum_to</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">sum_to_while</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>     <span class="c1"># 55 55</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sum_to</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">sum_to_while</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>   <span class="c1"># 5050 5050</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> version is shorter and can’t accidentally loop forever, because it has no counter for you to forget to update.</p>
+</div>
+</section>
+<section id="exercise-savings-as-a-function">
+<h3><span class="section-number">10.9.3. </span>Exercise: savings as a function<a class="headerlink" href="#exercise-savings-as-a-function" title="Link to this heading">#</a></h3>
+<p>Turn the savings program into a function <code class="docutils literal notranslate"><span class="pre">weeks_to_save(target,</span> <span class="pre">per_week)</span></code> that <strong>returns</strong> the number of weeks needed, without printing anything. Check that <code class="docutils literal notranslate"><span class="pre">weeks_to_save(1000,</span> <span class="pre">150)</span></code> is 7 and <code class="docutils literal notranslate"><span class="pre">weeks_to_save(500,</span> <span class="pre">100)</span></code> is 5. What happens if <code class="docutils literal notranslate"><span class="pre">per_week</span></code> is 0, and how could you protect against it?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">weeks_to_save</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">per_week</span><span class="p">):</span>
+    <span class="n">savings</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">weeks</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">savings</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+        <span class="n">savings</span> <span class="o">=</span> <span class="n">savings</span> <span class="o">+</span> <span class="n">per_week</span>
+        <span class="n">weeks</span> <span class="o">=</span> <span class="n">weeks</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">weeks</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">weeks_to_save</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">150</span><span class="p">))</span>   <span class="c1"># 7</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">weeks_to_save</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>    <span class="c1"># 5</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">per_week</span></code> is 0, <code class="docutils literal notranslate"><span class="pre">savings</span></code> never grows, so <code class="docutils literal notranslate"><span class="pre">savings</span> <span class="pre">&lt;</span> <span class="pre">target</span></code> stays <code class="docutils literal notranslate"><span class="pre">True</span></code> and the loop <strong>never stops</strong> — stop the cell with ■. One protection is to check first:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">per_week</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>at the start of the function. Always ask: <em>is the condition guaranteed to become False?</em></p>
+</div>
+</section>
+<section id="exercise-countdown">
+<h3><span class="section-number">10.9.4. </span>Exercise: countdown<a class="headerlink" href="#exercise-countdown" title="Link to this heading">#</a></h3>
+<p>Write a program that counts down from 10 to 1, one number per line, then prints <code class="docutils literal notranslate"><span class="pre">Lift</span> <span class="pre">off!</span></code>. Do it once with <code class="docutils literal notranslate"><span class="pre">for</span></code> and <code class="docutils literal notranslate"><span class="pre">range</span></code>, and once with <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Lift off!"</span><span class="p">)</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">while</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Lift off!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-the-password-guard">
+<h3><span class="section-number">10.9.5. </span>Exercise: the password guard<a class="headerlink" href="#exercise-the-password-guard" title="Link to this heading">#</a></h3>
+<p>Write a program with a secret password stored in a variable. Keep asking the user for the password until they type it correctly, then print <code class="docutils literal notranslate"><span class="pre">Access</span> <span class="pre">granted</span></code>. Count the attempts and print how many were needed.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SECRET</span> <span class="o">=</span> <span class="s2">"karibu123"</span>
+
+<span class="n">attempts</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">guess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Password: "</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">SECRET</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Wrong password, try again."</span><span class="p">)</span>
+    <span class="n">guess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Password: "</span><span class="p">)</span>
+    <span class="n">attempts</span> <span class="o">=</span> <span class="n">attempts</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Access granted after </span><span class="si">{</span><span class="n">attempts</span><span class="si">}</span><span class="s2"> attempt(s)."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">while</span></code> loop is the right choice here, because we can’t know how many attempts the user will need.</p>
+</div>
+</section>
+<section id="exercise-count-the-vowels">
+<h3><span class="section-number">10.9.6. </span>Exercise: count the vowels<a class="headerlink" href="#exercise-count-the-vowels" title="Link to this heading">#</a></h3>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">count_vowels(text)</span></code> that returns how many vowels (a, e, i, o, u, upper or lower case) a string contains. Hint: loop over the characters, and use <code class="docutils literal notranslate"><span class="pre">letter</span> <span class="pre">in</span> <span class="pre">&quot;aeiouAEIOU&quot;</span></code> to test each one.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">count_vowels</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="s2">"aeiouAEIOU"</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">count_vowels</span><span class="p">(</span><span class="s2">"Learning Python is fun"</span><span class="p">))</span>   <span class="c1"># 6</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">in</span></code> operator also works on strings: <code class="docutils literal notranslate"><span class="pre">&quot;e&quot;</span> <span class="pre">in</span> <span class="pre">&quot;aeiou&quot;</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_making_decisions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Making Decisions: if, elif and else</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="11_lists.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Lists</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-first-look-at-lists">10.1. A first look at lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-loop">10.2. The for loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">10.2.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-with-range">10.3. Counting with range</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-things-up-in-a-loop">10.4. Adding things up in a loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-while-loop">10.5. The while loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-or-while">10.6. for or while?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops-that-never-stop">10.7. Loops that never stop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leaving-a-loop-early-break">10.8. Leaving a loop early: break</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">10.9. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-multiplication-table">10.9.1. Exercise: multiplication table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-add-up-the-numbers">10.9.2. Exercise: add up the numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-savings-as-a-function">10.9.3. Exercise: savings as a function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-countdown">10.9.4. Exercise: countdown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-password-guard">10.9.5. Exercise: the password guard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-count-the-vowels">10.9.6. Exercise: count the vowels</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

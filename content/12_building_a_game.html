@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>12. Building a Game: Branches and Functions &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/12_building_a_game';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13. Strings, Tuples and Slices" href="13_strings_tuples_slices.html" />
+    <link rel="prev" title="11. Lists" href="11_lists.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/12_building_a_game.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Building a Game: Branches and Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-game-made-of-rooms">12.1. A game made of rooms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">12.1.1. What you should see</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">12.1.2. How it works</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#habits-that-keep-you-out-of-trouble">12.2. Habits that keep you out of trouble</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-program-step-by-step-the-secret-number-game">12.3. Building a program step by step: the secret number game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-plan-with-comments">12.3.1. Step 1: plan with comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-the-secret-number-with-constants">12.3.2. Step 2: the secret number, with constants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-reading-a-valid-guess">12.3.3. Step 3: reading a valid guess</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-the-hint">12.3.4. Step 4: the hint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-the-game-loop-in-a-main-function">12.3.5. Step 5: the game loop, in a main function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">12.4. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-fix-the-reading-room">12.4.1. Exercise: fix the reading room</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-draw-the-map">12.4.2. Exercise: draw the map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-limited-number-of-tries">12.4.3. Exercise: a limited number of tries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-computer-guesses">12.4.4. Exercise: the computer guesses</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="building-a-game-branches-and-functions">
+<h1><span class="section-number">12. </span>Building a Game: Branches and Functions<a class="headerlink" href="#building-a-game-branches-and-functions" title="Link to this heading">#</a></h1>
+<p>You now know variables, functions, decisions, loops and lists. That’s enough to build real programs! In this topic you’ll study a small text adventure made of functions that call each other, learn some habits that keep your code out of trouble, and then build a <strong>secret-number game</strong> step by step, the way programmers build larger programs.</p>
+<section id="a-game-made-of-rooms">
+<h2><span class="section-number">12.1. </span>A game made of rooms<a class="headerlink" href="#a-game-made-of-rooms" title="Link to this heading">#</a></h2>
+<p>In this adventure, each room of the game is a function. Moving to another room simply means calling another function. The whole game fits in one code cell — it’s long, so type one function, run the cell to check for typing mistakes, then type the next.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">game_over</span><span class="p">(</span><span class="n">reason</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">reason</span><span class="p">,</span> <span class="s2">"GAME OVER."</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">reading_room</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You are in the reading room. A sleepy librarian sits at the desk."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\"</span><span class="s2">How many books do you want to borrow?</span><span class="se">\"</span><span class="s2"> she asks."</span><span class="p">)</span>
+
+    <span class="n">how_many</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">how_many</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"She stamps your books and unlocks the front door. You win!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">game_over</span><span class="p">(</span><span class="s2">"</span><span class="se">\"</span><span class="s2">That's far too many!</span><span class="se">\"</span><span class="s2"> She sends you away with nothing."</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">computer_lab</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You enter the computer lab. One computer is still switched on."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"The screen says: TYPE THE PASSWORD TO OPEN THE DOOR."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"There is a sticky note under the keyboard."</span><span class="p">)</span>
+    <span class="n">read_note</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">"read note"</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">read_note</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"The note says: the password is the answer to 6 * 7."</span><span class="p">)</span>
+            <span class="n">read_note</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">"read note"</span> <span class="ow">and</span> <span class="n">read_note</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"You read it again. It still says 6 * 7."</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">"42"</span> <span class="ow">and</span> <span class="n">read_note</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"The door clicks open."</span><span class="p">)</span>
+            <span class="n">reading_room</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">"switch off"</span><span class="p">:</span>
+            <span class="n">game_over</span><span class="p">(</span><span class="s2">"The screen goes dark and you can't find the door."</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Nothing happens. Maybe look around?"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">storeroom</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You are in a dusty storeroom. Something moves behind the boxes."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Do you look behind the boxes, or go back?"</span><span class="p">)</span>
+
+    <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">"back"</span> <span class="ow">in</span> <span class="n">choice</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="s2">"look"</span> <span class="ow">in</span> <span class="n">choice</span><span class="p">:</span>
+        <span class="n">game_over</span><span class="p">(</span><span class="s2">"The school cat jumps out and the boxes fall on you."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">storeroom</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You fell asleep in the school library. Now it's dark and locked."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"There is a door marked LAB on the left and STORE on the right."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Which one do you take?"</span><span class="p">)</span>
+
+    <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">"left"</span><span class="p">:</span>
+        <span class="n">computer_lab</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">"right"</span><span class="p">:</span>
+        <span class="n">storeroom</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">game_over</span><span class="p">(</span><span class="s2">"You wait in the dark until the guard finds you in the morning."</span><span class="p">)</span>
+
+
+<span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="what-you-should-see">
+<h3><span class="section-number">12.1.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>You fell asleep in the school library. Now it's dark and locked.
+There is a door marked LAB on the left and STORE on the right.
+Which one do you take?
+&gt; left
+You enter the computer lab. One computer is still switched on.
+The screen says: TYPE THE PASSWORD TO OPEN THE DOOR.
+There is a sticky note under the keyboard.
+&gt; 42
+Nothing happens. Maybe look around?
+&gt; read note
+The note says: the password is the answer to 6 * 7.
+&gt; 42
+The door clicks open.
+You are in the reading room. A sleepy librarian sits at the desk.
+"How many books do you want to borrow?" she asks.
+&gt; 3
+She stamps your books and unlocks the front door. You win!
+</pre></div>
+</div>
+<p>In Colab, every <code class="docutils literal notranslate"><span class="pre">input</span></code> opens a text box under the output, so the whole game is played inside the cell. To play again, run the cell again.</p>
+</section>
+<section id="how-it-works">
+<h3><span class="section-number">12.1.2. </span>How it works<a class="headerlink" href="#how-it-works" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Nothing happens until the last line.</strong> All the <code class="docutils literal notranslate"><span class="pre">def</span></code> blocks only <em>define</em> rooms. The final <code class="docutils literal notranslate"><span class="pre">start()</span></code> call begins the game.</p></li>
+<li><p><strong>Rooms call rooms.</strong> <code class="docutils literal notranslate"><span class="pre">start</span></code> calls <code class="docutils literal notranslate"><span class="pre">computer_lab</span></code> or <code class="docutils literal notranslate"><span class="pre">storeroom</span></code>; <code class="docutils literal notranslate"><span class="pre">computer_lab</span></code> calls <code class="docutils literal notranslate"><span class="pre">reading_room</span></code>; <code class="docutils literal notranslate"><span class="pre">storeroom</span></code> may even call <code class="docutils literal notranslate"><span class="pre">start</span></code> again, or call <em>itself</em> to ask the question once more.</p></li>
+<li><p><strong>The game ends when the functions run out.</strong> An ending simply prints a message and doesn’t call another room. Each function then finishes and hands control back to the one that called it, until <code class="docutils literal notranslate"><span class="pre">start()</span></code> itself has finished.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> in <code class="docutils literal notranslate"><span class="pre">computer_lab</span></code></strong> keeps asking until the player finds a way out. <code class="docutils literal notranslate"><span class="pre">return</span></code> ends the function straight away — and with it the loop.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">read_note</span></code> is a flag</strong>: a Boolean variable that remembers whether something has happened. Typing <code class="docutils literal notranslate"><span class="pre">42</span></code> only works once the player has read the note.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;back&quot;</span> <span class="pre">in</span> <span class="pre">choice</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> if the text <code class="docutils literal notranslate"><span class="pre">back</span></code> appears anywhere in what the player typed, so <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">back</span></code> also works.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before reading code like this, <strong>draw a map</strong>: a box for each room and an arrow for each way to move between them. Programs made of functions calling functions become easy to follow on paper.</p>
+</div>
+</section>
+</section>
+<section id="habits-that-keep-you-out-of-trouble">
+<h2><span class="section-number">12.2. </span>Habits that keep you out of trouble<a class="headerlink" href="#habits-that-keep-you-out-of-trouble" title="Link to this heading">#</a></h2>
+<p>While you are learning, these habits will help you write clearer, safer code.</p>
+<p><strong>Decisions</strong></p>
+<ol class="arabic simple">
+<li><p>End each <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code> chain with an <code class="docutils literal notranslate"><span class="pre">else</span></code> that handles “anything else”, even if it only prints a message. The <code class="docutils literal notranslate"><span class="pre">else</span></code> catches the cases you didn’t think of — like a player typing <code class="docutils literal notranslate"><span class="pre">LEFT</span></code> in capital letters.</p></li>
+<li><p>Keep decisions at most two levels deep. When they grow deeper, move the inner decision into its own function, as each room above does.</p></li>
+<li><p>Give each <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> group some space: a blank line before and after makes it easy to see where it starts and stops.</p></li>
+<li><p>If a condition is long, work it out first and store it in a variable with a clear name, such as <code class="docutils literal notranslate"><span class="pre">is_valid_age</span></code>, then write <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">is_valid_age:</span></code>.</p></li>
+</ol>
+<p><strong>Loops</strong></p>
+<ol class="arabic simple">
+<li><p>Reach for a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop first: for going through a list, a string or a range of numbers.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">while</span></code> when you must repeat <strong>until something happens</strong>, and check that it really will happen.</p></li>
+</ol>
+<p><strong>Finding mistakes</strong></p>
+<ol class="arabic simple">
+<li><p>Read the error message, especially its last line, before changing anything.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">print</span></code> to show the values of your variables at important points. Seeing the values is the quickest way to find where things go wrong.</p></li>
+<li><p>Build in small pieces: <strong>type a little, run a little, fix a little.</strong> Notebooks make this easy — test each function in its own cell before combining them.</p></li>
+</ol>
+</section>
+<section id="building-a-program-step-by-step-the-secret-number-game">
+<h2><span class="section-number">12.3. </span>Building a program step by step: the secret number game<a class="headerlink" href="#building-a-program-step-by-step-the-secret-number-game" title="Link to this heading">#</a></h2>
+<p>Big programs are not written in one go. Let’s build a game the way programmers really work: plan first, then add one small tested piece at a time. Use a new cell for each step.</p>
+<p>The game: the computer picks a secret number between 0 and 100. The player guesses. After each wrong guess, the program says “Too low!” or “Too high!”. When the player finds the number, the program congratulates them and says how many tries they needed.</p>
+<section id="step-1-plan-with-comments">
+<h3><span class="section-number">12.3.1. </span>Step 1: plan with comments<a class="headerlink" href="#step-1-plan-with-comments" title="Link to this heading">#</a></h3>
+<p>Write the plan first, in plain language, as comments. This is called <strong>pseudocode</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Choose a random secret number</span>
+<span class="c1"># 2. Ask the player for a guess</span>
+<span class="c1"># 3. While the guess is not the secret number:</span>
+<span class="c1">#        say whether it was too low or too high</span>
+<span class="c1">#        ask for another guess</span>
+<span class="c1"># 4. Congratulate the player</span>
+</pre></div>
+</div>
+<p>Every line of this plan is something you already know how to write.</p>
+</section>
+<section id="step-2-the-secret-number-with-constants">
+<h3><span class="section-number">12.3.2. </span>Step 2: the secret number, with constants<a class="headerlink" href="#step-2-the-secret-number-with-constants" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
+
+<span class="n">MIN_VALUE</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">MAX_VALUE</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">secret_number</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">MIN_VALUE</span><span class="p">,</span> <span class="n">MAX_VALUE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">secret_number</span><span class="p">)</span>   <span class="c1"># temporary, for testing — remove it later!</span>
+</pre></div>
+</div>
+<p>We could write <code class="docutils literal notranslate"><span class="pre">randint(0,</span> <span class="pre">100)</span></code>, but 0 and 100 will appear in several places. If we later want 0 to 1000, we’d have to find and change every one. Named <strong>constants</strong> mean one change is enough.</p>
+<p>Run the cell a few times. It should print a different number each time.</p>
+</section>
+<section id="step-3-reading-a-valid-guess">
+<h3><span class="section-number">12.3.3. </span>Step 3: reading a valid guess<a class="headerlink" href="#step-3-reading-a-valid-guess" title="Link to this heading">#</a></h3>
+<p>The guess must be a whole number in the range, so we write a function that keeps asking until it gets one:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_guess</span><span class="p">():</span>
+    <span class="n">guess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Guess a number between </span><span class="si">{</span><span class="n">MIN_VALUE</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">MAX_VALUE</span><span class="si">}</span><span class="s2">: "</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">guess</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_VALUE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"That's not a valid number, try again."</span><span class="p">)</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Guess a number between </span><span class="si">{</span><span class="n">MIN_VALUE</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">MAX_VALUE</span><span class="si">}</span><span class="s2">: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">guess.isdigit()</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> only if the text contains nothing but digits, so <code class="docutils literal notranslate"><span class="pre">&quot;abc&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;-5&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;4.5&quot;</span></code> are all rejected before we try to convert them. Because of the <code class="docutils literal notranslate"><span class="pre">or</span></code>, Python only calls <code class="docutils literal notranslate"><span class="pre">int(guess)</span></code> when <code class="docutils literal notranslate"><span class="pre">isdigit()</span></code> was <code class="docutils literal notranslate"><span class="pre">True</span></code>, so the conversion is always safe.</p>
+<p>Test the function on its own: in a new cell, run <code class="docutils literal notranslate"><span class="pre">print(get_guess())</span></code>, type some bad answers, and check that it keeps asking.</p>
+</section>
+<section id="step-4-the-hint">
+<h3><span class="section-number">12.3.4. </span>Step 4: the hint<a class="headerlink" href="#step-4-the-hint" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_hint</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">secret</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">guess</span> <span class="o">&lt;</span> <span class="n">secret</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Too low!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Too high!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Test it too: <code class="docutils literal notranslate"><span class="pre">print_hint(10,</span> <span class="pre">50)</span></code> should print <code class="docutils literal notranslate"><span class="pre">Too</span> <span class="pre">low!</span></code>.</p>
+</section>
+<section id="step-5-the-game-loop-in-a-main-function">
+<h3><span class="section-number">12.3.5. </span>Step 5: the game loop, in a main function<a class="headerlink" href="#step-5-the-game-loop-in-a-main-function" title="Link to this heading">#</a></h3>
+<p>Finally, put the steps together in a function called <code class="docutils literal notranslate"><span class="pre">main</span></code>, and call it at the bottom. Here is the complete program in one cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
+
+<span class="n">MIN_VALUE</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">MAX_VALUE</span> <span class="o">=</span> <span class="mi">100</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_guess</span><span class="p">():</span>
+    <span class="n">guess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Guess a number between </span><span class="si">{</span><span class="n">MIN_VALUE</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">MAX_VALUE</span><span class="si">}</span><span class="s2">: "</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">guess</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_VALUE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"That's not a valid number, try again."</span><span class="p">)</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Guess a number between </span><span class="si">{</span><span class="n">MIN_VALUE</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">MAX_VALUE</span><span class="si">}</span><span class="s2">: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_hint</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">secret</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">guess</span> <span class="o">&lt;</span> <span class="n">secret</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Too low!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Too high!"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">secret_number</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">MIN_VALUE</span><span class="p">,</span> <span class="n">MAX_VALUE</span><span class="p">)</span>
+    <span class="n">tries</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">guess</span> <span class="o">=</span> <span class="n">get_guess</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">secret_number</span><span class="p">:</span>
+        <span class="n">print_hint</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">secret_number</span><span class="p">)</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="n">get_guess</span><span class="p">()</span>
+        <span class="n">tries</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Bravo! You found it in </span><span class="si">{</span><span class="n">tries</span><span class="si">}</span><span class="s2"> tries!"</span><span class="p">)</span>
+
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Guess a number between 0 and 100: 50
+Too high!
+Guess a number between 0 and 100: 25
+Too low!
+Guess a number between 0 and 100: 37
+Bravo! You found it in 3 tries!
+</pre></div>
+</div>
+<p>Notice the layout, which you should use for every program from now on: <strong>imports first, then constants, then functions, then a single call to <code class="docutils literal notranslate"><span class="pre">main()</span></code></strong>. And notice that each piece could be run and tested long before the program was finished.</p>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">12.4. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-fix-the-reading-room">
+<h3><span class="section-number">12.4.1. </span>Exercise: fix the reading room<a class="headerlink" href="#exercise-fix-the-reading-room" title="Link to this heading">#</a></h3>
+<p>In the library game, what happens if the player types <code class="docutils literal notranslate"><span class="pre">three</span></code> or <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">books</span></code> in the reading room? Explain the problem, then write a better <code class="docutils literal notranslate"><span class="pre">reading_room</span></code> that uses <code class="docutils literal notranslate"><span class="pre">isdigit()</span></code> and gives the player a polite ending instead of crashing.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p><code class="docutils literal notranslate"><span class="pre">int(&quot;three&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">int(&quot;3</span> <span class="pre">books&quot;)</span></code> can’t be converted, so the game crashes with <code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">invalid</span> <span class="pre">literal</span> <span class="pre">for</span> <span class="pre">int()</span> <span class="pre">with</span> <span class="pre">base</span> <span class="pre">10</span></code>. The player sees a red error box instead of an ending.</p>
+<p>A better version checks the text <strong>before</strong> converting it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">reading_room</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You are in the reading room. A sleepy librarian sits at the desk."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\"</span><span class="s2">How many books do you want to borrow?</span><span class="se">\"</span><span class="s2"> she asks."</span><span class="p">)</span>
+
+    <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">choice</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+        <span class="n">game_over</span><span class="p">(</span><span class="s2">"</span><span class="se">\"</span><span class="s2">Please answer with a number,</span><span class="se">\"</span><span class="s2"> she yawns, and falls asleep."</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"She stamps your books and unlocks the front door. You win!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">game_over</span><span class="p">(</span><span class="s2">"</span><span class="se">\"</span><span class="s2">That's far too many!</span><span class="se">\"</span><span class="s2"> She sends you away with nothing."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-draw-the-map">
+<h3><span class="section-number">12.4.2. </span>Exercise: draw the map<a class="headerlink" href="#exercise-draw-the-map" title="Link to this heading">#</a></h3>
+<p>Draw a map of the library game: a box for each room function and an arrow for every possible move, labelled with what the player types. Which room can send the player back to the start?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>start ──"left"──▶ computer_lab ──"42" (after "read note")──▶ reading_room ──▶ win or game over
+  │                   │
+  │                   ├──"switch off"──▶ game over
+  │                   └──anything else──▶ asks again (while loop)
+  │
+  ├──"right"──▶ storeroom ──"back"──▶ start   (back to the beginning!)
+  │                 ├──"look"──▶ game over
+  │                 └──anything else──▶ storeroom (asks again)
+  │
+  └──anything else──▶ game over
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">storeroom</span></code> sends the player back to <code class="docutils literal notranslate"><span class="pre">start</span></code> when they type something containing “back”.</p>
+</div>
+</section>
+<section id="exercise-a-limited-number-of-tries">
+<h3><span class="section-number">12.4.3. </span>Exercise: a limited number of tries<a class="headerlink" href="#exercise-a-limited-number-of-tries" title="Link to this heading">#</a></h3>
+<p>Change the secret number game so the player has at most <code class="docutils literal notranslate"><span class="pre">MAX_TRIES</span> <span class="pre">=</span> <span class="pre">7</span></code> tries. If they run out, print the secret number and a “Game over” message.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>Add the constant <code class="docutils literal notranslate"><span class="pre">MAX_TRIES</span> <span class="pre">=</span> <span class="pre">7</span></code> at the top, then change <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">secret_number</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">MIN_VALUE</span><span class="p">,</span> <span class="n">MAX_VALUE</span><span class="p">)</span>
+    <span class="n">tries</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">guess</span> <span class="o">=</span> <span class="n">get_guess</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="n">guess</span> <span class="o">!=</span> <span class="n">secret_number</span> <span class="ow">and</span> <span class="n">tries</span> <span class="o">&lt;</span> <span class="n">MAX_TRIES</span><span class="p">:</span>
+        <span class="n">print_hint</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">secret_number</span><span class="p">)</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="n">get_guess</span><span class="p">()</span>
+        <span class="n">tries</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">guess</span> <span class="o">==</span> <span class="n">secret_number</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Bravo! You found it in </span><span class="si">{</span><span class="n">tries</span><span class="si">}</span><span class="s2"> tries!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Game over! The secret number was </span><span class="si">{</span><span class="n">secret_number</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The loop now stops for <strong>either</strong> reason, so after the loop we check which one it was.</p>
+</div>
+</section>
+<section id="exercise-the-computer-guesses">
+<h3><span class="section-number">12.4.4. </span>Exercise: the computer guesses<a class="headerlink" href="#exercise-the-computer-guesses" title="Link to this heading">#</a></h3>
+<p>Reverse the game: <strong>you</strong> think of a number between 0 and 100, and the computer guesses. After each guess, you type <code class="docutils literal notranslate"><span class="pre">+</span></code> (higher), <code class="docutils literal notranslate"><span class="pre">-</span></code> (lower) or <code class="docutils literal notranslate"><span class="pre">=</span></code> (correct). The smart strategy is to always guess the middle of the numbers still possible. How many guesses does the computer need at most?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">tries</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">tries</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Is it </span><span class="si">{</span><span class="n">guess</span><span class="si">}</span><span class="s2">? (+, - or =): "</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">answer</span> <span class="o">==</span> <span class="s2">"="</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"I found it in </span><span class="si">{</span><span class="n">tries</span><span class="si">}</span><span class="s2"> guesses!"</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">elif</span> <span class="n">answer</span> <span class="o">==</span> <span class="s2">"+"</span><span class="p">:</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">guess</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">answer</span> <span class="o">==</span> <span class="s2">"-"</span><span class="p">:</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">guess</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Please type +, - or =."</span><span class="p">)</span>
+            <span class="n">tries</span> <span class="o">-=</span> <span class="mi">1</span>   <span class="c1"># don't count this guess</span>
+
+        <span class="k">if</span> <span class="n">low</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Hmm, your answers don't add up!"</span><span class="p">)</span>
+            <span class="k">break</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Each guess throws away about half of the remaining numbers, so the computer needs <strong>at most 7 guesses</strong> for the 101 numbers from 0 to 100.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="11_lists.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Lists</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="13_strings_tuples_slices.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>Strings, Tuples and Slices</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-game-made-of-rooms">12.1. A game made of rooms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">12.1.1. What you should see</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">12.1.2. How it works</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#habits-that-keep-you-out-of-trouble">12.2. Habits that keep you out of trouble</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-program-step-by-step-the-secret-number-game">12.3. Building a program step by step: the secret number game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-plan-with-comments">12.3.1. Step 1: plan with comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-the-secret-number-with-constants">12.3.2. Step 2: the secret number, with constants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-reading-a-valid-guess">12.3.3. Step 3: reading a valid guess</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-the-hint">12.3.4. Step 4: the hint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-the-game-loop-in-a-main-function">12.3.5. Step 5: the game loop, in a main function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">12.4. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-fix-the-reading-room">12.4.1. Exercise: fix the reading room</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-draw-the-map">12.4.2. Exercise: draw the map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-limited-number-of-tries">12.4.3. Exercise: a limited number of tries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-computer-guesses">12.4.4. Exercise: the computer guesses</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

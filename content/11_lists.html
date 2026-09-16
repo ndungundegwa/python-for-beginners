@@ -1,0 +1,913 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Lists &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/11_lists';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Building a Game: Branches and Functions" href="12_building_a_game.html" />
+    <link rel="prev" title="10. Loops: Doing Things Again and Again" href="10_loops.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/11_lists.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lists</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-an-item-out-of-a-list">11.1. Getting an item out of a list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-a-list">11.2. Changing a list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-things-to-lists">11.3. Doing things to lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">11.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-most-useful-list-operations">11.4. The most useful list operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-or-sorted">11.5. sort or sorted?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-quickly">11.6. Building lists quickly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-of-lists">11.7. Lists of lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-a-list">11.8. When to use a list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">11.9. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-which-animal">11.9.1. Exercise: which animal?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-shopping-list">11.9.2. Exercise: a shopping list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-highest-mark-by-hand">11.9.3. Exercise: the highest mark, by hand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-remove-the-duplicates">11.9.4. Exercise: remove the duplicates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-predict-the-list">11.9.5. Exercise: predict the list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-return-journey">11.9.6. Exercise: the return journey</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lists">
+<h1><span class="section-number">11. </span>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h1>
+<p>You met lists in Topic 10 as something to loop over. Lists are one of the most useful tools in all of programming, so this topic looks at them properly: how to get at a particular item, how to change a list, and the many things lists can do for you.</p>
+<section id="getting-an-item-out-of-a-list">
+<h2><span class="section-number">11.1. </span>Getting an item out of a list<a class="headerlink" href="#getting-an-item-out-of-a-list" title="Link to this heading">#</a></h2>
+<p>To get a single item from a list, write the list’s name followed by the item’s position in square brackets. This position is called the <strong>index</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"mango"</span><span class="p">,</span> <span class="s2">"banana"</span><span class="p">,</span> <span class="s2">"pawpaw"</span><span class="p">,</span> <span class="s2">"avocado"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mango
+pawpaw
+4
+</pre></div>
+</div>
+<p>Wait — the <strong>first</strong> fruit is at index <strong>0</strong>? Yes. Python counts positions from 0, not 1.</p>
+<p>A helpful way to think about it: the index says <strong>how many steps from the start</strong> an item is. The first fruit is right at the start, 0 steps away. <code class="docutils literal notranslate"><span class="pre">&quot;banana&quot;</span></code> is 1 step along, <code class="docutils literal notranslate"><span class="pre">&quot;pawpaw&quot;</span></code> is 2 steps along. So whenever you think “I want the <em>third</em> fruit”, subtract 1: the third fruit is at index <strong>2</strong>.</p>
+<p>You can also count from the <strong>end</strong> of a list with negative indices: <code class="docutils literal notranslate"><span class="pre">fruits[-1]</span></code> is the last item (<code class="docutils literal notranslate"><span class="pre">&quot;avocado&quot;</span></code>), <code class="docutils literal notranslate"><span class="pre">fruits[-2]</span></code> the one before it (<code class="docutils literal notranslate"><span class="pre">&quot;pawpaw&quot;</span></code>).</p>
+<p>If you ask for an index that doesn’t exist, Python stops with an error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>IndexError: list index out of range
+</pre></div>
+</div>
+<p>A list of length 4 has indices 0, 1, 2 and 3. The last valid index is always <code class="docutils literal notranslate"><span class="pre">len(fruits)</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+</section>
+<section id="changing-a-list">
+<h2><span class="section-number">11.2. </span>Changing a list<a class="headerlink" href="#changing-a-list" title="Link to this heading">#</a></h2>
+<p>Unlike strings, lists can be changed after you create them. You can replace an item by assigning to its index:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"mango"</span><span class="p">,</span> <span class="s2">"banana"</span><span class="p">,</span> <span class="s2">"pawpaw"</span><span class="p">,</span> <span class="s2">"avocado"</span><span class="p">]</span>
+<span class="n">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"orange"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>['mango', 'orange', 'pawpaw', 'avocado']
+</pre></div>
+</div>
+</section>
+<section id="doing-things-to-lists">
+<h2><span class="section-number">11.3. </span>Doing things to lists<a class="headerlink" href="#doing-things-to-lists" title="Link to this heading">#</a></h2>
+<p>Lists come with built-in <strong>methods</strong> — functions attached to the list that you call with a dot. Let’s plan a bus route. Type this into a new code cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stops</span> <span class="o">=</span> <span class="s2">"Nairobi Naivasha Nakuru Eldoret"</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Route:"</span><span class="p">,</span> <span class="n">stops</span><span class="p">)</span>
+
+<span class="n">stops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Kitale"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"After append:"</span><span class="p">,</span> <span class="n">stops</span><span class="p">)</span>
+
+<span class="n">stops</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Limuru"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"After insert:"</span><span class="p">,</span> <span class="n">stops</span><span class="p">)</span>
+
+<span class="n">stops</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">"Naivasha"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"After remove:"</span><span class="p">,</span> <span class="n">stops</span><span class="p">)</span>
+
+<span class="n">last_stop</span> <span class="o">=</span> <span class="n">stops</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Removed the last stop:"</span><span class="p">,</span> <span class="n">last_stop</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First stop:"</span><span class="p">,</span> <span class="n">stops</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Last stop:"</span><span class="p">,</span> <span class="n">stops</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of stops:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">stops</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">" -&gt; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stops</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stops</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<section id="what-you-should-see">
+<h3><span class="section-number">11.3.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Route: ['Nairobi', 'Naivasha', 'Nakuru', 'Eldoret']
+After append: ['Nairobi', 'Naivasha', 'Nakuru', 'Eldoret', 'Kitale']
+After insert: ['Nairobi', 'Limuru', 'Naivasha', 'Nakuru', 'Eldoret', 'Kitale']
+After remove: ['Nairobi', 'Limuru', 'Nakuru', 'Eldoret', 'Kitale']
+Removed the last stop: Kitale
+First stop: Nairobi
+Last stop: Eldoret
+Number of stops: 4
+Nairobi -&gt; Limuru -&gt; Nakuru -&gt; Eldoret
+['Limuru', 'Nakuru']
+</pre></div>
+</div>
+<p>Let’s go through the new pieces:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;...&quot;.split(&quot;</span> <span class="pre">&quot;)</span></code> cuts a string at every space and gives a list of words.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stops.append(&quot;Kitale&quot;)</span></code> <strong>adds an item to the end</strong> of the list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stops.insert(1,</span> <span class="pre">&quot;Limuru&quot;)</span></code> <strong>puts an item at index 1</strong>, moving the others along.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stops.remove(&quot;Naivasha&quot;)</span></code> <strong>removes the first item equal to</strong> <code class="docutils literal notranslate"><span class="pre">&quot;Naivasha&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stops.pop()</span></code> <strong>removes and returns the last</strong> item, so we can still use it (<code class="docutils literal notranslate"><span class="pre">last_stop</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">-&gt;</span> <span class="pre">&quot;.join(stops)</span></code> does the opposite of <code class="docutils literal notranslate"><span class="pre">split</span></code>: it glues the items of a list into one string, with <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">-&gt;</span> <span class="pre">&quot;</span></code> between them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stops[1:3]</span></code> is a <strong>slice</strong>: the items from index 1 up to, but not including, index 3. You’ll learn more about slices in Topic 13.</p></li>
+</ul>
+<p>When you write <code class="docutils literal notranslate"><span class="pre">stops.append(x)</span></code>, read it as “call <code class="docutils literal notranslate"><span class="pre">append</span></code> on <code class="docutils literal notranslate"><span class="pre">stops</span></code>, with <code class="docutils literal notranslate"><span class="pre">x</span></code>”.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In a notebook, running the same cell twice runs <code class="docutils literal notranslate"><span class="pre">append</span></code>, <code class="docutils literal notranslate"><span class="pre">insert</span></code> and <code class="docutils literal notranslate"><span class="pre">pop</span></code> twice too — <strong>unless</strong> the cell also creates the list again from the start, as this one does on its first line. If a list suddenly has strange extra items, check whether you ran a cell more than once.</p>
+</div>
+</section>
+</section>
+<section id="the-most-useful-list-operations">
+<h2><span class="section-number">11.4. </span>The most useful list operations<a class="headerlink" href="#the-most-useful-list-operations" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operation</p></th>
+<th class="head"><p>What it does</p></th>
+<th class="head"><p>Example (starting from <code class="docutils literal notranslate"><span class="pre">nums</span> <span class="pre">=</span> <span class="pre">[3,</span> <span class="pre">1,</span> <span class="pre">2]</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nums.append(x)</span></code></p></td>
+<td><p>add <code class="docutils literal notranslate"><span class="pre">x</span></code> at the end</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nums.append(5)</span></code> → <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">5]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nums.insert(i,</span> <span class="pre">x)</span></code></p></td>
+<td><p>insert <code class="docutils literal notranslate"><span class="pre">x</span></code> at index <code class="docutils literal notranslate"><span class="pre">i</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nums.insert(0,</span> <span class="pre">9)</span></code> → <code class="docutils literal notranslate"><span class="pre">[9,</span> <span class="pre">3,</span> <span class="pre">1,</span> <span class="pre">2]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nums.pop()</span></code></p></td>
+<td><p>remove and return the last item</p></td>
+<td><p>returns <code class="docutils literal notranslate"><span class="pre">2</span></code>, leaves <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">1]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nums.pop(i)</span></code></p></td>
+<td><p>remove and return the item at index <code class="docutils literal notranslate"><span class="pre">i</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nums.pop(0)</span></code> returns <code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nums.remove(x)</span></code></p></td>
+<td><p>remove the first item equal to <code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nums.remove(1)</span></code> → <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">2]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nums.sort()</span></code></p></td>
+<td><p>sort the list itself</p></td>
+<td><p>→ <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nums.reverse()</span></code></p></td>
+<td><p>reverse the list itself</p></td>
+<td><p>→ <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">1,</span> <span class="pre">3]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">len(nums)</span></code></p></td>
+<td><p>number of items</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">nums</span></code></p></td>
+<td><p>is <code class="docutils literal notranslate"><span class="pre">x</span></code> in the list?</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">in</span> <span class="pre">nums</span></code> → <code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sum(nums)</span></code>, <code class="docutils literal notranslate"><span class="pre">min(nums)</span></code>, <code class="docutils literal notranslate"><span class="pre">max(nums)</span></code></p></td>
+<td><p>total, smallest, largest</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">6</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sorted(nums)</span></code></p></td>
+<td><p>a <strong>new</strong> sorted list; <code class="docutils literal notranslate"><span class="pre">nums</span></code> is unchanged</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sort-or-sorted">
+<h2><span class="section-number">11.5. </span>sort or sorted?<a class="headerlink" href="#sort-or-sorted" title="Link to this heading">#</a></h2>
+<p>There are two ways to sort, and mixing them up is a classic bug:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nums.sort()</span></code> sorts <strong>the list itself</strong> and returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sorted(nums)</span></code> leaves <code class="docutils literal notranslate"><span class="pre">nums</span></code> alone and <strong>returns a new</strong>, sorted list.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>None
+</pre></div>
+</div>
+<p>The list was sorted, but then <code class="docutils literal notranslate"><span class="pre">scores</span></code> was replaced by what <code class="docutils literal notranslate"><span class="pre">sort()</span></code> returned — <code class="docutils literal notranslate"><span class="pre">None</span></code>. Write either <code class="docutils literal notranslate"><span class="pre">scores.sort()</span></code> on its own, or <code class="docutils literal notranslate"><span class="pre">scores</span> <span class="pre">=</span> <span class="pre">sorted(scores)</span></code>.</p>
+</section>
+<section id="building-lists-quickly">
+<h2><span class="section-number">11.6. </span>Building lists quickly<a class="headerlink" href="#building-lists-quickly" title="Link to this heading">#</a></h2>
+<p>Building a list with a loop is so common that Python offers a short form called a <strong>list comprehension</strong>. These two pieces of code make the same list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="n">squares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Both give <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">4,</span> <span class="pre">9,</span> <span class="pre">16,</span> <span class="pre">25]</span></code>. Read the second one as “<code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">*</span> <span class="pre">i</span></code> for each <code class="docutils literal notranslate"><span class="pre">i</span></code> in <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">6)</span></code>”. Use whichever you find clearer — the loop is perfectly fine.</p>
+</section>
+<section id="lists-of-lists">
+<h2><span class="section-number">11.7. </span>Lists of lists<a class="headerlink" href="#lists-of-lists" title="Link to this heading">#</a></h2>
+<p>A list can contain other lists. This is a natural way to store a grid, such as a game board, with one inner list per row:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">board</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"o"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>       <span class="c1"># the first row: ['x', 'o', ' ']</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>    <span class="c1"># row 2, column 0: 'o'</span>
+</pre></div>
+</div>
+<p>The first index picks the row, the second picks the column in that row. You’ll use exactly this idea in the Tic Tac Toe project.</p>
+</section>
+<section id="when-to-use-a-list">
+<h2><span class="section-number">11.8. </span>When to use a list<a class="headerlink" href="#when-to-use-a-list" title="Link to this heading">#</a></h2>
+<p>Use a list when:</p>
+<ol class="arabic simple">
+<li><p>You need to <strong>keep things in order</strong>.</p></li>
+<li><p>You want to get items <strong>by their position</strong> (index).</p></li>
+<li><p>You want to go through the items <strong>one after another</strong> with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
+</ol>
+<p>A queue of customers, the stops on a bus route, the lines of a poem and a student’s marks are all good examples.</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">11.9. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-which-animal">
+<h3><span class="section-number">11.9.1. </span>Exercise: which animal?<a class="headerlink" href="#exercise-which-animal" title="Link to this heading">#</a></h3>
+<p>Using this list, write down which animal each description refers to. Remember: “first”, “second”, … describe an order, so subtract 1; “index 3” is a position, so use it directly. Check your answers in a cell afterwards.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"lion"</span><span class="p">,</span> <span class="s2">"elephant"</span><span class="p">,</span> <span class="s2">"giraffe"</span><span class="p">,</span> <span class="s2">"zebra"</span><span class="p">,</span> <span class="s2">"rhino"</span><span class="p">,</span> <span class="s2">"cheetah"</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">animals[2]</span></code></p></li>
+<li><p>The fourth (4th) animal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">animals[-1]</span></code></p></li>
+<li><p>The first (1st) animal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">animals[1]</span></code></p></li>
+<li><p>The fifth (5th) animal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">animals[-3]</span></code></p></li>
+<li><p>The animal at index 5.</p></li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">animals[2]</span></code> is the 3rd animal: <strong>giraffe</strong>.</p></li>
+<li><p>The 4th animal is at index 3: <strong>zebra</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">animals[-1]</span></code> is the last animal: <strong>cheetah</strong>.</p></li>
+<li><p>The 1st animal is at index 0: <strong>lion</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">animals[1]</span></code> is the 2nd animal: <strong>elephant</strong>.</p></li>
+<li><p>The 5th animal is at index 4: <strong>rhino</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">animals[-3]</span></code> is third from the end: <strong>zebra</strong>.</p></li>
+<li><p>Index 5 is the 6th animal: <strong>cheetah</strong>.</p></li>
+</ol>
+</div>
+</section>
+<section id="exercise-a-shopping-list">
+<h3><span class="section-number">11.9.2. </span>Exercise: a shopping list<a class="headerlink" href="#exercise-a-shopping-list" title="Link to this heading">#</a></h3>
+<p>Write a program that starts with an empty list, keeps asking the user for items to add until they type <code class="docutils literal notranslate"><span class="pre">done</span></code>, and then prints the number of items and the list sorted alphabetically, one item per line.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shopping</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">item</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Add an item (or 'done'): "</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">item</span> <span class="o">!=</span> <span class="s2">"done"</span><span class="p">:</span>
+    <span class="n">shopping</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Add an item (or 'done'): "</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You have </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">shopping</span><span class="p">)</span><span class="si">}</span><span class="s2"> items:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">shopping</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">thing</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-the-highest-mark-by-hand">
+<h3><span class="section-number">11.9.3. </span>Exercise: the highest mark, by hand<a class="headerlink" href="#exercise-the-highest-mark-by-hand" title="Link to this heading">#</a></h3>
+<p>Python has <code class="docutils literal notranslate"><span class="pre">max</span></code>, but writing it yourself is great practice. Write a function <code class="docutils literal notranslate"><span class="pre">highest(marks)</span></code> that returns the largest number in a non-empty list, <strong>without</strong> using <code class="docutils literal notranslate"><span class="pre">max</span></code> or <code class="docutils literal notranslate"><span class="pre">sort</span></code>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">highest</span><span class="p">(</span><span class="n">marks</span><span class="p">):</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="n">marks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">mark</span> <span class="ow">in</span> <span class="n">marks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mark</span> <span class="o">&gt;</span> <span class="n">best</span><span class="p">:</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="n">mark</span>
+    <span class="k">return</span> <span class="n">best</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">highest</span><span class="p">([</span><span class="mi">56</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">67</span><span class="p">]))</span>   <span class="c1"># 91</span>
+</pre></div>
+</div>
+<p>Start by assuming the first mark is the best, then replace it whenever you find a bigger one.</p>
+</div>
+</section>
+<section id="exercise-remove-the-duplicates">
+<h3><span class="section-number">11.9.4. </span>Exercise: remove the duplicates<a class="headerlink" href="#exercise-remove-the-duplicates" title="Link to this heading">#</a></h3>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">unique(items)</span></code> that returns a <strong>new</strong> list with the duplicates removed, keeping the original order. <code class="docutils literal notranslate"><span class="pre">unique([1,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">1,</span> <span class="pre">4])</span></code> should return <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">unique</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">unique</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>   <span class="c1"># [1, 2, 3, 4]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-predict-the-list">
+<h3><span class="section-number">11.9.5. </span>Exercise: predict the list<a class="headerlink" href="#exercise-predict-the-list" title="Link to this heading">#</a></h3>
+<p>Write down what is printed after each line, then check.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="n">nums</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="n">last</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span>
+<span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[5, 3, 8, 1]
+[5, 7, 3, 8, 1]
+1 [5, 7, 3, 8]
+[3, 5, 7, 8]
+8 4
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-the-return-journey">
+<h3><span class="section-number">11.9.6. </span>Exercise: the return journey<a class="headerlink" href="#exercise-the-return-journey" title="Link to this heading">#</a></h3>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">stops</span></code> list from the bus route program (<code class="docutils literal notranslate"><span class="pre">['Nairobi',</span> <span class="pre">'Limuru',</span> <span class="pre">'Nakuru',</span> <span class="pre">'Eldoret']</span></code>), print the stops of the <strong>return</strong> journey, from Eldoret back to Nairobi, joined with <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">-&gt;</span> <span class="pre">&quot;</span></code>. Do it twice: once with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop over the indices, counting down with <code class="docutils literal notranslate"><span class="pre">range</span></code>, and once using a list method. Make sure the original list is unchanged at the end.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stops</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Nairobi"</span><span class="p">,</span> <span class="s2">"Limuru"</span><span class="p">,</span> <span class="s2">"Nakuru"</span><span class="p">,</span> <span class="s2">"Eldoret"</span><span class="p">]</span>
+
+<span class="c1"># 1. a loop over the indices 3, 2, 1, 0</span>
+<span class="n">back</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stops</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">back</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stops</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">" -&gt; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">back</span><span class="p">))</span>
+
+<span class="c1"># 2. copy the list, then reverse the copy</span>
+<span class="n">back</span> <span class="o">=</span> <span class="n">stops</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">back</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">" -&gt; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">back</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">stops</span><span class="p">)</span>   <span class="c1"># unchanged</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Eldoret -&gt; Nakuru -&gt; Limuru -&gt; Nairobi
+Eldoret -&gt; Nakuru -&gt; Limuru -&gt; Nairobi
+['Nairobi', 'Limuru', 'Nakuru', 'Eldoret']
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">range(len(stops)</span> <span class="pre">-</span> <span class="pre">1,</span> <span class="pre">-1,</span> <span class="pre">-1)</span></code> starts at the last index (3) and stops <strong>before</strong> -1, so it gives 3, 2, 1, 0. Calling <code class="docutils literal notranslate"><span class="pre">stops.reverse()</span></code> directly would have changed the original list, which is why we reverse a <code class="docutils literal notranslate"><span class="pre">copy()</span></code>. (In Topic 13 you’ll meet an even shorter way: <code class="docutils literal notranslate"><span class="pre">stops[::-1]</span></code>.)</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_loops.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Loops: Doing Things Again and Again</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="12_building_a_game.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Building a Game: Branches and Functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-an-item-out-of-a-list">11.1. Getting an item out of a list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-a-list">11.2. Changing a list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-things-to-lists">11.3. Doing things to lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">11.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-most-useful-list-operations">11.4. The most useful list operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-or-sorted">11.5. sort or sorted?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-quickly">11.6. Building lists quickly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-of-lists">11.7. Lists of lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-a-list">11.8. When to use a list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">11.9. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-which-animal">11.9.1. Exercise: which animal?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-shopping-list">11.9.2. Exercise: a shopping list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-highest-mark-by-hand">11.9.3. Exercise: the highest mark, by hand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-remove-the-duplicates">11.9.4. Exercise: remove the duplicates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-predict-the-list">11.9.5. Exercise: predict the list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-return-journey">11.9.6. Exercise: the return journey</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

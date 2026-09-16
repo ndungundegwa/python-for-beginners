@@ -1,0 +1,885 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9. Making Decisions: if, elif and else &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/09_making_decisions';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. Loops: Doing Things Again and Again" href="10_loops.html" />
+    <link rel="prev" title="8. True or False: Boolean Logic" href="08_boolean_logic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/09_making_decisions.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Making Decisions: if, elif and else</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if">9.1. What if?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">9.1.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocks-and-indentation">9.2. Blocks and indentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#else-and-elif">9.3. else and elif</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#order-matters">9.4. Order matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decisions-with-user-input">9.5. Decisions with user input</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decisions-inside-decisions">9.6. Decisions inside decisions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pass-statement">9.7. The pass statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">9.8. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-positive-negative-or-zero">9.8.1. Exercise: positive, negative or zero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-even-or-odd">9.8.2. Exercise: even or odd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-trace-the-branches">9.8.3. Exercise: trace the branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-grade-calculator">9.8.4. Exercise: grade calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-extend-the-safari">9.8.5. Exercise: extend the safari</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="making-decisions-if-elif-and-else">
+<h1><span class="section-number">9. </span>Making Decisions: if, elif and else<a class="headerlink" href="#making-decisions-if-elif-and-else" title="Link to this heading">#</a></h1>
+<p>Now that you can write <code class="docutils literal notranslate"><span class="pre">True</span></code>/<code class="docutils literal notranslate"><span class="pre">False</span></code> expressions, you can make your programs <strong>choose</strong> what to do. In this topic you’ll learn the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, its partners <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code>, and how to put decisions inside decisions to build a small adventure game.</p>
+<section id="what-if">
+<h2><span class="section-number">9.1. </span>What if?<a class="headerlink" href="#what-if" title="Link to this heading">#</a></h2>
+<p>Type this into a new code cell and run it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">temperature</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="n">is_raining</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">money</span> <span class="o">=</span> <span class="mi">150</span>
+
+<span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"It's hot. Drink plenty of water."</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">temperature</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"It's cold. Wear a sweater."</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">is_raining</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Take an umbrella."</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">money</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You can afford a soda and a mandazi."</span><span class="p">)</span>
+
+<span class="n">money</span> <span class="o">=</span> <span class="n">money</span> <span class="o">-</span> <span class="mi">120</span>
+
+<span class="k">if</span> <span class="n">money</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Careful, you're running low on money."</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">money</span> <span class="o">==</span> <span class="mi">30</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You have exactly 30 shillings left."</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="what-you-should-see">
+<h3><span class="section-number">9.1.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>It's hot. Drink plenty of water.
+You can afford a soda and a mandazi.
+Careful, you're running low on money.
+You have exactly 30 shillings left.
+</pre></div>
+</div>
+<p>An <code class="docutils literal notranslate"><span class="pre">if</span></code> statement creates a <strong>branch</strong> in your program: <em>if this Boolean expression is <code class="docutils literal notranslate"><span class="pre">True</span></code>, run the code under it; otherwise, skip it.</em> Only some of the <code class="docutils literal notranslate"><span class="pre">print</span></code> lines ran, depending on the values of the variables.</p>
+<p>Notice <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">is_raining:</span></code>. The variable already holds <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>, so there’s no need to write <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">is_raining</span> <span class="pre">==</span> <span class="pre">True:</span></code>.</p>
+<p>Change the three values at the top — try <code class="docutils literal notranslate"><span class="pre">temperature</span> <span class="pre">=</span> <span class="pre">12</span></code>, <code class="docutils literal notranslate"><span class="pre">is_raining</span> <span class="pre">=</span> <span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">money</span> <span class="pre">=</span> <span class="pre">80</span></code> — and run the cell again. Which lines are printed now, and why?</p>
+</section>
+</section>
+<section id="blocks-and-indentation">
+<h2><span class="section-number">9.2. </span>Blocks and indentation<a class="headerlink" href="#blocks-and-indentation" title="Link to this heading">#</a></h2>
+<p>Look at the shape of an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"It's hot. Drink plenty of water."</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The line ends with a <strong>colon</strong> <code class="docutils literal notranslate"><span class="pre">:</span></code>. The colon tells Python “a new block of code starts here”.</p></li>
+<li><p>The lines of the block are <strong>indented</strong> by four spaces. That’s how Python knows which lines belong to the <code class="docutils literal notranslate"><span class="pre">if</span></code>. Colab adds the indentation for you when you press Enter after a colon.</p></li>
+<li><p>The block ends when the indentation goes back to where the <code class="docutils literal notranslate"><span class="pre">if</span></code> started.</p></li>
+</ul>
+<p>This is exactly the same rule you used for function bodies in Topic 6. If you forget to indent, Python stops with <code class="docutils literal notranslate"><span class="pre">IndentationError:</span> <span class="pre">expected</span> <span class="pre">an</span> <span class="pre">indented</span> <span class="pre">block</span></code>.</p>
+</section>
+<section id="else-and-elif">
+<h2><span class="section-number">9.3. </span>else and elif<a class="headerlink" href="#else-and-elif" title="Link to this heading">#</a></h2>
+<p>Often you want to do one thing if a condition is true and <strong>something else</strong> otherwise. That’s what <code class="docutils literal notranslate"><span class="pre">else</span></code> is for. And when there are more than two possibilities, <code class="docutils literal notranslate"><span class="pre">elif</span></code> (short for <em>else if</em>) lets you check another condition.</p>
+<p>A group of friends is planning a trip:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">travellers</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">bus_seats</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">taxi_seats</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="k">if</span> <span class="n">bus_seats</span> <span class="o">&gt;</span> <span class="n">travellers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Everyone fits in the bus."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">bus_seats</span> <span class="o">&lt;</span> <span class="n">travellers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"The bus is too small."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"The bus is exactly full."</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">taxi_seats</span> <span class="o">&gt;=</span> <span class="n">travellers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Everyone fits in one taxi."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">taxi_seats</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">&gt;=</span> <span class="n">travellers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"We need up to three taxis."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Taxis won't work for this group."</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">travellers</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Let's book the bus."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Let's take taxis."</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Everyone fits in the bus.
+We need up to three taxis.
+Let's book the bus.
+</pre></div>
+</div>
+<p>The general form is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
+    <span class="c1"># runs when condition_1 is True</span>
+<span class="k">elif</span> <span class="n">condition_2</span><span class="p">:</span>
+    <span class="c1"># runs when condition_1 is False and condition_2 is True</span>
+<span class="k">elif</span> <span class="n">condition_3</span><span class="p">:</span>
+    <span class="c1"># ... as many elif blocks as you need</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># runs when none of the conditions were True</span>
+</pre></div>
+</div>
+<p>Only <code class="docutils literal notranslate"><span class="pre">if</span></code> is required. You can have any number of <code class="docutils literal notranslate"><span class="pre">elif</span></code> blocks and at most one <code class="docutils literal notranslate"><span class="pre">else</span></code>, which always comes last.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In an <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> chain, Python runs <strong>only the first block whose condition is <code class="docutils literal notranslate"><span class="pre">True</span></code></strong>, then skips the rest of the chain — even if later conditions are also true.</p>
+</div>
+</section>
+<section id="order-matters">
+<h2><span class="section-number">9.4. </span>Order matters<a class="headerlink" href="#order-matters" title="Link to this heading">#</a></h2>
+<p>Because only the first true branch runs, the <strong>order</strong> of your conditions matters. This grading program looks reasonable, but has a serious bug:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="mi">95</span>
+
+<span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: D"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: C"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: B"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: A"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: E"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Grade: D
+</pre></div>
+</div>
+<p>95 is greater than or equal to 50, so the very first branch runs and the others are never checked. There’s no error message — the program just gives the wrong answer. Always test the <strong>most demanding</strong> condition first:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: A"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: B"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: C"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: D"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grade: E"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="decisions-with-user-input">
+<h2><span class="section-number">9.5. </span>Decisions with user input<a class="headerlink" href="#decisions-with-user-input" title="Link to this heading">#</a></h2>
+<p>Decisions become really useful when they depend on what the user types. Here’s an example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Enter your age: "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You cannot vote yet."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You can vote."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You can vote. Bravo, it must be your first time!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run the cell three times, answering <code class="docutils literal notranslate"><span class="pre">15</span></code>, <code class="docutils literal notranslate"><span class="pre">40</span></code> and <code class="docutils literal notranslate"><span class="pre">18</span></code>, so that every branch runs at least once. Testing each branch is a good habit.</p>
+</section>
+<section id="decisions-inside-decisions">
+<h2><span class="section-number">9.6. </span>Decisions inside decisions<a class="headerlink" href="#decisions-inside-decisions" title="Link to this heading">#</a></h2>
+<p>An <code class="docutils literal notranslate"><span class="pre">if</span></code> block can contain another <code class="docutils literal notranslate"><span class="pre">if</span></code>. This lets one choice lead to further choices — perfect for a text adventure game:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"""You are on a safari in the Maasai Mara.</span>
+<span class="s2">The jeep stops where the road splits in two.</span>
+<span class="s2">Do you go towards the river (1) or towards the hills (2)?"""</span><span class="p">)</span>
+
+<span class="n">road</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">road</span> <span class="o">==</span> <span class="s2">"1"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"At the river, a hippo is resting in the water."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"What do you do?"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"1. Take a photo from the jeep."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"2. Walk closer for a better look."</span><span class="p">)</span>
+
+    <span class="n">hippo</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">hippo</span> <span class="o">==</span> <span class="s2">"1"</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"What a photo! The hippo yawns for the camera."</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">hippo</span> <span class="o">==</span> <span class="s2">"2"</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"The hippo charges! You run back to the jeep just in time."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You decide to </span><span class="si">{</span><span class="n">hippo</span><span class="si">}</span><span class="s2">. The hippo ignores you and sleeps."</span><span class="p">)</span>
+
+<span class="k">elif</span> <span class="n">road</span> <span class="o">==</span> <span class="s2">"2"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"On the hills, you spot a pride of lions."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"1. Stay very quiet."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"2. Switch off the engine."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"3. Get out and wave."</span><span class="p">)</span>
+
+    <span class="n">lions</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">lions</span> <span class="o">==</span> <span class="s2">"1"</span> <span class="ow">or</span> <span class="n">lions</span> <span class="o">==</span> <span class="s2">"2"</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"The lions stroll past the jeep. An unforgettable day!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"The guide pulls you back in. Rule one: never leave the jeep!"</span><span class="p">)</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You couldn't decide, and the jeep got stuck in the mud. Time to push!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>You are on a safari in the Maasai Mara.
+The jeep stops where the road splits in two.
+Do you go towards the river (1) or towards the hills (2)?
+&gt; 1
+At the river, a hippo is resting in the water.
+What do you do?
+1. Take a photo from the jeep.
+2. Walk closer for a better look.
+&gt; 2
+The hippo charges! You run back to the jeep just in time.
+</pre></div>
+</div>
+<p>Notice that the program compares <code class="docutils literal notranslate"><span class="pre">road</span> <span class="pre">==</span> <span class="pre">&quot;1&quot;</span></code> with the <strong>string</strong> <code class="docutils literal notranslate"><span class="pre">&quot;1&quot;</span></code>, not the number <code class="docutils literal notranslate"><span class="pre">1</span></code>, because <code class="docutils literal notranslate"><span class="pre">input</span></code> always returns a string.</p>
+<p>In Colab, each <code class="docutils literal notranslate"><span class="pre">input</span></code> opens a new text box below the output, so you can play the whole game inside one cell. Run the cell again to play again.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Don’t nest <code class="docutils literal notranslate"><span class="pre">if</span></code> statements more than two levels deep. If your code starts drifting far to the right, it’s time to split it into functions — you’ll do exactly that in Topic 12.</p>
+</div>
+</section>
+<section id="the-pass-statement">
+<h2><span class="section-number">9.7. </span>The pass statement<a class="headerlink" href="#the-pass-statement" title="Link to this heading">#</a></h2>
+<p>A block must contain at least one instruction. If you need a branch that deliberately does nothing — for example while you’re still writing your program — use <code class="docutils literal notranslate"><span class="pre">pass</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+    <span class="k">pass</span>    <span class="c1"># TODO: warn the user later</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Nice weather."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="exercises">
+<h2><span class="section-number">9.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-positive-negative-or-zero">
+<h3><span class="section-number">9.8.1. </span>Exercise: positive, negative or zero<a class="headerlink" href="#exercise-positive-negative-or-zero" title="Link to this heading">#</a></h3>
+<p>Write a program that asks the user for a whole number and prints whether it is positive, negative, or zero.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Enter a whole number: "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> is positive."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> is negative."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"The number is zero."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-even-or-odd">
+<h3><span class="section-number">9.8.2. </span>Exercise: even or odd<a class="headerlink" href="#exercise-even-or-odd" title="Link to this heading">#</a></h3>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">even_or_odd(n)</span></code> that <strong>returns</strong> the string <code class="docutils literal notranslate"><span class="pre">&quot;even&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;odd&quot;</span></code>. Use it to print the result for a number the user types.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">even_or_odd</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"even"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"odd"</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Number: "</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">even_or_odd</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-trace-the-branches">
+<h3><span class="section-number">9.8.3. </span>Exercise: trace the branches<a class="headerlink" href="#exercise-trace-the-branches" title="Link to this heading">#</a></h3>
+<p>In the trip program, change the first line to <code class="docutils literal notranslate"><span class="pre">travellers</span> <span class="pre">=</span> <span class="pre">14</span></code>. <strong>Before running it</strong>, write down what will be printed. Then run the cell to check.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The bus is exactly full.
+Taxis won't work for this group.
+Let's book the bus.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bus_seats</span> <span class="pre">&gt;</span> <span class="pre">travellers</span></code> and <code class="docutils literal notranslate"><span class="pre">bus_seats</span> <span class="pre">&lt;</span> <span class="pre">travellers</span></code> are both False (14 and 14 are equal), so the <code class="docutils literal notranslate"><span class="pre">else</span></code> runs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taxi_seats</span> <span class="pre">&gt;=</span> <span class="pre">travellers</span></code> (4 &gt;= 14) is False, and <code class="docutils literal notranslate"><span class="pre">taxi_seats</span> <span class="pre">*</span> <span class="pre">3</span> <span class="pre">&gt;=</span> <span class="pre">travellers</span></code> (12 &gt;= 14) is also False, so the <code class="docutils literal notranslate"><span class="pre">else</span></code> runs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">travellers</span> <span class="pre">&gt;</span> <span class="pre">10</span></code> (14 &gt; 10) is True.</p></li>
+</ul>
+</div>
+</section>
+<section id="exercise-grade-calculator">
+<h3><span class="section-number">9.8.4. </span>Exercise: grade calculator<a class="headerlink" href="#exercise-grade-calculator" title="Link to this heading">#</a></h3>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">grade(score)</span></code> that returns <code class="docutils literal notranslate"><span class="pre">&quot;A&quot;</span></code> for 70–100, <code class="docutils literal notranslate"><span class="pre">&quot;B&quot;</span></code> for 60–69, <code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code> for 50–59, <code class="docutils literal notranslate"><span class="pre">&quot;D&quot;</span></code> for 40–49 and <code class="docutils literal notranslate"><span class="pre">&quot;E&quot;</span></code> below 40. Test it with 100, 70, 69, 40 and 0.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">grade</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"A"</span>
+    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"B"</span>
+    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"C"</span>
+    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"D"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"E"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">grade</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">grade</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span> <span class="n">grade</span><span class="p">(</span><span class="mi">69</span><span class="p">),</span> <span class="n">grade</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span> <span class="n">grade</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This prints <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">A</span> <span class="pre">B</span> <span class="pre">D</span> <span class="pre">E</span></code>. Because the conditions are tested from highest to lowest, each <code class="docutils literal notranslate"><span class="pre">elif</span></code> only needs a lower bound: by the time <code class="docutils literal notranslate"><span class="pre">score</span> <span class="pre">&gt;=</span> <span class="pre">60</span></code> is checked, we already know the score is below 70.</p>
+</div>
+</section>
+<section id="exercise-extend-the-safari">
+<h3><span class="section-number">9.8.5. </span>Exercise: extend the safari<a class="headerlink" href="#exercise-extend-the-safari" title="Link to this heading">#</a></h3>
+<p>Add a third road to the safari game. It leads to a Maasai village, where the player must choose between two activities, each with its own ending. Make sure an unexpected answer is also handled.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>Add this <code class="docutils literal notranslate"><span class="pre">elif</span></code> <strong>before</strong> the final <code class="docutils literal notranslate"><span class="pre">else</span></code> of the outer decision:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">elif</span> <span class="n">road</span> <span class="o">==</span> <span class="s2">"3"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You visit a Maasai village. The elders welcome you."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"1. Join the jumping dance."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"2. Learn how beadwork is made."</span><span class="p">)</span>
+
+    <span class="n">activity</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">activity</span> <span class="o">==</span> <span class="s2">"1"</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"You jump surprisingly high. Everyone cheers!"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">activity</span> <span class="o">==</span> <span class="s2">"2"</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"You make your own bracelet to take home."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"You sit under a tree and listen to stories instead."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Also change the first question so the player knows road 3 exists, for example <code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">go</span> <span class="pre">towards</span> <span class="pre">the</span> <span class="pre">river</span> <span class="pre">(1),</span> <span class="pre">the</span> <span class="pre">hills</span> <span class="pre">(2)</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">village</span> <span class="pre">(3)?</span></code></p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08_boolean_logic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>True or False: Boolean Logic</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_loops.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Loops: Doing Things Again and Again</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if">9.1. What if?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">9.1.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocks-and-indentation">9.2. Blocks and indentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#else-and-elif">9.3. else and elif</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#order-matters">9.4. Order matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decisions-with-user-input">9.5. Decisions with user input</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decisions-inside-decisions">9.6. Decisions inside decisions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pass-statement">9.7. The pass statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">9.8. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-positive-negative-or-zero">9.8.1. Exercise: positive, negative or zero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-even-or-odd">9.8.2. Exercise: even or odd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-trace-the-branches">9.8.3. Exercise: trace the branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-grade-calculator">9.8.4. Exercise: grade calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-extend-the-safari">9.8.5. Exercise: extend the safari</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,810 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>19. Project: DNA Sequences &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/projects/dna_sequences';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="20. Project: The Collatz Conjecture" href="collatz.html" />
+    <link rel="prev" title="18. Is-a, Has-a: Inheritance and Composition" href="../18_inheritance_and_composition.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/projects/dna_sequences.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project: DNA Sequences</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-dna-sequence">19.1. What is a DNA sequence?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-the-complementary-base">19.2. Step 1: the complementary base</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-the-complementary-strand">19.3. Step 2: the complementary strand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-displaying-the-double-strand">19.4. Step 3: displaying the double strand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-checking-a-sequence">19.5. Step 4: checking a sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-molar-mass">19.6. Step 5: molar mass</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-gc-content">19.7. Step 6: GC content</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-finding-a-pattern">19.8. Step 7: finding a pattern</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-putting-it-all-together">19.9. Step 8: putting it all together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#going-further">19.10. Going further</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-dna-sequences">
+<h1><span class="section-number">19. </span>Project: DNA Sequences<a class="headerlink" href="#project-dna-sequences" title="Link to this heading">#</a></h1>
+<p>In this project you’ll write a small toolkit for working with DNA sequences. It’s a great way to practise functions, decisions, loops and strings — and at the end, all your functions combine into one complete program.</p>
+<p><strong>You will need:</strong> functions (Topic 6), decisions (Topic 9), loops (Topic 10) and strings (Topic 13).</p>
+<p><strong>How to work:</strong> do the steps in order. After each function, test it with the examples given <strong>before</strong> moving on. Keep the function names exactly as written, because later steps reuse them.</p>
+<section id="what-is-a-dna-sequence">
+<h2><span class="section-number">19.1. </span>What is a DNA sequence?<a class="headerlink" href="#what-is-a-dna-sequence" title="Link to this heading">#</a></h2>
+<p>DNA is made of small building blocks called <strong>bases</strong>. There are four of them: adenine (<code class="docutils literal notranslate"><span class="pre">A</span></code>), cytosine (<code class="docutils literal notranslate"><span class="pre">C</span></code>), guanine (<code class="docutils literal notranslate"><span class="pre">G</span></code>) and thymine (<code class="docutils literal notranslate"><span class="pre">T</span></code>). In a living cell, DNA has two strands twisted into a double helix, and the bases pair up in a fixed way:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> always pairs with <code class="docutils literal notranslate"><span class="pre">T</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">G</span></code> always pairs with <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p></li>
+</ul>
+<p>So if one strand is <code class="docutils literal notranslate"><span class="pre">CGTA</span></code>, the strand facing it must be <code class="docutils literal notranslate"><span class="pre">GCAT</span></code>. We’ll represent a strand as a string such as <code class="docutils literal notranslate"><span class="pre">&quot;CGTAGTTTCGA&quot;</span></code>.</p>
+</section>
+<section id="step-1-the-complementary-base">
+<h2><span class="section-number">19.2. </span>Step 1: the complementary base<a class="headerlink" href="#step-1-the-complementary-base" title="Link to this heading">#</a></h2>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">complement(base)</span></code> that takes one base (a one-character string) and returns its partner. For anything that isn’t a valid base, return <code class="docutils literal notranslate"><span class="pre">&quot;?&quot;</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="s2">"A"</span><span class="p">))</span>   <span class="c1"># T</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="s2">"G"</span><span class="p">))</span>   <span class="c1"># C</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="s2">"X"</span><span class="p">))</span>   <span class="c1"># ?</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">complement</span><span class="p">(</span><span class="n">base</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"A"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"T"</span>
+    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"T"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"A"</span>
+    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"G"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"C"</span>
+    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"C"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"G"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"?"</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="step-2-the-complementary-strand">
+<h2><span class="section-number">19.3. </span>Step 2: the complementary strand<a class="headerlink" href="#step-2-the-complementary-strand" title="Link to this heading">#</a></h2>
+<p>Write <code class="docutils literal notranslate"><span class="pre">complement_strand(dna)</span></code> that returns the whole facing strand. Use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop over the characters and your <code class="docutils literal notranslate"><span class="pre">complement</span></code> function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">complement_strand</span><span class="p">(</span><span class="s2">"CGTA"</span><span class="p">))</span>          <span class="c1"># GCAT</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">complement_strand</span><span class="p">(</span><span class="s2">"CGTAGTTTCGA"</span><span class="p">))</span>   <span class="c1"># GCATCAAAGCT</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">complement_strand</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="n">complement</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>Strings can’t be changed, so we build a <strong>new</strong> string by adding one character at a time.</p>
+</div>
+</section>
+<section id="step-3-displaying-the-double-strand">
+<h2><span class="section-number">19.4. </span>Step 3: displaying the double strand<a class="headerlink" href="#step-3-displaying-the-double-strand" title="Link to this heading">#</a></h2>
+<p>Write <code class="docutils literal notranslate"><span class="pre">hstring(dna)</span></code> that returns a <strong>three-line string</strong>: the strand, a row of <code class="docutils literal notranslate"><span class="pre">|</span></code> characters (one per base), and the complementary strand.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hstring</span><span class="p">(</span><span class="s2">"CGTAGTTTCGA"</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CGTAGTTTCGA
+|||||||||||
+GCATCAAAGCT
+</pre></div>
+</div>
+<p>Then write <code class="docutils literal notranslate"><span class="pre">vstring(dna)</span></code> that shows the pairs vertically, one pair per line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">vstring</span><span class="p">(</span><span class="s2">"CGTA"</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C-G
+G-C
+T-A
+A-T
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">hstring</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dna</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"|"</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">complement_strand</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">vstring</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">:</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">base</span> <span class="o">+</span> <span class="s2">"-"</span> <span class="o">+</span> <span class="n">complement</span><span class="p">(</span><span class="n">base</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;|&quot;</span> <span class="pre">*</span> <span class="pre">len(dna)</span></code> repeats the bar once per base. In <code class="docutils literal notranslate"><span class="pre">vstring</span></code>, we collect the lines in a list and glue them with <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;.join(...)</span></code>, which puts a new line <strong>between</strong> lines (so there’s no extra empty line at the end).</p>
+</div>
+</section>
+<section id="step-4-checking-a-sequence">
+<h2><span class="section-number">19.5. </span>Step 4: checking a sequence<a class="headerlink" href="#step-4-checking-a-sequence" title="Link to this heading">#</a></h2>
+<p>Write <code class="docutils literal notranslate"><span class="pre">is_dna(sequence)</span></code> that returns <code class="docutils literal notranslate"><span class="pre">True</span></code> only if the string is not empty and contains nothing but the letters <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code>, <code class="docutils literal notranslate"><span class="pre">G</span></code> and <code class="docutils literal notranslate"><span class="pre">T</span></code> (upper case).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">is_dna</span><span class="p">(</span><span class="s2">"CGTAGTTTCGA"</span><span class="p">))</span>    <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">is_dna</span><span class="p">(</span><span class="s2">"CGTXAGTTTCGA"</span><span class="p">))</span>   <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">is_dna</span><span class="p">(</span><span class="s2">""</span><span class="p">))</span>               <span class="c1"># False</span>
+</pre></div>
+</div>
+<p>Then write <code class="docutils literal notranslate"><span class="pre">input_dna()</span></code> that keeps asking the user for a sequence until a valid one is typed, and returns it. Let the user type in lower case too, by converting their answer with <code class="docutils literal notranslate"><span class="pre">.upper()</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Enter a DNA sequence: acgtcf
+That is not a DNA sequence (only A, C, G, T). Try again.
+Enter a DNA sequence: acgtcgaagcg
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_dna</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">letter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">"ACGT"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">input_dna</span><span class="p">():</span>
+    <span class="n">sequence</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Enter a DNA sequence: "</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">is_dna</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"That is not a DNA sequence (only A, C, G, T). Try again."</span><span class="p">)</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Enter a DNA sequence: "</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">sequence</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">is_dna</span></code> returns <code class="docutils literal notranslate"><span class="pre">False</span></code> as soon as it finds one bad letter; only if the loop finishes without finding one does it return <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</div>
+</section>
+<section id="step-5-molar-mass">
+<h2><span class="section-number">19.6. </span>Step 5: molar mass<a class="headerlink" href="#step-5-molar-mass" title="Link to this heading">#</a></h2>
+<p>Each base has a different mass:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Base</p></th>
+<th class="head"><p>Mass (g/mol)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>135</p></td>
+</tr>
+<tr class="row-odd"><td><p>C</p></td>
+<td><p>111</p></td>
+</tr>
+<tr class="row-even"><td><p>G</p></td>
+<td><p>151</p></td>
+</tr>
+<tr class="row-odd"><td><p>T</p></td>
+<td><p>126</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Write <code class="docutils literal notranslate"><span class="pre">base_mass(base)</span></code> that returns the mass of one base. Then write <code class="docutils literal notranslate"><span class="pre">mass(dna)</span></code> that returns the mass of the <strong>double</strong> strand: for each base, add its own mass <strong>and</strong> the mass of its complement.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mass</span><span class="p">(</span><span class="s2">"CGTA"</span><span class="p">))</span>          <span class="c1"># 1046</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mass</span><span class="p">(</span><span class="s2">"CGTAGTTTCGA"</span><span class="p">))</span>   <span class="c1"># 2876</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">base_mass</span><span class="p">(</span><span class="n">base</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"A"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">135</span>
+    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"C"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">111</span>
+    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"G"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">151</span>
+    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"T"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">126</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mass</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">base_mass</span><span class="p">(</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">base_mass</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="n">base</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>Each A–T pair weighs 135 + 126 = 261 and each C–G pair weighs 111 + 151 = 262. <code class="docutils literal notranslate"><span class="pre">&quot;CGTA&quot;</span></code> has two of each: 2 × 262 + 2 × 261 = 1046.</p>
+</div>
+</section>
+<section id="step-6-gc-content">
+<h2><span class="section-number">19.7. </span>Step 6: GC content<a class="headerlink" href="#step-6-gc-content" title="Link to this heading">#</a></h2>
+<p>Biologists often want the <strong>GC content</strong>: the percentage of bases that are <code class="docutils literal notranslate"><span class="pre">G</span></code> or <code class="docutils literal notranslate"><span class="pre">C</span></code>. Write <code class="docutils literal notranslate"><span class="pre">gc_content(dna)</span></code> that returns this percentage.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gc_content</span><span class="p">(</span><span class="s2">"CGTA"</span><span class="p">))</span>          <span class="c1"># 50.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gc_content</span><span class="p">(</span><span class="s2">"CGTAGTTTCGA"</span><span class="p">))</span>   <span class="c1"># about 45.45</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gc_content</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"G"</span> <span class="ow">or</span> <span class="n">base</span> <span class="o">==</span> <span class="s2">"C"</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;CGTAGTTTCGA&quot;</span></code> has 5 G/C bases out of 11: 5 / 11 × 100 ≈ 45.45.</p>
+</div>
+</section>
+<section id="step-7-finding-a-pattern">
+<h2><span class="section-number">19.8. </span>Step 7: finding a pattern<a class="headerlink" href="#step-7-finding-a-pattern" title="Link to this heading">#</a></h2>
+<p>Write <code class="docutils literal notranslate"><span class="pre">count_pattern(dna,</span> <span class="pre">pattern)</span></code> that returns how many times <code class="docutils literal notranslate"><span class="pre">pattern</span></code> appears in <code class="docutils literal notranslate"><span class="pre">dna</span></code>, <strong>including overlapping</strong> appearances. Hint: try every starting position <code class="docutils literal notranslate"><span class="pre">i</span></code>, and compare the slice <code class="docutils literal notranslate"><span class="pre">dna[i:i</span> <span class="pre">+</span> <span class="pre">len(pattern)]</span></code> with the pattern.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">count_pattern</span><span class="p">(</span><span class="s2">"CGTCGT"</span><span class="p">,</span> <span class="s2">"CGT"</span><span class="p">))</span>    <span class="c1"># 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_pattern</span><span class="p">(</span><span class="s2">"CCCCCCC"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">))</span>     <span class="c1"># 7</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_pattern</span><span class="p">(</span><span class="s2">"AAAA"</span><span class="p">,</span> <span class="s2">"AA"</span><span class="p">))</span>       <span class="c1"># 3  (overlapping!)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_pattern</span><span class="p">(</span><span class="s2">"CCCCCCC"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">))</span>     <span class="c1"># 0</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">count_pattern</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">dna</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)]</span> <span class="o">==</span> <span class="n">pattern</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+</div>
+<p>The last position where the pattern can still fit is <code class="docutils literal notranslate"><span class="pre">len(dna)</span> <span class="pre">-</span> <span class="pre">len(pattern)</span></code>, so the <code class="docutils literal notranslate"><span class="pre">range</span></code> stops just after it. (Python’s own <code class="docutils literal notranslate"><span class="pre">dna.count(pattern)</span></code> does <strong>not</strong> count overlapping matches: <code class="docutils literal notranslate"><span class="pre">&quot;AAAA&quot;.count(&quot;AA&quot;)</span></code> is 2.)</p>
+</div>
+</section>
+<section id="step-8-putting-it-all-together">
+<h2><span class="section-number">19.9. </span>Step 8: putting it all together<a class="headerlink" href="#step-8-putting-it-all-together" title="Link to this heading">#</a></h2>
+<p>Tidy up your notebook: put all the function definitions together in one cell (without the test lines) and run it. Then, in a new cell below, add this <code class="docutils literal notranslate"><span class="pre">main</span></code> function and run it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">dna</span> <span class="o">=</span> <span class="n">input_dna</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Now the pattern to search for."</span><span class="p">)</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">input_dna</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"DNA REPORT"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">hstring</span><span class="p">(</span><span class="n">dna</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Molar mass: </span><span class="si">{</span><span class="n">mass</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span><span class="si">}</span><span class="s2"> g/mol"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GC content: </span><span class="si">{</span><span class="n">gc_content</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The pattern </span><span class="si">{</span><span class="n">pattern</span><span class="si">}</span><span class="s2"> appears </span><span class="si">{</span><span class="n">count_pattern</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="p">)</span><span class="si">}</span><span class="s2"> time(s)."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If every function is correct, you should see something like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Enter a DNA sequence: cgtcgt
+Now the pattern to search for.
+Enter a DNA sequence: cgt
+
+----------------------------------------
+DNA REPORT
+CGTCGT
+||||||
+GCAGCA
+Molar mass: 1570 g/mol
+GC content: 66.7%
+The pattern CGT appears 2 time(s).
+----------------------------------------
+</pre></div>
+</div>
+</section>
+<section id="going-further">
+<h2><span class="section-number">19.10. </span>Going further<a class="headerlink" href="#going-further" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Add a function <code class="docutils literal notranslate"><span class="pre">reverse_complement(dna)</span></code> that returns the complementary strand <strong>read backwards</strong> (biologists use this a lot). Hint: slicing with <code class="docutils literal notranslate"><span class="pre">[::-1]</span></code>.</p></li>
+<li><p>Rewrite <code class="docutils literal notranslate"><span class="pre">complement</span></code> and <code class="docutils literal notranslate"><span class="pre">base_mass</span></code> using <strong>dictionaries</strong> (Topic 14). How much shorter do they become?</p></li>
+<li><p>Let the user analyse several sequences in a row, until they type <code class="docutils literal notranslate"><span class="pre">quit</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../18_inheritance_and_composition.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Is-a, Has-a: Inheritance and Composition</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="collatz.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Project: The Collatz Conjecture</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-dna-sequence">19.1. What is a DNA sequence?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-the-complementary-base">19.2. Step 1: the complementary base</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-the-complementary-strand">19.3. Step 2: the complementary strand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-displaying-the-double-strand">19.4. Step 3: displaying the double strand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-checking-a-sequence">19.5. Step 4: checking a sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-molar-mass">19.6. Step 5: molar mass</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-gc-content">19.7. Step 6: GC content</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-finding-a-pattern">19.8. Step 7: finding a pattern</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-putting-it-all-together">19.9. Step 8: putting it all together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#going-further">19.10. Going further</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

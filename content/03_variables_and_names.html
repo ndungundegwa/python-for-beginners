@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Variables and Names &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/03_variables_and_names';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Strings and Printing" href="04_strings_and_printing.html" />
+    <link rel="prev" title="2. Numbers and Math" href="02_numbers_and_math.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/03_variables_and_names.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Variables and Names</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-variable-is-a-name-for-a-value">3.1. A variable is a name for a value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">3.1.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-is-not-equality">3.2. Assignment is not equality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-variables-inside-text">3.3. Putting variables inside text</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-for-naming-variables">3.4. Rules for naming variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-name-before-creating-it">3.5. Using a name before creating it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swapping-two-values">3.6. Swapping two values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">3.7. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-what-does-14-0-change">3.7.1. Exercise: what does 14.0 change?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-convert-the-measurements">3.7.2. Exercise: convert the measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-trace-the-variables">3.7.3. Exercise: trace the variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-shopping-bill">3.7.4. Exercise: a shopping bill</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="variables-and-names">
+<h1><span class="section-number">3. </span>Variables and Names<a class="headerlink" href="#variables-and-names" title="Link to this heading">#</a></h1>
+<p>Printing and calculating is a good start, but real programs need to <em>remember</em> things: a price, a name, a score. In this topic you’ll learn to give names to values using <strong>variables</strong>, and you’ll discover that the <code class="docutils literal notranslate"><span class="pre">=</span></code> sign in Python doesn’t mean what it means in mathematics.</p>
+<section id="a-variable-is-a-name-for-a-value">
+<h2><span class="section-number">3.1. </span>A variable is a name for a value<a class="headerlink" href="#a-variable-is-a-name-for-a-value" title="Link to this heading">#</a></h2>
+<p>A <strong>variable</strong> is simply a name that refers to a value, the same way your name refers to you. Programmers use variables so their code reads almost like English — and because nobody can remember what <code class="docutils literal notranslate"><span class="pre">420</span> <span class="pre">/</span> <span class="pre">35</span></code> was supposed to mean three weeks later.</p>
+<p>Imagine you manage the matatus at a busy stage. Type this into a new cell and run it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">matatus</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">seats_per_matatu</span> <span class="o">=</span> <span class="mf">14.0</span>
+<span class="n">drivers</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">passengers</span> <span class="o">=</span> <span class="mi">420</span>
+
+<span class="n">matatus_not_used</span> <span class="o">=</span> <span class="n">matatus</span> <span class="o">-</span> <span class="n">drivers</span>
+<span class="n">matatus_used</span> <span class="o">=</span> <span class="n">drivers</span>
+<span class="n">seats_available</span> <span class="o">=</span> <span class="n">matatus_used</span> <span class="o">*</span> <span class="n">seats_per_matatu</span>
+<span class="n">average_passengers</span> <span class="o">=</span> <span class="n">passengers</span> <span class="o">/</span> <span class="n">matatus_used</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"There are"</span><span class="p">,</span> <span class="n">matatus</span><span class="p">,</span> <span class="s2">"matatus at the stage."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Only"</span><span class="p">,</span> <span class="n">drivers</span><span class="p">,</span> <span class="s2">"drivers came to work today."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">matatus_not_used</span><span class="p">,</span> <span class="s2">"matatus will stay parked."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"We can carry"</span><span class="p">,</span> <span class="n">seats_available</span><span class="p">,</span> <span class="s2">"passengers today."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"There are"</span><span class="p">,</span> <span class="n">passengers</span><span class="p">,</span> <span class="s2">"passengers waiting."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"That is about"</span><span class="p">,</span> <span class="n">average_passengers</span><span class="p">,</span> <span class="s2">"passengers per matatu."</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="what-you-should-see">
+<h3><span class="section-number">3.1.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>There are 50 matatus at the stage.
+Only 35 drivers came to work today.
+15 matatus will stay parked.
+We can carry 490.0 passengers today.
+There are 420 passengers waiting.
+That is about 12.0 passengers per matatu.
+</pre></div>
+</div>
+<p>The line <code class="docutils literal notranslate"><span class="pre">matatus</span> <span class="pre">=</span> <span class="pre">50</span></code> <strong>creates</strong> a variable called <code class="docutils literal notranslate"><span class="pre">matatus</span></code> and makes it refer to the value <code class="docutils literal notranslate"><span class="pre">50</span></code>. From then on, wherever you write <code class="docutils literal notranslate"><span class="pre">matatus</span></code>, Python uses <code class="docutils literal notranslate"><span class="pre">50</span></code>. Later lines can use earlier variables in calculations: <code class="docutils literal notranslate"><span class="pre">matatus_not_used</span> <span class="pre">=</span> <span class="pre">matatus</span> <span class="pre">-</span> <span class="pre">drivers</span></code> works out <code class="docutils literal notranslate"><span class="pre">50</span> <span class="pre">-</span> <span class="pre">35</span></code> and names the result.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In a notebook, variables <strong>stay alive after the cell has run</strong>. If you add a new cell below and run <code class="docutils literal notranslate"><span class="pre">print(seats_available)</span></code>, it prints <code class="docutils literal notranslate"><span class="pre">490.0</span></code>, because the first cell already created that variable. If you restart the session (<strong>Runtime → Restart session</strong>), all variables are forgotten until you run the cells again.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">_</span></code> in <code class="docutils literal notranslate"><span class="pre">seats_per_matatu</span></code> is an <strong>underscore</strong>. Spaces aren’t allowed inside variable names, so we use underscores to separate words. Find out how to type it on your keyboard (or phone) if you don’t know already.</p>
+</div>
+</section>
+</section>
+<section id="assignment-is-not-equality">
+<h2><span class="section-number">3.2. </span>Assignment is not equality<a class="headerlink" href="#assignment-is-not-equality" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">=</span></code> sign is called the <strong>assignment operator</strong>. It does <em>not</em> say “these two things are equal”. It is an instruction with two steps:</p>
+<ol class="arabic simple">
+<li><p>First, work out the value on the <strong>right</strong>.</p></li>
+<li><p>Then, make the name on the <strong>left</strong> refer to that value.</p></li>
+</ol>
+<p>That’s why this is perfectly valid Python, even though it would be nonsense in a maths lesson:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+<p>Python first works out <code class="docutils literal notranslate"><span class="pre">score</span> <span class="pre">+</span> <span class="pre">5</span></code> (which is <code class="docutils literal notranslate"><span class="pre">15</span></code>), then makes <code class="docutils literal notranslate"><span class="pre">score</span></code> refer to <code class="docutils literal notranslate"><span class="pre">15</span></code>. The old value <code class="docutils literal notranslate"><span class="pre">10</span></code> is forgotten.</p>
+<p>This pattern — “add something to a variable” — is so common that Python has a shortcut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">+=</span> <span class="mi">5</span>    <span class="c1"># the same as: score = score + 5</span>
+</pre></div>
+</div>
+<p>There are matching shortcuts for the other operators: <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code>.</p>
+</section>
+<section id="putting-variables-inside-text">
+<h2><span class="section-number">3.3. </span>Putting variables inside text<a class="headerlink" href="#putting-variables-inside-text" title="Link to this heading">#</a></h2>
+<p>Here’s another program. It stores facts about a person and prints them using a new kind of string called an <strong>f-string</strong>: put an <code class="docutils literal notranslate"><span class="pre">f</span></code> before the opening quote, then write variable names inside curly braces <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Wanjiku Kamau"</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">165</span>          <span class="c1"># centimetres</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="mi">58</span>           <span class="c1"># kilograms</span>
+<span class="n">home_county</span> <span class="o">=</span> <span class="s2">"Murang'a"</span>
+<span class="n">favourite_food</span> <span class="o">=</span> <span class="s2">"githeri"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Let me introduce </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"She is </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old and </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2"> cm tall."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"She weighs </span><span class="si">{</span><span class="n">weight</span><span class="si">}</span><span class="s2"> kg."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"She comes from </span><span class="si">{</span><span class="n">home_county</span><span class="si">}</span><span class="s2"> County."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Her favourite food is </span><span class="si">{</span><span class="n">favourite_food</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="n">age</span> <span class="o">+</span> <span class="n">height</span> <span class="o">+</span> <span class="n">weight</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Adding </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">weight</span><span class="si">}</span><span class="s2"> gives </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3><span class="section-number">3.3.1. </span>What you should see<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Let me introduce Wanjiku Kamau.
+She is 24 years old and 165 cm tall.
+She weighs 58 kg.
+She comes from Murang'a County.
+Her favourite food is githeri.
+Adding 24, 165 and 58 gives 247.
+</pre></div>
+</div>
+<p>When Python sees <code class="docutils literal notranslate"><span class="pre">f&quot;...</span> <span class="pre">{name}</span> <span class="pre">...&quot;</span></code>, it replaces <code class="docutils literal notranslate"><span class="pre">{name}</span></code> with the variable’s value. Topic 4 explores f-strings further.</p>
+</section>
+</section>
+<section id="rules-for-naming-variables">
+<h2><span class="section-number">3.4. </span>Rules for naming variables<a class="headerlink" href="#rules-for-naming-variables" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A name can contain <strong>letters, digits and underscores</strong>, but it <strong>cannot start with a digit</strong>. <code class="docutils literal notranslate"><span class="pre">crate1</span></code> is fine; <code class="docutils literal notranslate"><span class="pre">1crate</span></code> is not.</p></li>
+<li><p>Names are <strong>case-sensitive</strong>: <code class="docutils literal notranslate"><span class="pre">Score</span></code>, <code class="docutils literal notranslate"><span class="pre">score</span></code> and <code class="docutils literal notranslate"><span class="pre">SCORE</span></code> are three different variables.</p></li>
+<li><p>You can’t use Python’s <strong>keywords</strong> such as <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>, <code class="docutils literal notranslate"><span class="pre">def</span></code> or <code class="docutils literal notranslate"><span class="pre">class</span></code> as names. Names of built-in functions such as <code class="docutils literal notranslate"><span class="pre">print</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span></code> or <code class="docutils literal notranslate"><span class="pre">len</span></code> are technically allowed, but using them hides the function — so avoid them too.</p></li>
+<li><p>Choose names that <strong>say what the value means</strong>: <code class="docutils literal notranslate"><span class="pre">average_passengers</span></code> is longer than <code class="docutils literal notranslate"><span class="pre">a</span></code>, but you’ll never wonder what it holds. <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code> and <code class="docutils literal notranslate"><span class="pre">thing</span></code> tell you nothing.</p></li>
+</ul>
+</section>
+<section id="using-a-name-before-creating-it">
+<h2><span class="section-number">3.5. </span>Using a name before creating it<a class="headerlink" href="#using-a-name-before-creating-it" title="Link to this heading">#</a></h2>
+<p>If you use a variable that doesn’t exist yet — or that you spelled differently — Python stops with a <code class="docutils literal notranslate"><span class="pre">NameError</span></code>. Suppose one line of the matatu program had a small typing mistake:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"We can carry"</span><span class="p">,</span> <span class="n">seat_available</span><span class="p">,</span> <span class="s2">"passengers today."</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>NameError: name 'seat_available' is not defined
+</pre></div>
+</div>
+<p>Read the last line: the name <code class="docutils literal notranslate"><span class="pre">seat_available</span></code> is not defined. The variable was created as <code class="docutils literal notranslate"><span class="pre">seats_available</span></code>, with an <strong>s</strong>. To Python, those are completely different names. (Python sometimes adds a helpful hint such as <em>Did you mean: ‘seats_available’?</em>)</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In a notebook, a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> can also mean you simply <strong>haven’t run</strong> the cell that creates the variable yet — for example after restarting the session. Run the earlier cells first.</p>
+</div>
+</section>
+<section id="swapping-two-values">
+<h2><span class="section-number">3.6. </span>Swapping two values<a class="headerlink" href="#swapping-two-values" title="Link to this heading">#</a></h2>
+<p>Python lets you assign several variables on one line, with the names on the left and the values on the right, separated by commas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">254.2</span><span class="p">,</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>This gives a neat way to <strong>swap</strong> two variables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
+</pre></div>
+</div>
+<p>Python works out the right side first (the values of <code class="docutils literal notranslate"><span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code>), then assigns them to <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">3.7. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-what-does-14-0-change">
+<h3><span class="section-number">3.7.1. </span>Exercise: what does 14.0 change?<a class="headerlink" href="#exercise-what-does-14-0-change" title="Link to this heading">#</a></h3>
+<p>In the matatu program, <code class="docutils literal notranslate"><span class="pre">seats_per_matatu</span></code> is <code class="docutils literal notranslate"><span class="pre">14.0</span></code>. Change it to <code class="docutils literal notranslate"><span class="pre">14</span></code> and run the cell again. Which output line changes, and why?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>The line <code class="docutils literal notranslate"><span class="pre">We</span> <span class="pre">can</span> <span class="pre">carry</span> <span class="pre">490.0</span> <span class="pre">passengers</span> <span class="pre">today.</span></code> becomes <code class="docutils literal notranslate"><span class="pre">We</span> <span class="pre">can</span> <span class="pre">carry</span> <span class="pre">490</span> <span class="pre">passengers</span> <span class="pre">today.</span></code> Multiplying two <strong>ints</strong> (<code class="docutils literal notranslate"><span class="pre">35</span> <span class="pre">*</span> <span class="pre">14</span></code>) gives an int, while multiplying by a <strong>float</strong> (<code class="docutils literal notranslate"><span class="pre">35</span> <span class="pre">*</span> <span class="pre">14.0</span></code>) gives a float. The last line still prints <code class="docutils literal notranslate"><span class="pre">12.0</span></code>, because <code class="docutils literal notranslate"><span class="pre">/</span></code> always gives a float.</p>
+</div>
+</section>
+<section id="exercise-convert-the-measurements">
+<h3><span class="section-number">3.7.2. </span>Exercise: convert the measurements<a class="headerlink" href="#exercise-convert-the-measurements" title="Link to this heading">#</a></h3>
+<p>Add variables to the Wanjiku program that convert her height from centimetres to <strong>inches</strong> (divide by 2.54) and her weight from kilograms to <strong>pounds</strong> (multiply by 2.2046). Print the results with f-strings, rounded to one decimal place with <code class="docutils literal notranslate"><span class="pre">round(value,</span> <span class="pre">1)</span></code>. Don’t work out the numbers yourself — let Python do the maths.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">height</span> <span class="o">=</span> <span class="mi">165</span>   <span class="c1"># centimetres</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="mi">58</span>    <span class="c1"># kilograms</span>
+
+<span class="n">height_inches</span> <span class="o">=</span> <span class="n">height</span> <span class="o">/</span> <span class="mf">2.54</span>
+<span class="n">weight_pounds</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span> <span class="mf">2.2046</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"She is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">height_inches</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> inches tall."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"She weighs </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">weight_pounds</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> pounds."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This prints <code class="docutils literal notranslate"><span class="pre">65.0</span></code> inches and <code class="docutils literal notranslate"><span class="pre">127.9</span></code> pounds.</p>
+</div>
+</section>
+<section id="exercise-trace-the-variables">
+<h3><span class="section-number">3.7.3. </span>Exercise: trace the variables<a class="headerlink" href="#exercise-trace-the-variables" title="Link to this heading">#</a></h3>
+<p>Without running it, write down the value of each variable after every line. Then check by adding <code class="docutils literal notranslate"><span class="pre">print</span></code> calls.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">+=</span> <span class="n">x</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>After line</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">5</span></code></p></td>
+<td><p>5</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">2</span></code></p></td>
+<td><p>5</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">3</span></code></p></td>
+<td><p>15</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">+=</span> <span class="pre">x</span></code></p></td>
+<td><p>15</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">y,</span> <span class="pre">x</span></code></p></td>
+<td><p>22</p></td>
+<td><p>15</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Notice that changing <code class="docutils literal notranslate"><span class="pre">x</span></code> on line 3 does <strong>not</strong> change <code class="docutils literal notranslate"><span class="pre">y</span></code>: <code class="docutils literal notranslate"><span class="pre">y</span></code> was given the value <code class="docutils literal notranslate"><span class="pre">7</span></code> on line 2, and it keeps that value until it is assigned again.</p>
+</div>
+</section>
+<section id="exercise-a-shopping-bill">
+<h3><span class="section-number">3.7.4. </span>Exercise: a shopping bill<a class="headerlink" href="#exercise-a-shopping-bill" title="Link to this heading">#</a></h3>
+<p>In a new cell, create variables for the price of bread (65 shillings), milk (60 shillings) and eggs (15 shillings each). Buy 2 loaves, 3 packets of milk and 12 eggs. Calculate and print the total, and how much change you get from a 1000-shilling note.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bread_price</span> <span class="o">=</span> <span class="mi">65</span>
+<span class="n">milk_price</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">egg_price</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">loaves</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">milk_packets</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">eggs</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="n">bread_price</span> <span class="o">*</span> <span class="n">loaves</span> <span class="o">+</span> <span class="n">milk_price</span> <span class="o">*</span> <span class="n">milk_packets</span> <span class="o">+</span> <span class="n">egg_price</span> <span class="o">*</span> <span class="n">eggs</span>
+<span class="n">change</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">-</span> <span class="n">total</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total: </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> shillings"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Change from 1000: </span><span class="si">{</span><span class="n">change</span><span class="si">}</span><span class="s2"> shillings"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The total is <code class="docutils literal notranslate"><span class="pre">490</span></code> shillings and the change is <code class="docutils literal notranslate"><span class="pre">510</span></code>. Because every price has a name, changing the price of milk later means editing a single line.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_numbers_and_math.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Numbers and Math</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_strings_and_printing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Strings and Printing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-variable-is-a-name-for-a-value">3.1. A variable is a name for a value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">3.1.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-is-not-equality">3.2. Assignment is not equality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-variables-inside-text">3.3. Putting variables inside text</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-for-naming-variables">3.4. Rules for naming variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-name-before-creating-it">3.5. Using a name before creating it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swapping-two-values">3.6. Swapping two values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">3.7. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-what-does-14-0-change">3.7.1. Exercise: what does 14.0 change?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-convert-the-measurements">3.7.2. Exercise: convert the measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-trace-the-variables">3.7.3. Exercise: trace the variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-shopping-bill">3.7.4. Exercise: a shopping bill</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

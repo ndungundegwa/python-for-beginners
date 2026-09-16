@@ -1,0 +1,836 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Modules: Using and Sharing Code &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/07_modules';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. True or False: Boolean Logic" href="08_boolean_logic.html" />
+    <link rel="prev" title="6. Functions" href="06_functions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/07_modules.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modules: Using and Sharing Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-a-module">7.1. Importing a module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-your-own-module">7.2. Making your own module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-comments">7.3. Documentation comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments-from-the-command-line">7.4. Arguments from the command line</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">7.5. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-roll-the-dice">7.5.1. Exercise: roll the dice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-circle-calculator">7.5.2. Exercise: circle calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-your-own-module">7.5.3. Exercise: your own module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-what-does-pop-do">7.5.4. Exercise: what does pop do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-add-to-your-module">7.5.5. Exercise: add to your module</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modules-using-and-sharing-code">
+<h1><span class="section-number">7. </span>Modules: Using and Sharing Code<a class="headerlink" href="#modules-using-and-sharing-code" title="Link to this heading">#</a></h1>
+<p>Nobody writes every piece of a program from scratch. Python comes with a huge collection of ready-made functions, grouped into <strong>modules</strong>, and you can make your own modules to reuse your code. In this topic you’ll import modules, create one of your own in Colab, and read their built-in documentation.</p>
+<section id="importing-a-module">
+<h2><span class="section-number">7.1. </span>Importing a module<a class="headerlink" href="#importing-a-module" title="Link to this heading">#</a></h2>
+<p>A <strong>module</strong> is a Python file full of useful functions and variables. To use one, you <strong>import</strong> it. The <code class="docutils literal notranslate"><span class="pre">math</span></code> module, for example, contains mathematical functions and constants:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">81</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">7.8</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>9.0
+3.141592653589793
+7
+</pre></div>
+</div>
+<p>After <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code>, you get things out of the module with a dot: <code class="docutils literal notranslate"><span class="pre">math.sqrt</span></code> means “the <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> function from the <code class="docutils literal notranslate"><span class="pre">math</span></code> module”. The dot is how Python says “get this <em>from</em> that”.</p>
+<p>You can also import just the things you need. Then you use them without the module name:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
+
+<span class="n">dice</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You rolled a </span><span class="si">{</span><span class="n">dice</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">randint(1,</span> <span class="pre">6)</span></code> gives a random whole number from 1 to 6, <strong>both included</strong>. Run the cell several times — you’ll get different results.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Put your <code class="docutils literal notranslate"><span class="pre">import</span></code> lines at the <strong>top</strong> of your program — in a notebook, often in the very first cell. Anyone reading your code can then see immediately which modules it uses. Remember that the import cell must have <strong>run</strong> before other cells can use the module.</p>
+</div>
+<p>Some modules you’ll meet in this course:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Useful for</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">math</span></code></p></td>
+<td><p>square roots, π, rounding down/up</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">random</span></code></p></td>
+<td><p>random numbers (<code class="docutils literal notranslate"><span class="pre">randint</span></code>), random choices (<code class="docutils literal notranslate"><span class="pre">choice</span></code>), shuffling</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sys</span></code></p></td>
+<td><p>information about the running program, such as command-line arguments</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">os</span></code></p></td>
+<td><p>working with folders and files</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">secrets</span></code></p></td>
+<td><p>secure random choices, for passwords</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="making-your-own-module">
+<h2><span class="section-number">7.2. </span>Making your own module<a class="headerlink" href="#making-your-own-module" title="Link to this heading">#</a></h2>
+<p>Any <code class="docutils literal notranslate"><span class="pre">.py</span></code> file is a module. In Colab, you can create a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file straight from a cell with the special command <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code>. Type this into a new cell — <code class="docutils literal notranslate"><span class="pre">%%writefile</span> <span class="pre">wordtools.py</span></code> must be the <strong>very first line</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">wordtools</span><span class="o">.</span><span class="n">py</span>
+<span class="sd">"""Small helper functions for working with sentences."""</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">split_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return a list of the words in a sentence."""</span>
+    <span class="k">return</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">alphabetical</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return a new list with the words in alphabetical order."""</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">count_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return how many words a sentence has."""</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">first_and_last</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the first and the last word of a sentence."""</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">split_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">shout</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the sentence in capital letters with an exclamation mark."""</span>
+    <span class="k">return</span> <span class="n">sentence</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s2">"!"</span>
+</pre></div>
+</div>
+<p>When you run this cell, nothing is calculated. Colab simply saves the cell’s contents in a file and replies:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Writing wordtools.py
+</pre></div>
+</div>
+<p>Click the <strong>folder icon</strong> on the left of Colab to see <code class="docutils literal notranslate"><span class="pre">wordtools.py</span></code> in the list of files. Now, in a <strong>new</strong> cell, import your module and use it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">wordtools</span>
+
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">"Many hands make light work"</span>
+
+<span class="n">words</span> <span class="o">=</span> <span class="n">wordtools</span><span class="o">.</span><span class="n">split_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wordtools</span><span class="o">.</span><span class="n">alphabetical</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wordtools</span><span class="o">.</span><span class="n">count_words</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+
+<span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">wordtools</span><span class="o">.</span><span class="n">first_and_last</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">wordtools</span><span class="o">.</span><span class="n">shout</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>['Many', 'hands', 'make', 'light', 'work']
+['Many', 'hands', 'light', 'make', 'work']
+5
+Many work
+MANY HANDS MAKE LIGHT WORK!
+</pre></div>
+</div>
+<p>A few new things appeared:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sentence.split(&quot;</span> <span class="pre">&quot;)</span></code> cuts a string into a <strong>list</strong> of words wherever there’s a space. A list is written with square brackets <code class="docutils literal notranslate"><span class="pre">[...]</span></code>; you’ll study lists properly in Topic 11.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sorted(words)</span></code> gives a new list in alphabetical order. (Capital letters come before lowercase ones, which is why <code class="docutils literal notranslate"><span class="pre">'Many'</span></code> is first.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">words[0]</span></code> is the <strong>first</strong> item of a list and <code class="docutils literal notranslate"><span class="pre">words[-1]</span></code> is the <strong>last</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.upper()</span></code> gives a copy of a string in capital letters.</p></li>
+<li><p>Inside the module, <code class="docutils literal notranslate"><span class="pre">count_words</span></code> and <code class="docutils literal notranslate"><span class="pre">first_and_last</span></code> call <code class="docutils literal notranslate"><span class="pre">split_words</span></code>: functions in a module can use each other.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Type <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">wordtools</span></code>, not <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">wordtools.py</span></code>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Changing your module</p>
+<p>If you edit the <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> cell and run it again, Colab replies <code class="docutils literal notranslate"><span class="pre">Overwriting</span> <span class="pre">wordtools.py</span></code> — but a notebook that has already imported the module <strong>keeps the old version</strong>, even if you run <code class="docutils literal notranslate"><span class="pre">import</span></code> again. Choose <strong>Runtime → Restart session</strong>, then run the <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> cell and the import cell again.</p>
+<p>Files you create in Colab are <strong>temporary</strong>: they disappear when the session ends. Just run the <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> cell again next time.</p>
+</div>
+<p>Why bother with a module, when you could simply define the functions in a cell? Because a file can be <strong>shared</strong>: other notebooks, other programs and other people can import it without copying the code.</p>
+</section>
+<section id="documentation-comments">
+<h2><span class="section-number">7.3. </span>Documentation comments<a class="headerlink" href="#documentation-comments" title="Link to this heading">#</a></h2>
+<p>The strings in triple quotes just below each <code class="docutils literal notranslate"><span class="pre">def</span></code> line — and at the top of the file — are called <strong>docstrings</strong>. They document what a function does, and Python can show them to you:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">wordtools</span><span class="o">.</span><span class="n">count_words</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Help on function count_words in module wordtools:
+
+count_words(sentence)
+    Return how many words a sentence has.
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">help(wordtools)</span></code> shows the documentation for the whole module. Get into the habit of writing a one-line docstring for every function you write — your future self will thank you.</p>
+</section>
+<section id="arguments-from-the-command-line">
+<h2><span class="section-number">7.4. </span>Arguments from the command line<a class="headerlink" href="#arguments-from-the-command-line" title="Link to this heading">#</a></h2>
+<p>Programmers often run Python programs from a <strong>terminal</strong> (the command line) by typing the file name, sometimes followed by extra words. The <code class="docutils literal notranslate"><span class="pre">sys</span></code> module gives the program those words in a list called <code class="docutils literal notranslate"><span class="pre">argv</span></code> (the <em>argument variable</em>).</p>
+<p>Save this program to a file with <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">hello_args</span><span class="o">.</span><span class="n">py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sys</span><span class="w"> </span><span class="kn">import</span> <span class="n">argv</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">county</span> <span class="o">=</span> <span class="n">argv</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"This program is called:"</span><span class="p">,</span> <span class="n">script</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Hello,"</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Greetings to everyone in"</span><span class="p">,</span> <span class="n">county</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, in a new cell, run it with <strong>two extra words</strong> after the file name, using <code class="docutils literal notranslate"><span class="pre">%run</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">hello_args</span><span class="o">.</span><span class="n">py</span> <span class="n">Otieno</span> <span class="n">Kisumu</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>This program is called: hello_args.py
+Hello, Otieno
+Greetings to everyone in Kisumu
+</pre></div>
+</div>
+<p>The line <code class="docutils literal notranslate"><span class="pre">script,</span> <span class="pre">name,</span> <span class="pre">county</span> <span class="pre">=</span> <span class="pre">argv</span></code> <strong>unpacks</strong> the values into three variables, just like <code class="docutils literal notranslate"><span class="pre">trays,</span> <span class="pre">loose</span> <span class="pre">=</span> <span class="pre">pack_eggs(...)</span></code> in Topic 6. The first value is always the program’s own name. If you don’t give exactly two words, Python complains: <code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">not</span> <span class="pre">enough</span> <span class="pre">values</span> <span class="pre">to</span> <span class="pre">unpack</span> <span class="pre">(expected</span> <span class="pre">3,</span> <span class="pre">got</span> <span class="pre">2)</span></code>.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">input()</span></code> when you want to ask the user something <em>while</em> the program runs; use <code class="docutils literal notranslate"><span class="pre">argv</span></code> when the user should give the information <em>when starting</em> the program. Like <code class="docutils literal notranslate"><span class="pre">input</span></code>, everything in <code class="docutils literal notranslate"><span class="pre">argv</span></code> is a string.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> and <code class="docutils literal notranslate"><span class="pre">%run</span></code> are <strong>notebook commands</strong> (called <em>magics</em>), not Python. On your own computer, you would save the file in an editor and run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">hello_args.py</span> <span class="pre">Otieno</span> <span class="pre">Kisumu</span></code> in a terminal. See <a class="reference internal" href="appendix/google_colab.html"><span class="std std-doc">Using Google Colab</span></a> for more.</p>
+</div>
+</section>
+<section id="exercises">
+<h2><span class="section-number">7.5. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-roll-the-dice">
+<h3><span class="section-number">7.5.1. </span>Exercise: roll the dice<a class="headerlink" href="#exercise-roll-the-dice" title="Link to this heading">#</a></h3>
+<p>In a new cell, import <code class="docutils literal notranslate"><span class="pre">randint</span></code> and simulate rolling <strong>two</strong> dice. Print each die and their total. Run the cell several times.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
+
+<span class="n">die1</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">die2</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You rolled </span><span class="si">{</span><span class="n">die1</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">die2</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total: </span><span class="si">{</span><span class="n">die1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">die2</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-circle-calculator">
+<h3><span class="section-number">7.5.2. </span>Exercise: circle calculator<a class="headerlink" href="#exercise-circle-calculator" title="Link to this heading">#</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">math.pi</span></code>, write a function <code class="docutils literal notranslate"><span class="pre">circle_area(radius)</span></code> that returns the area of a circle (π × r²), and a function <code class="docutils literal notranslate"><span class="pre">circumference(radius)</span></code> that returns 2 × π × r. Ask the user for a radius and print both, rounded to two decimal places.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">circle_area</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the area of a circle."""</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">circumference</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the circumference of a circle."""</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Radius: "</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Area: </span><span class="si">{</span><span class="n">circle_area</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Circumference: </span><span class="si">{</span><span class="n">circumference</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For a radius of 3, the area is <code class="docutils literal notranslate"><span class="pre">28.27</span></code> and the circumference <code class="docutils literal notranslate"><span class="pre">18.85</span></code>.</p>
+</div>
+</section>
+<section id="exercise-your-own-module">
+<h3><span class="section-number">7.5.3. </span>Exercise: your own module<a class="headerlink" href="#exercise-your-own-module" title="Link to this heading">#</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> to create a module <code class="docutils literal notranslate"><span class="pre">money.py</span></code> containing two functions with docstrings: <code class="docutils literal notranslate"><span class="pre">add_tax(price)</span></code>, which returns the price plus 16% VAT, and <code class="docutils literal notranslate"><span class="pre">discount(price,</span> <span class="pre">percent)</span></code>, which returns the price reduced by the given percentage. In a <strong>separate</strong> cell, import your module and use both functions to print the final price of a 2500-shilling item with a 10% discount and VAT added.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>First cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">money</span><span class="o">.</span><span class="n">py</span>
+<span class="sd">"""Helper functions for prices."""</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_tax</span><span class="p">(</span><span class="n">price</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the price with 16% VAT added."""</span>
+    <span class="k">return</span> <span class="n">price</span> <span class="o">*</span> <span class="mf">1.16</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">discount</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">percent</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the price reduced by the given percentage."""</span>
+    <span class="k">return</span> <span class="n">price</span> <span class="o">*</span> <span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">percent</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Second cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">money</span>
+
+<span class="n">price</span> <span class="o">=</span> <span class="mi">2500</span>
+<span class="n">reduced</span> <span class="o">=</span> <span class="n">money</span><span class="o">.</span><span class="n">discount</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">money</span><span class="o">.</span><span class="n">add_tax</span><span class="p">(</span><span class="n">reduced</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Final price: </span><span class="si">{</span><span class="n">final</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> shillings"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This prints <code class="docutils literal notranslate"><span class="pre">Final</span> <span class="pre">price:</span> <span class="pre">2610.00</span> <span class="pre">shillings</span></code>: 10% off gives 2250, and 16% VAT on 2250 gives 2610.</p>
+</div>
+</section>
+<section id="exercise-what-does-pop-do">
+<h3><span class="section-number">7.5.4. </span>Exercise: what does pop do?<a class="headerlink" href="#exercise-what-does-pop-do" title="Link to this heading">#</a></h3>
+<p>Lists have a method <code class="docutils literal notranslate"><span class="pre">pop</span></code> that <strong>removes</strong> an item and gives it back: <code class="docutils literal notranslate"><span class="pre">pop(0)</span></code> removes the first item and <code class="docutils literal notranslate"><span class="pre">pop(-1)</span></code> the last. Predict what is printed, then check in a cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="s2">"one two three four"</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">last</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>one four
+['two', 'three']
+2
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">split</span></code> makes the list <code class="docutils literal notranslate"><span class="pre">['one',</span> <span class="pre">'two',</span> <span class="pre">'three',</span> <span class="pre">'four']</span></code>. <code class="docutils literal notranslate"><span class="pre">pop(0)</span></code> removes and returns <code class="docutils literal notranslate"><span class="pre">'one'</span></code>, and <code class="docutils literal notranslate"><span class="pre">pop(-1)</span></code> removes and returns <code class="docutils literal notranslate"><span class="pre">'four'</span></code>, leaving two words in the list. Unlike <code class="docutils literal notranslate"><span class="pre">words[0]</span></code>, which only <em>looks</em> at an item, <code class="docutils literal notranslate"><span class="pre">pop</span></code> changes the list.</p>
+</div>
+</section>
+<section id="exercise-add-to-your-module">
+<h3><span class="section-number">7.5.5. </span>Exercise: add to your module<a class="headerlink" href="#exercise-add-to-your-module" title="Link to this heading">#</a></h3>
+<p>Add a function <code class="docutils literal notranslate"><span class="pre">initials(full_name)</span></code> to <code class="docutils literal notranslate"><span class="pre">wordtools.py</span></code> that returns the first letter of each word in capitals, for example <code class="docutils literal notranslate"><span class="pre">initials(&quot;grace</span> <span class="pre">wambui</span> <span class="pre">njeri&quot;)</span></code> returns <code class="docutils literal notranslate"><span class="pre">&quot;GWN&quot;</span></code>. Remember to restart the session before importing the new version. (Hint: <code class="docutils literal notranslate"><span class="pre">word[0]</span></code> is the first letter of a word, and you can join letters with <code class="docutils literal notranslate"><span class="pre">+</span></code>. You’ll need a loop from Topic 10 for any number of words — for now, assume exactly three.)</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>Add this to the end of the <code class="docutils literal notranslate"><span class="pre">%%writefile</span> <span class="pre">wordtools.py</span></code> cell and run it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">initials</span><span class="p">(</span><span class="n">full_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the capitalised initials of a three-word name."""</span>
+    <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">split_words</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">first</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">middle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">last</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then <strong>Runtime → Restart session</strong>, and in a new cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">wordtools</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wordtools</span><span class="o">.</span><span class="n">initials</span><span class="p">(</span><span class="s2">"grace wambui njeri"</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GWN
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_functions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Functions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_boolean_logic.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>True or False: Boolean Logic</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-a-module">7.1. Importing a module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-your-own-module">7.2. Making your own module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-comments">7.3. Documentation comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments-from-the-command-line">7.4. Arguments from the command line</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">7.5. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-roll-the-dice">7.5.1. Exercise: roll the dice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-circle-calculator">7.5.2. Exercise: circle calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-your-own-module">7.5.3. Exercise: your own module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-what-does-pop-do">7.5.4. Exercise: what does pop do?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-add-to-your-module">7.5.5. Exercise: add to your module</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

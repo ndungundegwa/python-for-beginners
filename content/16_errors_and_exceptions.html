@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>16. When Things Go Wrong: Errors and Exceptions &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/16_errors_and_exceptions';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="17. Classes and Objects" href="17_classes_and_objects.html" />
+    <link rel="prev" title="15. Reading and Writing Files" href="15_files.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/16_errors_and_exceptions.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>When Things Go Wrong: Errors and Exceptions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-kinds-of-errors">16.1. Two kinds of errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-traceback">16.2. Reading a traceback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-errors-you-ll-meet-most-often">16.3. The errors you’ll meet most often</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catching-exceptions-with-try-and-except">16.4. Catching exceptions with try and except</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-different-errors-differently">16.5. Handling different errors differently</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#else-and-finally">16.6. else and finally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raising-your-own-exceptions">16.7. Raising your own exceptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-finding-bugs-yourself">16.8. Debugging: finding bugs yourself</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">16.9. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-name-that-error">16.9.1. Exercise: name that error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-safe-division-calculator">16.9.2. Exercise: a safe division calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-ask-until-it-s-in-range">16.9.3. Exercise: ask until it’s in range</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-fix-someone-else-s-code">16.9.4. Exercise: fix someone else’s code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-raise-an-error-for-a-bad-value">16.9.5. Exercise: raise an error for a bad value</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="when-things-go-wrong-errors-and-exceptions">
+<h1><span class="section-number">16. </span>When Things Go Wrong: Errors and Exceptions<a class="headerlink" href="#when-things-go-wrong-errors-and-exceptions" title="Link to this heading">#</a></h1>
+<p>By now you’ve seen plenty of error messages. That’s normal: every programmer, at every level, sees errors all day long. In this topic you’ll learn to read any error message calmly, recognise the most common ones, make your programs <strong>survive</strong> bad input instead of crashing, and track down bugs in someone else’s code.</p>
+<section id="two-kinds-of-errors">
+<h2><span class="section-number">16.1. </span>Two kinds of errors<a class="headerlink" href="#two-kinds-of-errors" title="Link to this heading">#</a></h2>
+<p><strong>Syntax errors</strong> happen when your code breaks Python’s grammar rules: a missing bracket, a missing colon, a string that never ends. Python finds them <strong>before running anything</strong>, and nothing runs until you fix them.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, world"</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SyntaxError: '(' was never closed
+</pre></div>
+</div>
+<p><strong>Exceptions</strong> happen <strong>while the program is running</strong>, when an instruction that is grammatically correct can’t be carried out: dividing by zero, opening a file that doesn’t exist, converting <code class="docutils literal notranslate"><span class="pre">&quot;twelve&quot;</span></code> into a number.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ZeroDivisionError: division by zero
+</pre></div>
+</div>
+</section>
+<section id="reading-a-traceback">
+<h2><span class="section-number">16.2. </span>Reading a traceback<a class="headerlink" href="#reading-a-traceback" title="Link to this heading">#</a></h2>
+<p>When an exception isn’t handled, Python stops and prints a <strong>traceback</strong>. Here’s one from a program that calculates an average:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File "marks.py", line 5, in &lt;module&gt;
+    print(average([]))
+  File "marks.py", line 2, in average
+    return sum(numbers) / len(numbers)
+           ~~~~~~~~~~~~^~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+</pre></div>
+</div>
+<p>Read it <strong>from the bottom up</strong>:</p>
+<ol class="arabic simple">
+<li><p>The <strong>last line</strong> names the problem: a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>, “division by zero”.</p></li>
+<li><p>The lines just above show <strong>where</strong> it happened: <code class="docutils literal notranslate"><span class="pre">marks.py</span></code>, line 2, inside the function <code class="docutils literal notranslate"><span class="pre">average</span></code>, on the line <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">sum(numbers)</span> <span class="pre">/</span> <span class="pre">len(numbers)</span></code>.</p></li>
+<li><p>Further up, you see <strong>how the program got there</strong>: line 5 called <code class="docutils literal notranslate"><span class="pre">average([])</span></code> with an empty list — whose length is 0.</p></li>
+</ol>
+<p>So the bug isn’t really in line 2; it’s that the program asked for the average of an empty list.</p>
+</section>
+<section id="the-errors-you-ll-meet-most-often">
+<h2><span class="section-number">16.3. </span>The errors you’ll meet most often<a class="headerlink" href="#the-errors-you-ll-meet-most-often" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error</p></th>
+<th class="head"><p>What it usually means</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code></p></td>
+<td><p>the code breaks Python’s grammar</p></td>
+<td><p>missing <code class="docutils literal notranslate"><span class="pre">:</span></code>, <code class="docutils literal notranslate"><span class="pre">)</span></code> or quote</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IndentationError</span></code></p></td>
+<td><p>the indentation is wrong</p></td>
+<td><p>a function body not indented</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NameError</span></code></p></td>
+<td><p>a name is used before it exists, or is misspelt</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pritn(&quot;hi&quot;)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TypeError</span></code></p></td>
+<td><p>an operation is used on the wrong type of value</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Age:</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">19</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ValueError</span></code></p></td>
+<td><p>the type is right but the value can’t be used</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int(&quot;twelve&quot;)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IndexError</span></code></p></td>
+<td><p>a list or string index is too big</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3][3]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KeyError</span></code></p></td>
+<td><p>a dictionary key doesn’t exist</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;a&quot;:</span> <span class="pre">1}[&quot;b&quot;]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code></p></td>
+<td><p>dividing by zero</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">/</span> <span class="pre">0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code></p></td>
+<td><p>a file can’t be found</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open(&quot;nothere.txt&quot;)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AttributeError</span></code></p></td>
+<td><p>a value doesn’t have that method or attribute</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;.uppper()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The appendix <em>Common Errors</em> explains each of these in more detail, with fixes.</p>
+</section>
+<section id="catching-exceptions-with-try-and-except">
+<h2><span class="section-number">16.4. </span>Catching exceptions with try and except<a class="headerlink" href="#catching-exceptions-with-try-and-except" title="Link to this heading">#</a></h2>
+<p>Some errors aren’t your fault as a programmer: a user types letters where a number is expected, or a file is missing. Instead of letting the program crash, you can <strong>catch</strong> the exception and deal with it.</p>
+<p>Put the code that might fail inside a <code class="docutils literal notranslate"><span class="pre">try</span></code> block, and what to do if it fails inside an <code class="docutils literal notranslate"><span class="pre">except</span></code> block:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"How old are you? "</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Next year you will be </span><span class="si">{</span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"That wasn't a whole number!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>How old are you? nineteen
+That wasn't a whole number!
+</pre></div>
+</div>
+<p>If the code in <code class="docutils literal notranslate"><span class="pre">try</span></code> works, the <code class="docutils literal notranslate"><span class="pre">except</span></code> block is skipped. If a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> happens, Python jumps straight to the <code class="docutils literal notranslate"><span class="pre">except</span></code> block instead of crashing.</p>
+<p>The most useful pattern combines this with a loop, to <strong>keep asking until the answer is valid</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ask_int</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="n">prompt</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Please type a whole number."</span><span class="p">)</span>
+
+<span class="n">age</span> <span class="o">=</span> <span class="n">ask_int</span><span class="p">(</span><span class="s2">"How old are you? "</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Next year you will be </span><span class="si">{</span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>How old are you? nineteen
+Please type a whole number.
+How old are you? 19
+Next year you will be 20.
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">return</span></code> leaves the function — and therefore the loop — as soon as the conversion succeeds.</p>
+</section>
+<section id="handling-different-errors-differently">
+<h2><span class="section-number">16.5. </span>Handling different errors differently<a class="headerlink" href="#handling-different-errors-differently" title="Link to this heading">#</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">try</span></code> can have several <code class="docutils literal notranslate"><span class="pre">except</span></code> blocks, one for each kind of error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Enter a number: "</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">number</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"100 divided by </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Please enter a valid whole number."</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You can't divide by zero!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Always name the exception you expect, like <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">ValueError:</span></code>. A bare <code class="docutils literal notranslate"><span class="pre">except:</span></code> catches <strong>every</strong> error, including typos in your own code, and hides real bugs behind a friendly message.</p>
+</div>
+</section>
+<section id="else-and-finally">
+<h2><span class="section-number">16.6. </span>else and finally<a class="headerlink" href="#else-and-finally" title="Link to this heading">#</a></h2>
+<p>Two optional blocks complete the picture:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">else</span></code> runs only if <strong>no</strong> exception happened in the <code class="docutils literal notranslate"><span class="pre">try</span></code> block.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">finally</span></code> runs <strong>no matter what</strong> — useful for tidying up.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"marks.txt"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"The file marks.txt is missing."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Done trying to read marks.txt."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="raising-your-own-exceptions">
+<h2><span class="section-number">16.7. </span>Raising your own exceptions<a class="headerlink" href="#raising-your-own-exceptions" title="Link to this heading">#</a></h2>
+<p>Your own functions can signal a problem with <code class="docutils literal notranslate"><span class="pre">raise</span></code>. This is better than printing a message and carrying on with a wrong value:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">withdraw</span><span class="p">(</span><span class="n">balance</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="n">balance</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Not enough money in the account"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">balance</span> <span class="o">-</span> <span class="n">amount</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">new_balance</span> <span class="o">=</span> <span class="n">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sorry: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sorry: Not enough money in the account
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">ValueError</span> <span class="pre">as</span> <span class="pre">error:</span></code> gives you the exception itself, so you can print its message.</p>
+</section>
+<section id="debugging-finding-bugs-yourself">
+<h2><span class="section-number">16.8. </span>Debugging: finding bugs yourself<a class="headerlink" href="#debugging-finding-bugs-yourself" title="Link to this heading">#</a></h2>
+<p>Error messages tell you where a program crashed. Many bugs don’t crash at all — the program just gives a wrong answer. Here’s how to hunt them down:</p>
+<ol class="arabic simple">
+<li><p><strong>Read the error message</strong>, all of it, starting from the last line.</p></li>
+<li><p><strong>Print the values</strong> of your variables at key points. Most bugs become obvious once you see the actual values.</p></li>
+<li><p><strong>Check your assumptions.</strong> Is that variable really a number, or a string? <code class="docutils literal notranslate"><span class="pre">print(type(x))</span></code> will tell you.</p></li>
+<li><p><strong>Work in small steps.</strong> Code a little, run a little, fix a little.</p></li>
+<li><p><strong>Explain the code out loud</strong>, line by line, to a classmate — or to a rubber duck. You’ll often spot the bug in the middle of a sentence.</p></li>
+</ol>
+</section>
+<section id="exercises">
+<h2><span class="section-number">16.9. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-name-that-error">
+<h3><span class="section-number">16.9.1. </span>Exercise: name that error<a class="headerlink" href="#exercise-name-that-error" title="Link to this heading">#</a></h3>
+<p>Without running them, say which error each line causes. Then check your answers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">undefined_variable</span><span class="p">)</span>
+<span class="s2">"5"</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="nb">int</span><span class="p">(</span><span class="s2">"3.5"</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Amina"</span><span class="p">}[</span><span class="s2">"age"</span><span class="p">]</span>
+<span class="s2">"hello"</span><span class="o">.</span><span class="n">uppercase</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NameError</span></code> — the variable was never created.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TypeError</span></code> — you can’t add a string and a number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ValueError</span></code> — <code class="docutils literal notranslate"><span class="pre">&quot;3.5&quot;</span></code> isn’t a valid whole number (use <code class="docutils literal notranslate"><span class="pre">float</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IndexError</span></code> — a list of 3 items has indices 0, 1 and 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KeyError</span></code> — the dictionary has no key <code class="docutils literal notranslate"><span class="pre">&quot;age&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> — strings have an <code class="docutils literal notranslate"><span class="pre">upper</span></code> method, not <code class="docutils literal notranslate"><span class="pre">uppercase</span></code>.</p></li>
+</ol>
+</div>
+</section>
+<section id="exercise-a-safe-division-calculator">
+<h3><span class="section-number">16.9.2. </span>Exercise: a safe division calculator<a class="headerlink" href="#exercise-a-safe-division-calculator" title="Link to this heading">#</a></h3>
+<p>Write a program that asks for two numbers (decimals allowed) and prints their division. It must not crash: print a friendly message if either input isn’t a number, or if the second number is zero.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"First number: "</span><span class="p">))</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Second number: "</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Please type numbers only."</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You can't divide by zero."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-ask-until-it-s-in-range">
+<h3><span class="section-number">16.9.3. </span>Exercise: ask until it’s in range<a class="headerlink" href="#exercise-ask-until-it-s-in-range" title="Link to this heading">#</a></h3>
+<p>Improve <code class="docutils literal notranslate"><span class="pre">ask_int</span></code> into <code class="docutils literal notranslate"><span class="pre">ask_int_between(prompt,</span> <span class="pre">low,</span> <span class="pre">high)</span></code>, which keeps asking until the user types a whole number between <code class="docutils literal notranslate"><span class="pre">low</span></code> and <code class="docutils literal notranslate"><span class="pre">high</span></code> (inclusive). Use it to ask for a mark between 0 and 100.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ask_int_between</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="n">prompt</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Please type a whole number."</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Please type a number between </span><span class="si">{</span><span class="n">low</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">high</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">mark</span> <span class="o">=</span> <span class="n">ask_int_between</span><span class="p">(</span><span class="s2">"Mark (0-100): "</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You entered </span><span class="si">{</span><span class="n">mark</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">continue</span></code> jumps straight back to the top of the loop, skipping the range check when the input wasn’t a number.</p>
+</div>
+</section>
+<section id="exercise-fix-someone-else-s-code">
+<h3><span class="section-number">16.9.4. </span>Exercise: fix someone else’s code<a class="headerlink" href="#exercise-fix-someone-else-s-code" title="Link to this heading">#</a></h3>
+<p>A classmate wrote this program to print a student’s average and grade, and says it’s “perfect”. Find and fix <strong>every</strong> mistake — some are syntax errors, some crash while running, and one gives a wrong answer without any error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="n">marks</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">mark</span> <span class="ow">in</span> <span class="n">marks</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">mark</span>
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">mark</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">grade</span><span class="p">(</span><span class="n">avg</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">avg</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Pass"</span>
+    <span class="k">elif</span> <span class="n">avg</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Distinction"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Fail"</span>
+
+<span class="n">marks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="s2">"78"</span><span class="p">]</span>
+<span class="n">avg</span> <span class="o">=</span> <span class="n">average</span><span class="p">(</span><span class="n">marks</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Average: "</span> <span class="o">+</span> <span class="n">avg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Grade:"</span><span class="p">,</span> <span class="n">grade</span><span class="p">(</span><span class="n">avg</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<ol class="arabic simple">
+<li><p><strong>Syntax:</strong> <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">average(marks)</span></code> is missing its colon.</p></li>
+<li><p><strong>Crash:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;78&quot;</span></code> is a string inside the list, so <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">+</span> <span class="pre">mark</span></code> raises <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>. It should be the number <code class="docutils literal notranslate"><span class="pre">78</span></code>.</p></li>
+<li><p><strong>Crash:</strong> <code class="docutils literal notranslate"><span class="pre">len(mark)</span></code> should be <code class="docutils literal notranslate"><span class="pre">len(marks)</span></code> — <code class="docutils literal notranslate"><span class="pre">mark</span></code> is a single number and has no length (<code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">object</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">'int'</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">len()</span></code>).</p></li>
+<li><p><strong>Crash:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;Average:</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">avg</span></code> adds a string and a float (<code class="docutils literal notranslate"><span class="pre">TypeError</span></code>). Use an f-string.</p></li>
+<li><p><strong>Wrong answer, no error:</strong> in <code class="docutils literal notranslate"><span class="pre">grade</span></code>, <code class="docutils literal notranslate"><span class="pre">avg</span> <span class="pre">&gt;=</span> <span class="pre">50</span></code> is checked first, so an average of 84.3 gets <code class="docutils literal notranslate"><span class="pre">&quot;Pass&quot;</span></code> instead of <code class="docutils literal notranslate"><span class="pre">&quot;Distinction&quot;</span></code>. Test the higher boundary first.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="n">marks</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">mark</span> <span class="ow">in</span> <span class="n">marks</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">mark</span>
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">marks</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">grade</span><span class="p">(</span><span class="n">avg</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">avg</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Distinction"</span>
+    <span class="k">elif</span> <span class="n">avg</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Pass"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Fail"</span>
+
+<span class="n">marks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">78</span><span class="p">]</span>
+<span class="n">avg</span> <span class="o">=</span> <span class="n">average</span><span class="p">(</span><span class="n">marks</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Average: </span><span class="si">{</span><span class="n">avg</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Grade:"</span><span class="p">,</span> <span class="n">grade</span><span class="p">(</span><span class="n">avg</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This prints <code class="docutils literal notranslate"><span class="pre">Average:</span> <span class="pre">84.3</span></code> and <code class="docutils literal notranslate"><span class="pre">Grade:</span> <span class="pre">Distinction</span></code>.</p>
+</div>
+</section>
+<section id="exercise-raise-an-error-for-a-bad-value">
+<h3><span class="section-number">16.9.5. </span>Exercise: raise an error for a bad value<a class="headerlink" href="#exercise-raise-an-error-for-a-bad-value" title="Link to this heading">#</a></h3>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">ticket_price(age)</span></code> that returns 0 for children under 5, 200 for ages 5 to 17 and 500 for adults. If <code class="docutils literal notranslate"><span class="pre">age</span></code> is negative, it must <code class="docutils literal notranslate"><span class="pre">raise</span></code> a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> with a helpful message. Show how a caller catches the error.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ticket_price</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Age cannot be negative: </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">200</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">500</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ticket_price</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>    <span class="c1"># 200</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ticket_price</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Problem: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function <strong>detects</strong> the problem; the caller <strong>decides</strong> what to do about it.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="15_files.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Reading and Writing Files</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="17_classes_and_objects.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Classes and Objects</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-kinds-of-errors">16.1. Two kinds of errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-traceback">16.2. Reading a traceback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-errors-you-ll-meet-most-often">16.3. The errors you’ll meet most often</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catching-exceptions-with-try-and-except">16.4. Catching exceptions with try and except</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-different-errors-differently">16.5. Handling different errors differently</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#else-and-finally">16.6. else and finally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raising-your-own-exceptions">16.7. Raising your own exceptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-finding-bugs-yourself">16.8. Debugging: finding bugs yourself</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">16.9. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-name-that-error">16.9.1. Exercise: name that error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-safe-division-calculator">16.9.2. Exercise: a safe division calculator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-ask-until-it-s-in-range">16.9.3. Exercise: ask until it’s in range</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-fix-someone-else-s-code">16.9.4. Exercise: fix someone else’s code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-raise-an-error-for-a-bad-value">16.9.5. Exercise: raise an error for a bad value</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

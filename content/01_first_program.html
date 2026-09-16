@@ -1,0 +1,788 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Your First Program &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/01_first_program';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Numbers and Math" href="02_numbers_and_math.html" />
+    <link rel="prev" title="Python for Complete Beginners" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/01_first_program.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Your First Program</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-program">1.1. What is a program?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-notebook">1.2. Setting up your notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-good-first-program">1.3. A good first program</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">1.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-things-go-wrong-reading-error-messages">1.4. When things go wrong: reading error messages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">1.5. Comments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.5.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-habits-from-day-one">1.6. Good habits from day one</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">1.7. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-print-more-print-less">1.7.1. Exercise: print more, print less</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-fix-the-program">1.7.2. Exercise: fix the program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-an-algorithm-for-chai">1.7.3. Exercise: an algorithm for chai</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-your-name-in-a-box">1.7.4. Exercise: your name in a box</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="your-first-program">
+<h1><span class="section-number">1. </span>Your First Program<a class="headerlink" href="#your-first-program" title="Link to this heading">#</a></h1>
+<p>In this topic you will find out what a program is, set up your notebook, write your first Python program, and learn to read the error messages Python gives you when something goes wrong. Everything else in the course builds on these first steps.</p>
+<section id="what-is-a-program">
+<h2><span class="section-number">1.1. </span>What is a program?<a class="headerlink" href="#what-is-a-program" title="Link to this heading">#</a></h2>
+<p>A computer is extremely fast and extremely obedient, but it has no common sense. It does <strong>exactly</strong> what it is told — nothing more, nothing less. A <strong>program</strong> is a list of instructions written in a language the computer can follow.</p>
+<p>Before we write any Python, think about everyday instructions. Here is a recipe for a cup of tea:</p>
+<ol class="arabic simple">
+<li><p>Fill the kettle with water.</p></li>
+<li><p>Boil the water.</p></li>
+<li><p>Put a tea bag in a cup.</p></li>
+<li><p>Pour the boiling water into the cup.</p></li>
+<li><p>Wait three minutes, then remove the tea bag.</p></li>
+</ol>
+<p>A precise list of steps like this is called an <strong>algorithm</strong>. The computer scientist Donald Knuth describes an algorithm as <em>a finite and unambiguous sequence of instructions that solves a class of problems</em>:</p>
+<ul class="simple">
+<li><p><strong>Finite</strong> — it must stop at some point.</p></li>
+<li><p><strong>Unambiguous</strong> — every step is so clear that anyone (or anything) could follow it without guessing.</p></li>
+<li><p><strong>A class of problems</strong> — it works for many cases, not just one (any cup of tea, not only <em>this</em> cup).</p></li>
+</ul>
+<p>Programming is the craft of writing algorithms so precisely that a computer can carry them out. Python is the language we’ll use to write them.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>“Boil the water” is fine for a person, but a robot would ask: <em>how long? until what temperature?</em> Computers are the most literal robots of all. Much of learning to program is learning to leave nothing unclear.</p>
+</div>
+</section>
+<section id="setting-up-your-notebook">
+<h2><span class="section-number">1.2. </span>Setting up your notebook<a class="headerlink" href="#setting-up-your-notebook" title="Link to this heading">#</a></h2>
+<p>In this course you’ll write Python in <strong>Google Colab</strong>, which runs in your web browser. Nothing needs to be installed.</p>
+<ol class="arabic simple">
+<li><p>Open <a class="reference external" href="https://colab.research.google.com">colab.research.google.com</a> and sign in with your Google account.</p></li>
+<li><p>Click <strong>New notebook</strong>.</p></li>
+<li><p>Click the notebook’s name at the top (something like <code class="docutils literal notranslate"><span class="pre">Untitled0.ipynb</span></code>) and rename it <code class="docutils literal notranslate"><span class="pre">Topic</span> <span class="pre">01</span> <span class="pre">-</span> <span class="pre">First</span> <span class="pre">program</span></code>.</p></li>
+<li><p>Click inside the grey box. This box is a <strong>code cell</strong>: it’s where you type Python.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span></code> and press <strong>Shift + Enter</strong> (or click the <strong>▶</strong> button on the left of the cell).</p></li>
+</ol>
+<p>Python answers <code class="docutils literal notranslate"><span class="pre">5</span></code> just below the cell. Congratulations — you just ran your first line of Python!</p>
+<p>A few things to know about notebooks:</p>
+<ul class="simple">
+<li><p><strong>Each cell is a small program.</strong> Running a cell runs all the lines in it, from top to bottom, and shows the output underneath.</p></li>
+<li><p><strong>Add a new cell</strong> with the <strong>+ Code</strong> button. In this course, type each example and each exercise into its own cell.</p></li>
+<li><p><strong>A cell shows the value of its last line.</strong> That’s why <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span></code> displayed <code class="docutils literal notranslate"><span class="pre">5</span></code> without you asking. To display anything else, use <code class="docutils literal notranslate"><span class="pre">print</span></code>, which you’ll meet in a moment.</p></li>
+<li><p><strong>Your work is saved</strong> automatically in your Google Drive.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Working on your own computer instead?</p>
+<p>Install <strong>Thonny</strong> from <a class="reference external" href="https://thonny.org">thonny.org</a> (it includes Python). Type each example into the editor, save it as a file ending in <code class="docutils literal notranslate"><span class="pre">.py</span></code> — for example <code class="docutils literal notranslate"><span class="pre">hello.py</span></code> — and press the green <strong>Run</strong> button. The output appears in the Shell at the bottom. Everything else in this course works the same way.</p>
+</div>
+</section>
+<section id="a-good-first-program">
+<h2><span class="section-number">1.3. </span>A good first program<a class="headerlink" href="#a-good-first-program" title="Link to this heading">#</a></h2>
+<p>In a new code cell, type the following. Type it <strong>exactly</strong> — every quote, every bracket.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, Kenya!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Karibu to Python."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"I am learning to code."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Every expert was once a beginner."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Typing code builds skill.'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"I'd rather type it myself."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'My teacher said "practise every day."'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run the cell.</p>
+<section id="what-you-should-see">
+<h3><span class="section-number">1.3.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hello, Kenya!
+Karibu to Python.
+I am learning to code.
+Every expert was once a beginner.
+Typing code builds skill.
+I'd rather type it myself.
+My teacher said "practise every day."
+</pre></div>
+</div>
+<p>Each line of the program is an <strong>instruction</strong>, and Python runs them one after another, from top to bottom. <code class="docutils literal notranslate"><span class="pre">print(...)</span></code> is a <strong>function</strong> that displays whatever you put between its parentheses. The text inside the quotes is called a <strong>string</strong>.</p>
+<p>Look carefully at the last two lines. A string can start and end with double quotes <code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code> or single quotes <code class="docutils literal notranslate"><span class="pre">'...'</span></code>. If you want a single quote <em>inside</em> the string (as in <code class="docutils literal notranslate"><span class="pre">I'd</span></code>), surround the string with double quotes — and if you want double quotes inside, surround the string with single quotes.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>“Exactly” means exactly. <code class="docutils literal notranslate"><span class="pre">Print</span></code> with a capital P, a missing quote, or a missing bracket will all stop your program. The colours in the cell don’t matter; the characters do.</p>
+</div>
+</section>
+</section>
+<section id="when-things-go-wrong-reading-error-messages">
+<h2><span class="section-number">1.4. </span>When things go wrong: reading error messages<a class="headerlink" href="#when-things-go-wrong-reading-error-messages" title="Link to this heading">#</a></h2>
+<p>Everyone makes mistakes, including professional programmers — constantly. What separates beginners from experienced programmers is not making fewer mistakes, but <strong>reading the error message</strong> instead of panicking.</p>
+<p>Suppose you forget the closing quote on line 3:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Hello, Kenya!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Karibu to Python."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"I am learning to code.)</span>
+</pre></div>
+</div>
+<p>Python refuses to run the cell and prints something like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  File "&lt;ipython-input-1&gt;", line 3
+    print("I am learning to code.)
+          ^
+SyntaxError: unterminated string literal (detected at line 3)
+</pre></div>
+</div>
+<p>Read it piece by piece:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">line</span> <span class="pre">3</span></code> — the problem is on <strong>line 3</strong> of the cell. (The first line looks a little different depending on where you run Python; in a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file it shows the file’s name.)</p></li>
+<li><p>The line itself is shown, with a <code class="docutils literal notranslate"><span class="pre">^</span></code> (caret) pointing at where Python got confused.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> means you broke the grammar rules of Python; the message after the colon says which rule: a string was started but never finished.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In Colab, you can switch on line numbers with <strong>Tools → Settings → Editor → Show line numbers</strong>. They make error messages much easier to follow.</p>
+</div>
+<p>If an error message is confusing, copy its last line (for example <code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">unterminated</span> <span class="pre">string</span> <span class="pre">literal</span></code>) into a search engine. Thousands of people have had the same error before you. The appendix <em>Common Errors</em> also explains the most frequent ones.</p>
+</section>
+<section id="comments">
+<h2><span class="section-number">1.5. </span>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h2>
+<p>Sometimes you want to write notes to yourself — or to other people who read your code — that Python should ignore. These are <strong>comments</strong>. In Python, everything after a <code class="docutils literal notranslate"><span class="pre">#</span></code> character on a line is a comment.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment: Python ignores it.</span>
+<span class="c1"># Comments explain your code to the people who read it.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Comments are for humans."</span><span class="p">)</span>  <span class="c1"># a comment can follow code on the same line</span>
+
+<span class="c1"># Put a # in front of a line to switch it off:</span>
+<span class="c1"># print("This line will not run.")</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"This line will run."</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3><span class="section-number">1.5.1. </span>What you should see<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Comments are for humans.
+This line will run.
+</pre></div>
+</div>
+<p>Comments have two uses: <strong>explaining</strong> code in plain language, and temporarily <strong>switching off</strong> a line without deleting it. Note that a <code class="docutils literal notranslate"><span class="pre">#</span></code> <em>inside</em> a string is just a character, not a comment: <code class="docutils literal notranslate"><span class="pre">print(&quot;Room</span> <span class="pre">#</span> <span class="pre">12&quot;)</span></code> prints <code class="docutils literal notranslate"><span class="pre">Room</span> <span class="pre">#</span> <span class="pre">12</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In Colab, select some lines and press <strong>Ctrl + /</strong> (or <strong>Cmd + /</strong> on a Mac) to comment them all out at once. Press it again to switch them back on.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">#</span></code> character has many names: hash, pound sign, number sign, octothorpe. Use whichever you like.</p>
+</section>
+</section>
+<section id="good-habits-from-day-one">
+<h2><span class="section-number">1.6. </span>Good habits from day one<a class="headerlink" href="#good-habits-from-day-one" title="Link to this heading">#</a></h2>
+<p>These habits will save you hours of frustration:</p>
+<ul class="simple">
+<li><p><strong>Compare line by line.</strong> When your output doesn’t match, go through your code one line at a time against the example, starting from the <strong>last</strong> line. Working backwards stops your brain from “seeing what it expects”.</p></li>
+<li><p><strong>Say the symbols out loud</strong> as you check: “print, open bracket, double quote, Hello, comma, Kenya, exclamation mark, double quote, close bracket”.</p></li>
+<li><p><strong>Run often.</strong> Type a line or two, run the cell, check. Don’t type fifty lines before running anything.</p></li>
+<li><p><strong>Break it on purpose.</strong> Remove a quote, change a letter, delete a bracket — then read the error. You’ll recognise it instantly next time.</p></li>
+<li><p><strong>Start fresh when confused.</strong> If a notebook behaves strangely, choose <strong>Runtime → Restart session and run all</strong> to run every cell again from the top.</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h2><span class="section-number">1.7. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-print-more-print-less">
+<h3><span class="section-number">1.7.1. </span>Exercise: print more, print less<a class="headerlink" href="#exercise-print-more-print-less" title="Link to this heading">#</a></h3>
+<p>Change your first program so that it prints one extra line of your choice at the end. Then change it again so that it prints <strong>only</strong> the line <code class="docutils literal notranslate"><span class="pre">Karibu</span> <span class="pre">to</span> <span class="pre">Python.</span></code> — without deleting any of the other lines.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>Adding a line is simply one more <code class="docutils literal notranslate"><span class="pre">print</span></code>. To print only one line without deleting the others, <strong>comment out</strong> the rest:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># print("Hello, Kenya!")</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Karibu to Python."</span><span class="p">)</span>
+<span class="c1"># print("I am learning to code.")</span>
+<span class="c1"># print("Every expert was once a beginner.")</span>
+<span class="c1"># print('Typing code builds skill.')</span>
+<span class="c1"># print("I'd rather type it myself.")</span>
+<span class="c1"># print('My teacher said "practise every day."')</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-fix-the-program">
+<h3><span class="section-number">1.7.2. </span>Exercise: fix the program<a class="headerlink" href="#exercise-fix-the-program" title="Link to this heading">#</a></h3>
+<p>This program has <strong>three</strong> mistakes. Type it into a cell, then find and fix them, running the cell after each fix. For each mistake, write down the error message Python gave you.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Karibu!"</span><span class="p">)</span>
+<span class="n">Print</span><span class="p">(</span><span class="s2">"Welcome to Python."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Programming is fun."</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Don'</span><span class="n">t</span> <span class="n">give</span> <span class="n">up</span><span class="o">.</span><span class="s1">')</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>Python shows the errors <strong>one at a time</strong>, in this order:</p>
+<ol class="arabic simple">
+<li><p>Line 4: the string starts with a single quote but contains an apostrophe, so Python thinks the string ends after <code class="docutils literal notranslate"><span class="pre">Don</span></code>: <code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">unterminated</span> <span class="pre">string</span> <span class="pre">literal</span> <span class="pre">(detected</span> <span class="pre">at</span> <span class="pre">line</span> <span class="pre">4)</span></code>. Use double quotes around it.</p></li>
+<li><p>Line 3 is missing its closing bracket: <code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">'('</span> <span class="pre">was</span> <span class="pre">never</span> <span class="pre">closed</span></code>.</p></li>
+<li><p>Line 2: <code class="docutils literal notranslate"><span class="pre">Print</span></code> has a capital P. Python is <strong>case-sensitive</strong>, so <code class="docutils literal notranslate"><span class="pre">Print</span></code> is a different name from <code class="docutils literal notranslate"><span class="pre">print</span></code>: <code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'Print'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code> (Python may add <em>Did you mean: ‘print’?</em>).</p></li>
+</ol>
+<p>Python checks the grammar of the <strong>whole cell</strong> before running anything, so the two syntax errors appear first, even though they are further down. The <code class="docutils literal notranslate"><span class="pre">NameError</span></code> only appears once the code actually runs and reaches line 2 — notice that <code class="docutils literal notranslate"><span class="pre">Karibu!</span></code> is printed just before it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Karibu!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Welcome to Python."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Programming is fun."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Don't give up."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-an-algorithm-for-chai">
+<h3><span class="section-number">1.7.3. </span>Exercise: an algorithm for chai<a class="headerlink" href="#exercise-an-algorithm-for-chai" title="Link to this heading">#</a></h3>
+<p>Write a precise algorithm, as a numbered list of steps, for making a cup of chai (tea with milk and sugar). You can write it in a <strong>text cell</strong> in your notebook (the <strong>+ Text</strong> button). Then swap with a classmate: they must follow your steps <strong>literally</strong>. Did they find any step that was unclear?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p>There are many good answers. Here is one that tries hard to be unambiguous:</p>
+<ol class="arabic simple">
+<li><p>Pour 1 cup of water and 1 cup of milk into a small pan.</p></li>
+<li><p>Put the pan on the stove and turn the heat to high.</p></li>
+<li><p>When the liquid starts to bubble, add 2 teaspoons of tea leaves and 2 teaspoons of sugar.</p></li>
+<li><p>Turn the heat to low and wait 3 minutes.</p></li>
+<li><p>Turn off the heat.</p></li>
+<li><p>Pour the liquid through a strainer into a cup.</p></li>
+</ol>
+<p>Notice the quantities (“1 cup”, “2 teaspoons”) and the clear conditions (“when the liquid starts to bubble”). A step like “add some sugar” is ambiguous — how much is <em>some</em>?</p>
+</div>
+</section>
+<section id="exercise-your-name-in-a-box">
+<h3><span class="section-number">1.7.4. </span>Exercise: your name in a box<a class="headerlink" href="#exercise-your-name-in-a-box" title="Link to this heading">#</a></h3>
+<p>In a new cell, use several <code class="docutils literal notranslate"><span class="pre">print</span></code> calls to draw your name inside a box made of <code class="docutils literal notranslate"><span class="pre">*</span></code> characters, like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>***********
+*  Amina  *
+***********
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"***********"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*  Amina  *"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"***********"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The lengths must match by hand for now. In Topic 4 you’ll learn how to make Python repeat characters for you, so the box adjusts to any name.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python for Complete Beginners</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_numbers_and_math.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Numbers and Math</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-program">1.1. What is a program?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-notebook">1.2. Setting up your notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-good-first-program">1.3. A good first program</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">1.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-things-go-wrong-reading-error-messages">1.4. When things go wrong: reading error messages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">1.5. Comments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.5.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-habits-from-day-one">1.6. Good habits from day one</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">1.7. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-print-more-print-less">1.7.1. Exercise: print more, print less</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-fix-the-program">1.7.2. Exercise: fix the program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-an-algorithm-for-chai">1.7.3. Exercise: an algorithm for chai</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-your-name-in-a-box">1.7.4. Exercise: your name in a box</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

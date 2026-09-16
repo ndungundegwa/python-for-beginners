@@ -1,0 +1,965 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>17. Classes and Objects &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/17_classes_and_objects';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="18. Is-a, Has-a: Inheritance and Composition" href="18_inheritance_and_composition.html" />
+    <link rel="prev" title="16. When Things Go Wrong: Errors and Exceptions" href="16_errors_and_exceptions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/17_classes_and_objects.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Classes and Objects</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-things-from-things">17.1. Getting things from things</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-are-like-modules-you-can-copy">17.2. Classes are like modules you can copy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-first-real-class">17.3. A first real class</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">17.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-self">17.4. Why self?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#give-every-object-the-same-attributes">17.5. Give every object the same attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#printing-objects-nicely">17.6. Printing objects nicely</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-words-of-object-oriented-programming">17.7. The words of object-oriented programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17.8. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-more-proverbs">17.8.1. Exercise: more proverbs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-read-it-aloud">17.8.2. Exercise: read it aloud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-bank-account">17.8.3. Exercise: a bank account</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-find-the-four-bugs">17.8.4. Exercise: find the four bugs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-student-with-marks">17.8.5. Exercise: a student with marks</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="classes-and-objects">
+<h1><span class="section-number">17. </span>Classes and Objects<a class="headerlink" href="#classes-and-objects" title="Link to this heading">#</a></h1>
+<p>Python is an <strong>object-oriented</strong> language. You’ve actually been using objects all along: strings, lists, dictionaries and files are all objects, which is why you can write things like <code class="docutils literal notranslate"><span class="pre">stops.append(&quot;Kitale&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">f.read()</span></code>. In this topic you’ll learn to create your own kinds of objects using <strong>classes</strong>.</p>
+<p>Object-oriented programming can feel strange at first. We’ll approach it slowly, starting from things you already know: dictionaries and modules.</p>
+<section id="getting-things-from-things">
+<h2><span class="section-number">17.1. </span>Getting things from things<a class="headerlink" href="#getting-things-from-things" title="Link to this heading">#</a></h2>
+<p>You already know two ways to “get something out of something”.</p>
+<p><strong>From a dictionary</strong>, with square brackets and a key:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">school</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"motto"</span><span class="p">:</span> <span class="s2">"Strive to excel"</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">school</span><span class="p">[</span><span class="s2">"motto"</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>From a module</strong>, with a dot. Create a small module with <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">school</span><span class="o">.</span><span class="n">py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ring_bell</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"RING! Time for class."</span><span class="p">)</span>
+
+<span class="c1"># this is just a variable</span>
+<span class="n">motto</span> <span class="o">=</span> <span class="s2">"Strive to excel"</span>
+</pre></div>
+</div>
+<p>Then, in another cell, use it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">school</span>
+
+<span class="n">school</span><span class="o">.</span><span class="n">ring_bell</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">school</span><span class="o">.</span><span class="n">motto</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>RING! Time for class.
+Strive to excel
+</pre></div>
+</div>
+<p>Both follow the same pattern: take a container of named things, and get one out by its name. A dictionary uses <code class="docutils literal notranslate"><span class="pre">[&quot;name&quot;]</span></code>; a module uses <code class="docutils literal notranslate"><span class="pre">.name</span></code>.</p>
+</section>
+<section id="classes-are-like-modules-you-can-copy">
+<h2><span class="section-number">17.2. </span>Classes are like modules you can copy<a class="headerlink" href="#classes-are-like-modules-you-can-copy" title="Link to this heading">#</a></h2>
+<p>A <strong>class</strong> is another container of functions and data that you access with a dot. Here is a class that works like the <code class="docutils literal notranslate"><span class="pre">school</span></code> module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">School</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motto</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motto</span> <span class="o">=</span> <span class="n">motto</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ring_bell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"RING! Time for class."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Why not just use a module? Because a module exists <strong>once</strong> in your program, while a class is a <strong>blueprint</strong> you can use to create as many independent <strong>objects</strong> as you like — each with its own data.</p>
+<p>Creating an object from a class is called <strong>instantiating</strong> it, and you do it by calling the class as if it were a function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">riverside</span> <span class="o">=</span> <span class="n">School</span><span class="p">(</span><span class="s2">"Strive to excel"</span><span class="p">)</span>
+<span class="n">hilltop</span> <span class="o">=</span> <span class="n">School</span><span class="p">(</span><span class="s2">"Knowledge is light"</span><span class="p">)</span>
+
+<span class="n">riverside</span><span class="o">.</span><span class="n">ring_bell</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">riverside</span><span class="o">.</span><span class="n">motto</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hilltop</span><span class="o">.</span><span class="n">motto</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>RING! Time for class.
+Strive to excel
+Knowledge is light
+</pre></div>
+</div>
+<p>When Python runs <code class="docutils literal notranslate"><span class="pre">riverside</span> <span class="pre">=</span> <span class="pre">School(&quot;Strive</span> <span class="pre">to</span> <span class="pre">excel&quot;)</span></code>:</p>
+<ol class="arabic simple">
+<li><p>It sees that <code class="docutils literal notranslate"><span class="pre">School</span></code> is a class.</p></li>
+<li><p>It creates a new, empty object based on that class.</p></li>
+<li><p>It looks for a special method called <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and calls it to <strong>initialise</strong> the new object, passing along <code class="docutils literal notranslate"><span class="pre">&quot;Strive</span> <span class="pre">to</span> <span class="pre">excel&quot;</span></code> as <code class="docutils literal notranslate"><span class="pre">motto</span></code>.</p></li>
+<li><p>Inside <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, the parameter <code class="docutils literal notranslate"><span class="pre">self</span></code> <strong>is that new object</strong>, so <code class="docutils literal notranslate"><span class="pre">self.motto</span> <span class="pre">=</span> <span class="pre">motto</span></code> stores the motto on it.</p></li>
+<li><p>Finally, the new object is given the name <code class="docutils literal notranslate"><span class="pre">riverside</span></code>.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">hilltop</span></code> went through the same steps, but got its own motto. Two objects, one blueprint.</p>
+<p>So now there are three ways to get things from things:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dictionary style</span>
+<span class="n">school_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"motto"</span><span class="p">:</span> <span class="s2">"Strive to excel"</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">school_dict</span><span class="p">[</span><span class="s2">"motto"</span><span class="p">])</span>
+
+<span class="c1"># module style</span>
+<span class="n">school</span><span class="o">.</span><span class="n">ring_bell</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">school</span><span class="o">.</span><span class="n">motto</span><span class="p">)</span>
+
+<span class="c1"># class style</span>
+<span class="n">riverside</span> <span class="o">=</span> <span class="n">School</span><span class="p">(</span><span class="s2">"Strive to excel"</span><span class="p">)</span>
+<span class="n">riverside</span><span class="o">.</span><span class="n">ring_bell</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">riverside</span><span class="o">.</span><span class="n">motto</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="a-first-real-class">
+<h2><span class="section-number">17.3. </span>A first real class<a class="headerlink" href="#a-first-real-class" title="Link to this heading">#</a></h2>
+<p>Type this into a new code cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Proverb</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swahili</span><span class="p">,</span> <span class="n">english</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">swahili</span> <span class="o">=</span> <span class="n">swahili</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">english</span> <span class="o">=</span> <span class="n">english</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">share</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">swahili</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"   It means:"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">english</span><span class="p">)</span>
+
+
+<span class="n">patience</span> <span class="o">=</span> <span class="n">Proverb</span><span class="p">(</span><span class="s2">"Haraka haraka haina baraka."</span><span class="p">,</span>
+                   <span class="s2">"Hurrying brings no blessing."</span><span class="p">)</span>
+
+<span class="n">teamwork</span> <span class="o">=</span> <span class="n">Proverb</span><span class="p">(</span><span class="s2">"Kidole kimoja hakivunji chawa."</span><span class="p">,</span>
+                   <span class="s2">"One finger cannot crush a louse."</span><span class="p">)</span>
+
+<span class="n">patience</span><span class="o">.</span><span class="n">share</span><span class="p">()</span>
+<span class="n">teamwork</span><span class="o">.</span><span class="n">share</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="what-you-should-see">
+<h3><span class="section-number">17.3.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Haraka haraka haina baraka.
+   It means: Hurrying brings no blessing.
+Kidole kimoja hakivunji chawa.
+   It means: One finger cannot crush a louse.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Proverb(&quot;Haraka</span> <span class="pre">haraka</span> <span class="pre">haina</span> <span class="pre">baraka.&quot;,</span> <span class="pre">&quot;Hurrying</span> <span class="pre">brings</span> <span class="pre">no</span> <span class="pre">blessing.&quot;)</span></code> creates a new proverb object and passes the two strings to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, where they’re stored as <code class="docutils literal notranslate"><span class="pre">self.swahili</span></code> and <code class="docutils literal notranslate"><span class="pre">self.english</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">patience</span></code> and <code class="docutils literal notranslate"><span class="pre">teamwork</span></code> are two <strong>separate</strong> objects made from the same class, each with its own text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">patience.share()</span></code> calls the method on <code class="docutils literal notranslate"><span class="pre">patience</span></code>. Python automatically passes <code class="docutils literal notranslate"><span class="pre">patience</span></code> as <code class="docutils literal notranslate"><span class="pre">self</span></code>, so the method prints <em>that</em> proverb.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Classes in notebooks</p>
+<p>Put each class in its own cell and create objects in the cells below it. If you <strong>change</strong> the class, run its cell again <strong>and</strong> run the cells that create the objects again: objects made before the change still follow the old blueprint.</p>
+</div>
+</section>
+</section>
+<section id="why-self">
+<h2><span class="section-number">17.4. </span>Why self?<a class="headerlink" href="#why-self" title="Link to this heading">#</a></h2>
+<p>Every method in a class has <code class="docutils literal notranslate"><span class="pre">self</span></code> as its first parameter. It stands for “the object this method is working on”. Without it, a line like <code class="docutils literal notranslate"><span class="pre">english</span> <span class="pre">=</span> <span class="pre">english</span></code> inside <code class="docutils literal notranslate"><span class="pre">__init__</span></code> would just create a temporary local variable that disappears when <code class="docutils literal notranslate"><span class="pre">__init__</span></code> ends. <code class="docutils literal notranslate"><span class="pre">self.english</span> <span class="pre">=</span> <span class="pre">english</span></code> makes it clear that you mean the <strong>object’s</strong> <code class="docutils literal notranslate"><span class="pre">english</span></code>, which it keeps.</p>
+<p>When you call <code class="docutils literal notranslate"><span class="pre">patience.share()</span></code>, Python quietly turns it into <code class="docutils literal notranslate"><span class="pre">Proverb.share(patience)</span></code>. That’s where <code class="docutils literal notranslate"><span class="pre">self</span></code> comes from.</p>
+</section>
+<section id="give-every-object-the-same-attributes">
+<h2><span class="section-number">17.5. </span>Give every object the same attributes<a class="headerlink" href="#give-every-object-the-same-attributes" title="Link to this heading">#</a></h2>
+<p>The data stored on an object (like <code class="docutils literal notranslate"><span class="pre">self.swahili</span></code>) are called its <strong>attributes</strong>. The functions inside the class (like <code class="docutils literal notranslate"><span class="pre">share</span></code>) are called its <strong>methods</strong>.</p>
+<p>Always create an object’s attributes in <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. This example shows what goes wrong otherwise: if you add attributes to objects one by one, a small spelling difference breaks everything.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="n">someone</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+<span class="n">someone</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="s2">"Juma"</span>
+
+<span class="n">someone_else</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+<span class="n">someone_else</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Achieng"</span>      <span class="c1"># oops: 'name' instead of 'first_name'</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">someone_else</span><span class="o">.</span><span class="n">first_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AttributeError: 'Person' object has no attribute 'first_name'
+</pre></div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, every person is guaranteed to have the same attributes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">greeting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hello, my name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">someone</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">"Juma"</span><span class="p">,</span> <span class="s2">"Mwangi"</span><span class="p">)</span>
+<span class="n">someone_else</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">"Achieng"</span><span class="p">,</span> <span class="s2">"Odhiambo"</span><span class="p">)</span>
+<span class="n">someone</span><span class="o">.</span><span class="n">greeting</span><span class="p">()</span>
+<span class="n">someone_else</span><span class="o">.</span><span class="n">greeting</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hello, my name is Juma Mwangi.
+Hello, my name is Achieng Odhiambo.
+</pre></div>
+</div>
+</section>
+<section id="printing-objects-nicely">
+<h2><span class="section-number">17.6. </span>Printing objects nicely<a class="headerlink" href="#printing-objects-nicely" title="Link to this heading">#</a></h2>
+<p>If you <code class="docutils literal notranslate"><span class="pre">print</span></code> an object, you get something unhelpful like <code class="docutils literal notranslate"><span class="pre">&lt;__main__.Person</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f3a2c1d&gt;</span></code>. Add a special method called <code class="docutils literal notranslate"><span class="pre">__str__</span></code> that returns a string, and <code class="docutils literal notranslate"><span class="pre">print</span></code> will use it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Person</span><span class="p">(</span><span class="s2">"Wangari"</span><span class="p">,</span> <span class="s2">"Maathai"</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Wangari Maathai
+</pre></div>
+</div>
+</section>
+<section id="the-words-of-object-oriented-programming">
+<h2><span class="section-number">17.7. </span>The words of object-oriented programming<a class="headerlink" href="#the-words-of-object-oriented-programming" title="Link to this heading">#</a></h2>
+<p>These words appear everywhere classes are discussed. You don’t need to memorise them today, but come back to this table whenever you meet one:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Word</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>class</strong></p></td>
+<td><p>a blueprint for a new type of thing</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Proverb:</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>object</strong> / <strong>instance</strong></p></td>
+<td><p>one thing made from a class</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">patience</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>instantiate</strong></p></td>
+<td><p>make an object from a class</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Proverb(&quot;...&quot;,</span> <span class="pre">&quot;...&quot;)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>attribute</strong></p></td>
+<td><p>a value stored on an object</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">patience.english</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>method</strong></p></td>
+<td><p>a function defined inside a class</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">patience.share()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>self</strong></p></td>
+<td><p>inside a method, the object being worked on</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">self.swahili</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">__init__</span></code></strong></p></td>
+<td><p>the method that sets up each new object</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">__init__(self,</span> <span class="pre">swahili,</span> <span class="pre">english):</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>inheritance</strong></p></td>
+<td><p>a class that starts from another class and adds to it (Topic 18)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Student(Person):</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>composition</strong></p></td>
+<td><p>an object that has other objects as parts (Topic 18)</p></td>
+<td><p>a phone <em>has a</em> camera</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A useful habit is to <strong>read class code aloud</strong> in plain English:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">School:</span></code> — “define a new kind of thing called School”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hilltop</span> <span class="pre">=</span> <span class="pre">School(&quot;Knowledge</span> <span class="pre">is</span> <span class="pre">light&quot;)</span></code> — “make a new School with this motto, and call it hilltop”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hilltop.ring_bell()</span></code> — “ask hilltop to ring its bell”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hilltop.motto</span> <span class="pre">=</span> <span class="pre">&quot;Aim</span> <span class="pre">high&quot;</span></code> — “change hilltop’s motto to ‘Aim high’”.</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h2><span class="section-number">17.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-more-proverbs">
+<h3><span class="section-number">17.8.1. </span>Exercise: more proverbs<a class="headerlink" href="#exercise-more-proverbs" title="Link to this heading">#</a></h3>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">Proverb</span></code> class, create a proverb of your own. <strong>Store the two texts in separate variables first</strong>, then create the object and make it share. Then add a method <code class="docutils literal notranslate"><span class="pre">word_count(self)</span></code> that returns how many words the Swahili version has.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Proverb</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swahili</span><span class="p">,</span> <span class="n">english</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">swahili</span> <span class="o">=</span> <span class="n">swahili</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">english</span> <span class="o">=</span> <span class="n">english</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">share</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">swahili</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"   It means:"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">english</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">word_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">swahili</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+
+<span class="n">saying</span> <span class="o">=</span> <span class="s2">"Haba na haba hujaza kibaba."</span>
+<span class="n">meaning</span> <span class="o">=</span> <span class="s2">"Little by little fills the pot."</span>
+
+<span class="n">little</span> <span class="o">=</span> <span class="n">Proverb</span><span class="p">(</span><span class="n">saying</span><span class="p">,</span> <span class="n">meaning</span><span class="p">)</span>
+<span class="n">little</span><span class="o">.</span><span class="n">share</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">little</span><span class="o">.</span><span class="n">word_count</span><span class="p">())</span>   <span class="c1"># 5</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-read-it-aloud">
+<h3><span class="section-number">17.8.2. </span>Exercise: read it aloud<a class="headerlink" href="#exercise-read-it-aloud" title="Link to this heading">#</a></h3>
+<p>Say each line in plain English, in the style of “read class code aloud” above.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Matatu</span><span class="p">:</span>
+<span class="n">bus</span> <span class="o">=</span> <span class="n">Matatu</span><span class="p">(</span><span class="s2">"KDA 123A"</span><span class="p">)</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">pick_up</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">route</span> <span class="o">=</span> <span class="s2">"Thika Road"</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<ol class="arabic simple">
+<li><p>“Define a new kind of thing called Matatu.”</p></li>
+<li><p>“Make a new Matatu with the number plate KDA 123A, and call it bus.”</p></li>
+<li><p>“Ask bus to pick up 14 (passengers).”</p></li>
+<li><p>“Change bus’s route to ‘Thika Road’.”</p></li>
+</ol>
+</div>
+</section>
+<section id="exercise-a-bank-account">
+<h3><span class="section-number">17.8.3. </span>Exercise: a bank account<a class="headerlink" href="#exercise-a-bank-account" title="Link to this heading">#</a></h3>
+<p>Write a class <code class="docutils literal notranslate"><span class="pre">BankAccount</span></code> with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">owner)</span></code>, which stores the owner’s name and starts the balance at 0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deposit(self,</span> <span class="pre">amount)</span></code>, which adds to the balance;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">withdraw(self,</span> <span class="pre">amount)</span></code>, which subtracts from the balance, but prints <code class="docutils literal notranslate"><span class="pre">Insufficient</span> <span class="pre">funds</span></code> instead if there isn’t enough money;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__str__(self)</span></code>, which returns something like <code class="docutils literal notranslate"><span class="pre">Amina:</span> <span class="pre">1500</span> <span class="pre">shillings</span></code>.</p></li>
+</ul>
+<p>Create two accounts and show that they keep separate balances.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">BankAccount</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Insufficient funds"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-</span> <span class="n">amount</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span><span class="si">}</span><span class="s2"> shillings"</span>
+
+<span class="n">amina</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="p">(</span><span class="s2">"Amina"</span><span class="p">)</span>
+<span class="n">brian</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="p">(</span><span class="s2">"Brian"</span><span class="p">)</span>
+
+<span class="n">amina</span><span class="o">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+<span class="n">amina</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">brian</span><span class="o">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">brian</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>     <span class="c1"># Insufficient funds</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">amina</span><span class="p">)</span>             <span class="c1"># Amina: 1500 shillings</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">brian</span><span class="p">)</span>             <span class="c1"># Brian: 300 shillings</span>
+</pre></div>
+</div>
+<p>Each object has its <strong>own</strong> <code class="docutils literal notranslate"><span class="pre">balance</span></code> attribute, so changing one account never affects the other.</p>
+</div>
+</section>
+<section id="exercise-find-the-four-bugs">
+<h3><span class="section-number">17.8.4. </span>Exercise: find the four bugs<a class="headerlink" href="#exercise-find-the-four-bugs" title="Link to this heading">#</a></h3>
+<p>This class should print <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">my</span> <span class="pre">name</span> <span class="pre">is</span> <span class="pre">Grace</span> <span class="pre">Hopper.</span></code> Find and fix the four mistakes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="n">last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">greeting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hello, my name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">"Grace"</span><span class="p">,</span> <span class="s2">"Hopper"</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">greeting</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__</span></code> is missing <code class="docutils literal notranslate"><span class="pre">self</span></code> as its first parameter. Python passes the new object automatically, so it would complain that it received 3 arguments instead of 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last_name</span> <span class="pre">=</span> <span class="pre">last_name</span></code> doesn’t store anything on the object; it needs <code class="docutils literal notranslate"><span class="pre">self.</span></code>.</p></li>
+<li><p>Without fix 2, <code class="docutils literal notranslate"><span class="pre">greeting</span></code> would fail with <code class="docutils literal notranslate"><span class="pre">AttributeError:</span> <span class="pre">'Person'</span> <span class="pre">object</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">attribute</span> <span class="pre">'last_name'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p.greeting</span></code> has no parentheses, so the method is never called and nothing is printed. (In a notebook, if it’s the last line of the cell, Colab shows something like <code class="docutils literal notranslate"><span class="pre">&lt;bound</span> <span class="pre">method</span> <span class="pre">Person.greeting</span> <span class="pre">...&gt;</span></code> — a sign you forgot the brackets.)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">greeting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hello, my name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">"Grace"</span><span class="p">,</span> <span class="s2">"Hopper"</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">greeting</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-a-student-with-marks">
+<h3><span class="section-number">17.8.5. </span>Exercise: a student with marks<a class="headerlink" href="#exercise-a-student-with-marks" title="Link to this heading">#</a></h3>
+<p>Write a class <code class="docutils literal notranslate"><span class="pre">Student</span></code> whose <code class="docutils literal notranslate"><span class="pre">__init__</span></code> takes a name and starts with an empty list of marks. Add <code class="docutils literal notranslate"><span class="pre">add_mark(self,</span> <span class="pre">mark)</span></code> and <code class="docutils literal notranslate"><span class="pre">average(self)</span></code> (which returns 0 if there are no marks yet). Create a student, add three marks and print the average.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marks</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_mark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mark</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mark</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">"Chebet"</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">add_mark</span><span class="p">(</span><span class="mi">78</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">add_mark</span><span class="p">(</span><span class="mi">91</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">add_mark</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">average</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>   <span class="c1"># Chebet: 77.7</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="16_errors_and_exceptions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>When Things Go Wrong: Errors and Exceptions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="18_inheritance_and_composition.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Is-a, Has-a: Inheritance and Composition</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-things-from-things">17.1. Getting things from things</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-are-like-modules-you-can-copy">17.2. Classes are like modules you can copy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-first-real-class">17.3. A first real class</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">17.3.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-self">17.4. Why self?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#give-every-object-the-same-attributes">17.5. Give every object the same attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#printing-objects-nicely">17.6. Printing objects nicely</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-words-of-object-oriented-programming">17.7. The words of object-oriented programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17.8. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-more-proverbs">17.8.1. Exercise: more proverbs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-read-it-aloud">17.8.2. Exercise: read it aloud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-bank-account">17.8.3. Exercise: a bank account</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-find-the-four-bugs">17.8.4. Exercise: find the four bugs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-student-with-marks">17.8.5. Exercise: a student with marks</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

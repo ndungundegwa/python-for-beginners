@@ -1,0 +1,115 @@
+/* Panel controls: hide the left panel, the right panel and/or the top bar independently. */
+
+/* Left panel (course navigation) — only a fixed panel on wide screens. */
+@media (min-width: 960px) {
+  html.hide-left-panel .bd-sidebar-primary {
+    display: none !important;
+  }
+}
+
+/* Right panel ("Contents" of the page) — only a fixed panel on wide screens. */
+@media (min-width: 1200px) {
+  html.hide-right-panel .bd-sidebar-secondary {
+    display: none !important;
+  }
+}
+
+/* Top bar with the search box. */
+html.hide-top-bar .bd-header {
+  display: none !important;
+}
+
+/* Let the main content use the space that was freed. */
+html.hide-left-panel .bd-page-width,
+html.hide-right-panel .bd-page-width,
+html.hide-top-bar .bd-page-width,
+html.hide-left-panel .bd-container__inner,
+html.hide-right-panel .bd-container__inner,
+html.hide-left-panel .bd-main .bd-content,
+html.hide-right-panel .bd-main .bd-content,
+html.hide-left-panel .bd-main .bd-content .bd-article-container,
+html.hide-right-panel .bd-main .bd-content .bd-article-container {
+  max-width: 100% !important;
+}
+
+html.hide-left-panel .bd-main,
+html.hide-right-panel .bd-main {
+  flex-grow: 1;
+}
+
+/* Our buttons replace the theme's sidebar toggles on wide screens... */
+@media (min-width: 960px) {
+  .bd-header-article .sidebar-toggle.primary-toggle {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bd-header-article .sidebar-toggle.secondary-toggle {
+    display: none !important;
+  }
+}
+
+/* ...while on narrow screens the panels are slide-out drawers, so the theme's toggles are kept. */
+@media (max-width: 959.98px) {
+  #panel-left-button {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  #panel-right-button {
+    display: none !important;
+  }
+}
+
+/* Labelled header buttons. */
+.article-header-buttons .panel-button {
+  width: auto !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  margin-right: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border: 1px solid var(--pst-color-border, #ccc);
+  border-radius: 0.4rem;
+}
+
+.panel-button i {
+  pointer-events: none;
+}
+
+.panel-button-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Floating button to leave full-width mode, visible even after scrolling. */
+.panel-exit-button {
+  display: none;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+  border: 1px solid var(--pst-color-border, #ccc);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  background: var(--pst-color-surface, #f3f4f5);
+  color: var(--pst-color-text-base, #222);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+html.hide-left-panel.hide-right-panel.hide-top-bar .panel-exit-button {
+  display: inline-block;
+}
+
+@media print {
+  .panel-exit-button,
+  .panel-button {
+    display: none !important;
+  }
+}

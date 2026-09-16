@@ -1,0 +1,885 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. True or False: Boolean Logic &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/08_boolean_logic';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Making Decisions: if, elif and else" href="09_making_decisions.html" />
+    <link rel="prev" title="7. Modules: Using and Sharing Code" href="07_modules.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/08_boolean_logic.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>True or False: Boolean Logic</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-truth-terms">8.1. The truth terms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#truth-tables">8.2. Truth tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-long-expressions-step-by-step">8.3. Solving long expressions step by step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-strings">8.4. Comparing strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#booleans-in-variables">8.5. Booleans in variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">8.6. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-boolean-practice">8.6.1. Exercise: Boolean practice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-name-the-operators">8.6.2. Exercise: name the operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-write-the-conditions">8.6.3. Exercise: write the conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-is-it-a-leap-year">8.6.4. Exercise: is it a leap year?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="true-or-false-boolean-logic">
+<h1><span class="section-number">8. </span>True or False: Boolean Logic<a class="headerlink" href="#true-or-false-boolean-logic" title="Link to this heading">#</a></h1>
+<p>Until now your programs have run in a straight line, from the first instruction to the last. To make programs that <em>decide</em> — “if the password is correct, let the user in” — you first need to be comfortable with <strong>logic</strong>: expressions whose answer is simply <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. This topic gives you that foundation.</p>
+<section id="the-truth-terms">
+<h2><span class="section-number">8.1. </span>The truth terms<a class="headerlink" href="#the-truth-terms" title="Link to this heading">#</a></h2>
+<p>In Python, these words and symbols are used to decide whether something is <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Term</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+<td><p>both sides must be true</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+<td><p>at least one side must be true</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
+<td><p>flips true to false and false to true</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p>equal to</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>not equal to</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p>less than, greater than</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p>less than or equal, greater than or equal</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>the two Boolean values</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These values and expressions are called <strong>Boolean</strong>, after the mathematician George Boole.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">=</span></code> and <code class="docutils literal notranslate"><span class="pre">==</span></code> are different. A single <code class="docutils literal notranslate"><span class="pre">=</span></code> <strong>assigns</strong> a value to a variable (<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">5</span></code>). A double <code class="docutils literal notranslate"><span class="pre">==</span></code> <strong>asks a question</strong>: is the left equal to the right? (<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">5</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.)</p>
+</div>
+<p>Notebooks are perfect for practising logic: type one expression into a cell and run it, and the answer appears below — no <code class="docutils literal notranslate"><span class="pre">print</span></code> needed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span> <span class="o">&gt;</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</section>
+<section id="truth-tables">
+<h2><span class="section-number">8.2. </span>Truth tables<a class="headerlink" href="#truth-tables" title="Link to this heading">#</a></h2>
+<p>A <strong>truth table</strong> lists every possible combination of inputs and the result. With two Boolean values <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> there are only four combinations, so the whole of <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code> and <code class="docutils literal notranslate"><span class="pre">not</span></code> fits in one table:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">A</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">B</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">or</span> <span class="pre">B</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">A</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">(A</span> <span class="pre">and</span> <span class="pre">B)</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">(A</span> <span class="pre">or</span> <span class="pre">B)</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Two rules are enough to rebuild the whole table from memory:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">and</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> <strong>only when both</strong> sides are <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">or</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> <strong>only when both</strong> sides are <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+<p>Comparisons produce Booleans too. Here is the same idea for equality, using two variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">y</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">!=</span> <span class="pre">y</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;chai&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;chai&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;chai&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Chai&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Make flash cards with an expression such as <code class="docutils literal notranslate"><span class="pre">False</span> <span class="pre">or</span> <span class="pre">True</span></code> on one side and the answer on the other. A few minutes a day for a week and you’ll answer instantly — which will make the next topic much easier.</p>
+</div>
+</section>
+<section id="solving-long-expressions-step-by-step">
+<h2><span class="section-number">8.3. </span>Solving long expressions step by step<a class="headerlink" href="#solving-long-expressions-step-by-step" title="Link to this heading">#</a></h2>
+<p>Long expressions can look scary, but you can always shrink them one small piece at a time:</p>
+<ol class="arabic simple">
+<li><p>Work out every <strong>comparison</strong> (<code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, …) and write <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> in its place.</p></li>
+<li><p>Work out anything <strong>inside brackets</strong>, innermost first.</p></li>
+<li><p>Apply each <code class="docutils literal notranslate"><span class="pre">not</span></code> to the value right after it.</p></li>
+<li><p>Work out the remaining <code class="docutils literal notranslate"><span class="pre">and</span></code>s, then the remaining <code class="docutils literal notranslate"><span class="pre">or</span></code>s.</p></li>
+</ol>
+<p>Keep rewriting the expression until a single <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> is left. Let’s solve this one:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="s2">"mango"</span> <span class="o">==</span> <span class="s2">"Mango"</span> <span class="ow">or</span> <span class="mi">10</span> <span class="o">!=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Comparisons: <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">&gt;</span> <span class="pre">2</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>; <code class="docutils literal notranslate"><span class="pre">&quot;mango&quot;</span> <span class="pre">==</span> <span class="pre">&quot;Mango&quot;</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> (a capital M is a different character); <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">!=</span> <span class="pre">10</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>. We now have <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">not</span> <span class="pre">(False</span> <span class="pre">or</span> <span class="pre">False)</span></code>.</p></li>
+<li><p>Brackets: <code class="docutils literal notranslate"><span class="pre">(False</span> <span class="pre">or</span> <span class="pre">False)</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>. We now have <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">not</span> <span class="pre">False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">False</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>. We now have <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">True</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">True</span></code> is <strong><code class="docutils literal notranslate"><span class="pre">True</span></code></strong>.</p></li>
+</ol>
+<p>Run the expression in a cell to check.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’re not sure which part Python works out first, <strong>add brackets</strong>. Brackets never hurt, and they make your intention clear to people reading the code.</p>
+</div>
+</section>
+<section id="comparing-strings">
+<h2><span class="section-number">8.4. </span>Comparing strings<a class="headerlink" href="#comparing-strings" title="Link to this heading">#</a></h2>
+<p>You can compare strings too. <code class="docutils literal notranslate"><span class="pre">==</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> only if the two strings are <strong>exactly</strong> the same, character for character — including capital letters and spaces:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Nairobi"</span> <span class="o">==</span> <span class="s2">"Nairobi"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Nairobi"</span> <span class="o">==</span> <span class="s2">"nairobi"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Nairobi "</span> <span class="o">==</span> <span class="s2">"Nairobi"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"5"</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>True
+False
+False
+False
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;5&quot;</span></code> (a string) and <code class="docutils literal notranslate"><span class="pre">5</span></code> (a number) are never equal — remember this when you compare the result of <code class="docutils literal notranslate"><span class="pre">input()</span></code> with a number.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> compare strings in alphabetical (“dictionary”) order: <code class="docutils literal notranslate"><span class="pre">&quot;apple&quot;</span> <span class="pre">&lt;</span> <span class="pre">&quot;banana&quot;</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</section>
+<section id="booleans-in-variables">
+<h2><span class="section-number">8.5. </span>Booleans in variables<a class="headerlink" href="#booleans-in-variables" title="Link to this heading">#</a></h2>
+<p>The result of a comparison is a value like any other, so you can store it in a variable with a good name. This makes later decisions much easier to read:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">has_ticket</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">is_teenager</span> <span class="o">=</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">13</span> <span class="ow">and</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="mi">19</span>
+<span class="n">can_enter</span> <span class="o">=</span> <span class="n">has_ticket</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_teenager</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">is_teenager</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">can_enter</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>True
+False
+</pre></div>
+</div>
+<p>Python also lets you chain comparisons the way you would in maths: <code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">&lt;=</span> <span class="pre">age</span> <span class="pre">&lt;=</span> <span class="pre">19</span></code> means the same as <code class="docutils literal notranslate"><span class="pre">age</span> <span class="pre">&gt;=</span> <span class="pre">13</span> <span class="pre">and</span> <span class="pre">age</span> <span class="pre">&lt;=</span> <span class="pre">19</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Shortcuts:</strong> in an <code class="docutils literal notranslate"><span class="pre">and</span></code> expression, as soon as one side is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the whole thing is <code class="docutils literal notranslate"><span class="pre">False</span></code>. In an <code class="docutils literal notranslate"><span class="pre">or</span></code> expression, as soon as one side is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the whole thing is <code class="docutils literal notranslate"><span class="pre">True</span></code>. Python stops checking at that point.</p>
+</div>
+</section>
+<section id="exercises">
+<h2><span class="section-number">8.6. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-boolean-practice">
+<h3><span class="section-number">8.6.1. </span>Exercise: Boolean practice<a class="headerlink" href="#exercise-boolean-practice" title="Link to this heading">#</a></h3>
+<p>For each expression, write down <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> <strong>before</strong> running it. Then check your answers, one cell at a time, and count how many you got right.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">or</span> <span class="pre">False</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span> <span class="pre">and</span> <span class="pre">False</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">4</span> <span class="pre">and</span> <span class="pre">3</span> <span class="pre">&gt;</span> <span class="pre">5</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;chai&quot;</span> <span class="pre">==</span> <span class="pre">&quot;chai&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;Chai&quot;</span> <span class="pre">==</span> <span class="pre">&quot;chai&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">&gt;=</span> <span class="pre">10</span> <span class="pre">or</span> <span class="pre">1</span> <span class="pre">==</span> <span class="pre">2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">(5</span> <span class="pre">&lt;</span> <span class="pre">3)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span> <span class="pre">or</span> <span class="pre">7</span> <span class="pre">!=</span> <span class="pre">7</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;Nairobi&quot;</span> <span class="pre">!=</span> <span class="pre">&quot;Mombasa&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">==</span> <span class="pre">&quot;3&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">True</span> <span class="pre">or</span> <span class="pre">4</span> <span class="pre">&gt;</span> <span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">2</span> <span class="pre">and</span> <span class="pre">2</span> <span class="pre">&lt;</span> <span class="pre">3</span> <span class="pre">and</span> <span class="pre">3</span> <span class="pre">&lt;</span> <span class="pre">4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">(True</span> <span class="pre">or</span> <span class="pre">False)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">(0</span> <span class="pre">==</span> <span class="pre">1</span> <span class="pre">and</span> <span class="pre">5</span> <span class="pre">==</span> <span class="pre">5)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">%</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">0</span> <span class="pre">and</span> <span class="pre">7</span> <span class="pre">%</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">(&quot;maize&quot;</span> <span class="pre">==</span> <span class="pre">&quot;maize&quot;</span> <span class="pre">and</span> <span class="pre">&quot;beans&quot;</span> <span class="pre">!=</span> <span class="pre">&quot;beans&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(4</span> <span class="pre">&gt;</span> <span class="pre">9</span> <span class="pre">or</span> <span class="pre">&quot;a&quot;</span> <span class="pre">&lt;</span> <span class="pre">&quot;b&quot;)</span> <span class="pre">and</span> <span class="pre">not</span> <span class="pre">False</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len(&quot;Kenya&quot;)</span> <span class="pre">==</span> <span class="pre">5</span> <span class="pre">and</span> <span class="pre">not</span> <span class="pre">(2</span> <span class="pre">**</span> <span class="pre">3</span> <span class="pre">==</span> <span class="pre">8)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">(18</span> <span class="pre">&gt;=</span> <span class="pre">21</span> <span class="pre">or</span> <span class="pre">&quot;Kisumu&quot;</span> <span class="pre">==</span> <span class="pre">&quot;kisumu&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">//</span> <span class="pre">3</span> <span class="pre">==</span> <span class="pre">3</span> <span class="pre">and</span> <span class="pre">not</span> <span class="pre">(10</span> <span class="pre">%</span> <span class="pre">3</span> <span class="pre">==</span> <span class="pre">1</span> <span class="pre">or</span> <span class="pre">1</span> <span class="pre">==</span> <span class="pre">0)</span></code></p></li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<ol class="arabic simple">
+<li><p>True  2. False  3. False  4. True  5. False</p></li>
+<li><p>True  7. True  8. False  9. True  10. False</p></li>
+<li><p>True  12. True  13. False  14. True  15. False</p></li>
+<li><p>True  17. True  18. False  19. True  20. False</p></li>
+</ol>
+<p>Worked examples of the hardest ones:</p>
+<ul class="simple">
+<li><p><strong>11:</strong> <code class="docutils literal notranslate"><span class="pre">not</span></code> applies only to <code class="docutils literal notranslate"><span class="pre">True</span></code>, not to the whole line: <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">True</span></code> is False, <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">&gt;</span> <span class="pre">1</span></code> is True, and <code class="docutils literal notranslate"><span class="pre">False</span> <span class="pre">or</span> <span class="pre">True</span></code> is <strong>True</strong>.</p></li>
+<li><p><strong>16:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;maize&quot;</span> <span class="pre">==</span> <span class="pre">&quot;maize&quot;</span></code> is True and <code class="docutils literal notranslate"><span class="pre">&quot;beans&quot;</span> <span class="pre">!=</span> <span class="pre">&quot;beans&quot;</span></code> is False; <code class="docutils literal notranslate"><span class="pre">(True</span> <span class="pre">and</span> <span class="pre">False)</span></code> is False; <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">False</span></code> is <strong>True</strong>.</p></li>
+<li><p><strong>17:</strong> <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">&gt;</span> <span class="pre">9</span></code> is False and <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span> <span class="pre">&lt;</span> <span class="pre">&quot;b&quot;</span></code> is True, so the brackets give True; <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">False</span></code> is True; <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">True</span></code> is <strong>True</strong>.</p></li>
+<li><p><strong>18:</strong> <code class="docutils literal notranslate"><span class="pre">len(&quot;Kenya&quot;)</span></code> is 5, so the left is True; <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">**</span> <span class="pre">3</span> <span class="pre">==</span> <span class="pre">8</span></code> is True and <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">True</span></code> is False; <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">False</span></code> is <strong>False</strong>.</p></li>
+<li><p><strong>20:</strong> <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">//</span> <span class="pre">3</span></code> is 3, so the left is True; <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">%</span> <span class="pre">3</span> <span class="pre">==</span> <span class="pre">1</span></code> is True, so the brackets give True; <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">True</span></code> is False; <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">False</span></code> is <strong>False</strong>.</p></li>
+</ul>
+</div>
+</section>
+<section id="exercise-name-the-operators">
+<h3><span class="section-number">8.6.2. </span>Exercise: name the operators<a class="headerlink" href="#exercise-name-the-operators" title="Link to this heading">#</a></h3>
+<p>Write the English name of each operator: <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>. Then give one example of each whose result is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>True example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p>equal to</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">4</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>not equal to</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;cat&quot;</span> <span class="pre">!=</span> <span class="pre">&quot;dog&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p>less than</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">&lt;</span> <span class="pre">10</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p>greater than or equal to</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">&gt;=</span> <span class="pre">5</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+<td><p>and</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">2</span> <span class="pre">and</span> <span class="pre">2</span> <span class="pre">&lt;</span> <span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
+<td><p>not</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">False</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="exercise-write-the-conditions">
+<h3><span class="section-number">8.6.3. </span>Exercise: write the conditions<a class="headerlink" href="#exercise-write-the-conditions" title="Link to this heading">#</a></h3>
+<p>Given variables <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">score</span></code> and <code class="docutils literal notranslate"><span class="pre">country</span></code>, write a Boolean expression for each description.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span></code> is at least 18.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">score</span></code> is between 50 and 100, inclusive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">country</span></code> is either <code class="docutils literal notranslate"><span class="pre">&quot;Kenya&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Uganda&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span></code> is under 13 <strong>or</strong> over 65.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">score</span></code> is <strong>not</strong> equal to 0 and <code class="docutils literal notranslate"><span class="pre">age</span></code> is at least 16.</p></li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span> <span class="pre">&gt;=</span> <span class="pre">18</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">score</span> <span class="pre">&gt;=</span> <span class="pre">50</span> <span class="pre">and</span> <span class="pre">score</span> <span class="pre">&lt;=</span> <span class="pre">100</span></code> (or <code class="docutils literal notranslate"><span class="pre">50</span> <span class="pre">&lt;=</span> <span class="pre">score</span> <span class="pre">&lt;=</span> <span class="pre">100</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">country</span> <span class="pre">==</span> <span class="pre">&quot;Kenya&quot;</span> <span class="pre">or</span> <span class="pre">country</span> <span class="pre">==</span> <span class="pre">&quot;Uganda&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span> <span class="pre">&lt;</span> <span class="pre">13</span> <span class="pre">or</span> <span class="pre">age</span> <span class="pre">&gt;</span> <span class="pre">65</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">score</span> <span class="pre">!=</span> <span class="pre">0</span> <span class="pre">and</span> <span class="pre">age</span> <span class="pre">&gt;=</span> <span class="pre">16</span></code></p></li>
+</ol>
+<p>A common mistake for number 3 is <code class="docutils literal notranslate"><span class="pre">country</span> <span class="pre">==</span> <span class="pre">&quot;Kenya&quot;</span> <span class="pre">or</span> <span class="pre">&quot;Uganda&quot;</span></code>. That doesn’t do what it looks like: Python reads it as <code class="docutils literal notranslate"><span class="pre">(country</span> <span class="pre">==</span> <span class="pre">&quot;Kenya&quot;)</span> <span class="pre">or</span> <span class="pre">(&quot;Uganda&quot;)</span></code>, and a non-empty string counts as true, so the whole expression is always truthy. Each side of <code class="docutils literal notranslate"><span class="pre">or</span></code> must be a complete comparison.</p>
+</div>
+</section>
+<section id="exercise-is-it-a-leap-year">
+<h3><span class="section-number">8.6.4. </span>Exercise: is it a leap year?<a class="headerlink" href="#exercise-is-it-a-leap-year" title="Link to this heading">#</a></h3>
+<p>A year is a leap year if it is divisible by 4, <strong>except</strong> that years divisible by 100 are not leap years, <strong>unless</strong> they are also divisible by 400. Write a single Boolean expression using the variable <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code> and <code class="docutils literal notranslate"><span class="pre">not</span></code>. Test it with 2024 (leap), 1900 (not leap), 2000 (leap) and 2023 (not leap).</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">year</span> <span class="o">=</span> <span class="mi">1900</span>
+<span class="n">is_leap</span> <span class="o">=</span> <span class="p">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">is_leap</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>2024: divisible by 4 and not by 100 → <strong>True</strong>.</p></li>
+<li><p>1900: divisible by 100 but not by 400 → <strong>False</strong>.</p></li>
+<li><p>2000: divisible by 400 → <strong>True</strong>.</p></li>
+<li><p>2023: not divisible by 4 → <strong>False</strong>.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_modules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Modules: Using and Sharing Code</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_making_decisions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Making Decisions: if, elif and else</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-truth-terms">8.1. The truth terms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#truth-tables">8.2. Truth tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-long-expressions-step-by-step">8.3. Solving long expressions step by step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-strings">8.4. Comparing strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#booleans-in-variables">8.5. Booleans in variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">8.6. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-boolean-practice">8.6.1. Exercise: Boolean practice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-name-the-operators">8.6.2. Exercise: name the operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-write-the-conditions">8.6.3. Exercise: write the conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-is-it-a-leap-year">8.6.4. Exercise: is it a leap year?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

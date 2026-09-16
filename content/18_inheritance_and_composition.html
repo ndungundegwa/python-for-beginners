@@ -1,0 +1,1013 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>18. Is-a, Has-a: Inheritance and Composition &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/18_inheritance_and_composition';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="19. Project: DNA Sequences" href="projects/dna_sequences.html" />
+    <link rel="prev" title="17. Classes and Objects" href="17_classes_and_objects.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/18_inheritance_and_composition.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Is-a, Has-a: Inheritance and Composition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-a-and-has-a">18.1. Is-a and has-a</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">18.1.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-ways-a-child-uses-its-parent">18.2. Three ways a child uses its parent</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicit-the-child-just-uses-the-parent-s-method">18.2.1. 1. Implicit: the child just uses the parent’s method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#override-the-child-replaces-the-parent-s-method">18.2.2. 2. Override: the child replaces the parent’s method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alter-the-child-adds-to-the-parent-s-method">18.2.3. 3. Alter: the child adds to the parent’s method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#super-in-init">18.3. super() in <strong>init</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-call-many-behaviours">18.4. One call, many behaviours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composition-using-other-objects-as-parts">18.5. Composition: using other objects as parts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-inheritance-or-composition">18.6. When to use inheritance or composition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">18.7. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-predict-the-output">18.7.1. Exercise: predict the output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-is-a-or-has-a">18.7.2. Exercise: is-a or has-a?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-vehicles">18.7.3. Exercise: vehicles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-car-has-an-engine">18.7.4. Exercise: a car has an engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-class-register">18.7.5. Exercise: the class register</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="is-a-has-a-inheritance-and-composition">
+<h1><span class="section-number">18. </span>Is-a, Has-a: Inheritance and Composition<a class="headerlink" href="#is-a-has-a-inheritance-and-composition" title="Link to this heading">#</a></h1>
+<p>Once you start writing classes, you’ll notice that some classes are <strong>special kinds</strong> of others (a student <em>is a</em> person), and some classes are <strong>made of</strong> others (a smartphone <em>has a</em> camera). Python gives you two tools for these relationships: <strong>inheritance</strong> and <strong>composition</strong>. This final topic shows you both, and when to choose which.</p>
+<section id="is-a-and-has-a">
+<h2><span class="section-number">18.1. </span>Is-a and has-a<a class="headerlink" href="#is-a-and-has-a" title="Link to this heading">#</a></h2>
+<p>Two short phrases describe how classes relate:</p>
+<ul class="simple">
+<li><p><strong>is-a</strong> — “a student <em>is a</em> person”. The student is a special kind of person, so a <code class="docutils literal notranslate"><span class="pre">Student</span></code> gets everything a <code class="docutils literal notranslate"><span class="pre">Person</span></code> has. In code, this is <strong>inheritance</strong>.</p></li>
+<li><p><strong>has-a</strong> — “a classroom <em>has a</em> teacher”. The teacher is a part of the classroom. In code, this is <strong>composition</strong>: one object stored as an attribute of another.</p></li>
+</ul>
+<p>Study this code. The comments that start with <code class="docutils literal notranslate"><span class="pre">##</span></code> describe each relationship. (Don’t worry about the <code class="docutils literal notranslate"><span class="pre">super().__init__(name)</span></code> lines yet; they’re explained further down.)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Person is a class of its own</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="c1">## Person has-a name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+<span class="c1">## Student is-a Person</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1">## Student has-a form (year of study)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">form</span> <span class="o">=</span> <span class="n">form</span>
+
+<span class="c1">## Teacher is-a Person</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Teacher</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1">## Teacher has-a subject</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="n">subject</span>
+
+<span class="c1">## Classroom is a class of its own</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Classroom</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">teacher</span><span class="p">):</span>
+        <span class="c1">## Classroom has-a name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="c1">## Classroom has-a teacher (a Teacher object)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">teacher</span> <span class="o">=</span> <span class="n">teacher</span>
+        <span class="c1">## Classroom has-a list of students</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">students</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<span class="c1">## kamau is-a Teacher</span>
+<span class="n">kamau</span> <span class="o">=</span> <span class="n">Teacher</span><span class="p">(</span><span class="s2">"Mr. Kamau"</span><span class="p">,</span> <span class="s2">"Maths"</span><span class="p">)</span>
+
+<span class="c1">## amina and brian are Students</span>
+<span class="n">amina</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">"Amina"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">brian</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">"Brian"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">## room is-a Classroom, and has-a teacher: kamau</span>
+<span class="n">room</span> <span class="o">=</span> <span class="n">Classroom</span><span class="p">(</span><span class="s2">"Form 3 East"</span><span class="p">,</span> <span class="n">kamau</span><span class="p">)</span>
+
+<span class="c1">## room has students: amina and brian</span>
+<span class="n">room</span><span class="o">.</span><span class="n">students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">amina</span><span class="p">)</span>
+<span class="n">room</span><span class="o">.</span><span class="n">students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">brian</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">"is taught by"</span><span class="p">,</span> <span class="n">room</span><span class="o">.</span><span class="n">teacher</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">room</span><span class="o">.</span><span class="n">students</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">"is in Form"</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">amina</span><span class="p">,</span> <span class="n">Person</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="what-you-should-see">
+<h3><span class="section-number">18.1.1. </span>What you should see<a class="headerlink" href="#what-you-should-see" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Form 3 East is taught by Mr. Kamau
+Amina is in Form 3
+Brian is in Form 3
+True
+</pre></div>
+</div>
+<p>Writing <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Student(Person):</span></code> means “make a class named Student that is-a Person”. <code class="docutils literal notranslate"><span class="pre">Person</span></code> is called the <strong>parent</strong> class (or superclass) and <code class="docutils literal notranslate"><span class="pre">Student</span></code> is the <strong>child</strong> class (or subclass). <code class="docutils literal notranslate"><span class="pre">isinstance(amina,</span> <span class="pre">Person)</span></code> confirms it: every student is a person.</p>
+<p>Look at <code class="docutils literal notranslate"><span class="pre">room.teacher.name</span></code>: the classroom <em>has</em> a teacher, and the teacher <em>has</em> a name, so we follow the dots from one object to the next.</p>
+</section>
+</section>
+<section id="three-ways-a-child-uses-its-parent">
+<h2><span class="section-number">18.2. </span>Three ways a child uses its parent<a class="headerlink" href="#three-ways-a-child-uses-its-parent" title="Link to this heading">#</a></h2>
+<p>When a child class inherits from a parent, there are three ways they can work together. We’ll see all three with mobile phones. Type both classes into one cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Phone</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Calling </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Ring ring!"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">charge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Charging the battery."</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SmartPhone</span><span class="p">(</span><span class="n">Phone</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Playing your favourite song..."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">charge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Checking the cable is safe."</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">charge</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Battery full. Screen on."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then try each of the following in its own cell.</p>
+<section id="implicit-the-child-just-uses-the-parent-s-method">
+<h3><span class="section-number">18.2.1. </span>1. Implicit: the child just uses the parent’s method<a class="headerlink" href="#implicit-the-child-just-uses-the-parent-s-method" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">SmartPhone</span></code> has no <code class="docutils literal notranslate"><span class="pre">call</span></code> method of its own, so it uses the one from <code class="docutils literal notranslate"><span class="pre">Phone</span></code> automatically:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">basic</span> <span class="o">=</span> <span class="n">Phone</span><span class="p">()</span>
+<span class="n">smart</span> <span class="o">=</span> <span class="n">SmartPhone</span><span class="p">()</span>
+
+<span class="n">basic</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"0712 345 678"</span><span class="p">)</span>
+<span class="n">smart</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"0712 345 678"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Calling 0712 345 678...
+Calling 0712 345 678...
+</pre></div>
+</div>
+<p>Put shared code in a parent class, and every child gets it for free.</p>
+</section>
+<section id="override-the-child-replaces-the-parent-s-method">
+<h3><span class="section-number">18.2.2. </span>2. Override: the child replaces the parent’s method<a class="headerlink" href="#override-the-child-replaces-the-parent-s-method" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">SmartPhone</span></code> defines a method with the <strong>same name</strong>, <code class="docutils literal notranslate"><span class="pre">ring</span></code>, so its version is used instead:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">basic</span><span class="o">.</span><span class="n">ring</span><span class="p">()</span>
+<span class="n">smart</span><span class="o">.</span><span class="n">ring</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ring ring!
+Playing your favourite song...
+</pre></div>
+</div>
+</section>
+<section id="alter-the-child-adds-to-the-parent-s-method">
+<h3><span class="section-number">18.2.3. </span>3. Alter: the child adds to the parent’s method<a class="headerlink" href="#alter-the-child-adds-to-the-parent-s-method" title="Link to this heading">#</a></h3>
+<p>Sometimes the child wants to do something extra <strong>before or after</strong> the parent’s version. It overrides the method, then calls the parent’s version with <code class="docutils literal notranslate"><span class="pre">super()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">basic</span><span class="o">.</span><span class="n">charge</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"---"</span><span class="p">)</span>
+<span class="n">smart</span><span class="o">.</span><span class="n">charge</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Charging the battery.
+---
+Checking the cable is safe.
+Charging the battery.
+Battery full. Screen on.
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">super().charge()</span></code> means “call the <code class="docutils literal notranslate"><span class="pre">charge</span></code> method of my parent class”.</p>
+</section>
+</section>
+<section id="super-in-init">
+<h2><span class="section-number">18.3. </span>super() in <strong>init</strong><a class="headerlink" href="#super-in-init" title="Link to this heading">#</a></h2>
+<p>The most common place to use <code class="docutils literal notranslate"><span class="pre">super()</span></code> is inside <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, so that the parent can set up its attributes before the child adds its own. You saw this in <code class="docutils literal notranslate"><span class="pre">Student</span></code> and <code class="docutils literal notranslate"><span class="pre">Teacher</span></code> above. Here is the same idea again:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">last_name</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">greeting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hello, my name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Worker</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">worker_id</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">)</span>   <span class="c1"># let Person set the names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_id</span> <span class="o">=</span> <span class="n">worker_id</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">greeting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hello, my name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s2">, my id is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">worker_id</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">Person</span><span class="p">(</span><span class="s2">"Ada"</span><span class="p">,</span> <span class="s2">"Lovelace"</span><span class="p">)</span><span class="o">.</span><span class="n">greeting</span><span class="p">()</span>
+<span class="n">Worker</span><span class="p">(</span><span class="s2">"Alan"</span><span class="p">,</span> <span class="s2">"Turing"</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">greeting</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hello, my name is Ada Lovelace.
+Hello, my name is Alan Turing, my id is 42.
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">Worker.__init__</span></code> forgot the <code class="docutils literal notranslate"><span class="pre">super().__init__(...)</span></code> line, a worker would have a <code class="docutils literal notranslate"><span class="pre">worker_id</span></code> but no names, and <code class="docutils literal notranslate"><span class="pre">greeting</span></code> would crash with an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p>
+</section>
+<section id="one-call-many-behaviours">
+<h2><span class="section-number">18.4. </span>One call, many behaviours<a class="headerlink" href="#one-call-many-behaviours" title="Link to this heading">#</a></h2>
+<p>Because each child can override a method, you can treat different kinds of objects the same way and let each one respond in its own manner. This is called <strong>polymorphism</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">sound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"..."</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Cow</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Moo!"</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Rooster</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Cock-a-doodle-doo!"</span>
+
+<span class="n">farm</span> <span class="o">=</span> <span class="p">[</span><span class="n">Cow</span><span class="p">(</span><span class="s2">"Pendo"</span><span class="p">),</span> <span class="n">Rooster</span><span class="p">(</span><span class="s2">"Jogoo"</span><span class="p">),</span> <span class="n">Animal</span><span class="p">(</span><span class="s2">"Mystery"</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">farm</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">animal</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> says </span><span class="si">{</span><span class="n">animal</span><span class="o">.</span><span class="n">sound</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Pendo says Moo!
+Jogoo says Cock-a-doodle-doo!
+Mystery says ...
+</pre></div>
+</div>
+<p>The loop never checks what kind of animal it has; it simply calls <code class="docutils literal notranslate"><span class="pre">sound()</span></code>, and the right method runs.</p>
+</section>
+<section id="composition-using-other-objects-as-parts">
+<h2><span class="section-number">18.5. </span>Composition: using other objects as parts<a class="headerlink" href="#composition-using-other-objects-as-parts" title="Link to this heading">#</a></h2>
+<p>Inheritance isn’t the only way to reuse code. Often it’s simpler for a class to <strong>have</strong> another object and ask it to do the work. A camera phone <em>is a</em> phone, but it <em>has a</em> camera:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Camera</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">megapixels</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">megapixels</span> <span class="o">=</span> <span class="n">megapixels</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">take_photo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Click! A </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">megapixels</span><span class="si">}</span><span class="s2"> MP photo of </span><span class="si">{</span><span class="n">subject</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CameraPhone</span><span class="p">(</span><span class="n">Phone</span><span class="p">):</span>            <span class="c1"># is-a Phone</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>     <span class="c1"># has-a Camera</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">photo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">take_photo</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">selfie</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="si">}</span><span class="s2"> smiles at the screen..."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">take_photo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+
+
+<span class="n">phone</span> <span class="o">=</span> <span class="n">CameraPhone</span><span class="p">(</span><span class="s2">"Wanjiku"</span><span class="p">)</span>
+<span class="n">phone</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"0722 000 111"</span><span class="p">)</span>
+<span class="n">phone</span><span class="o">.</span><span class="n">photo</span><span class="p">(</span><span class="s2">"Mount Kenya"</span><span class="p">)</span>
+<span class="n">phone</span><span class="o">.</span><span class="n">selfie</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Calling 0722 000 111...
+Click! A 50 MP photo of Mount Kenya.
+Wanjiku smiles at the screen...
+Click! A 50 MP photo of Wanjiku.
+</pre></div>
+</div>
+<p>(This cell uses the <code class="docutils literal notranslate"><span class="pre">Phone</span></code> class from earlier, so run that cell first.)</p>
+<p><code class="docutils literal notranslate"><span class="pre">CameraPhone</span></code> uses <strong>both</strong> tools: it inherits <code class="docutils literal notranslate"><span class="pre">call</span></code> from <code class="docutils literal notranslate"><span class="pre">Phone</span></code>, and it <strong>passes work</strong> to the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> object stored in <code class="docutils literal notranslate"><span class="pre">self.camera</span></code>. A phone is not a kind of camera, so inheriting from <code class="docutils literal notranslate"><span class="pre">Camera</span></code> would be wrong. The camera is a <em>part</em>.</p>
+</section>
+<section id="when-to-use-inheritance-or-composition">
+<h2><span class="section-number">18.6. </span>When to use inheritance or composition<a class="headerlink" href="#when-to-use-inheritance-or-composition" title="Link to this heading">#</a></h2>
+<p>Both solve the same problem — avoiding duplicated code — in different ways. Some guidelines:</p>
+<ol class="arabic simple">
+<li><p>Use <strong>inheritance</strong> only when there’s a clear <strong>is-a</strong> relationship: a <code class="docutils literal notranslate"><span class="pre">Student</span></code> really is a <code class="docutils literal notranslate"><span class="pre">Person</span></code>, a <code class="docutils literal notranslate"><span class="pre">SmartPhone</span></code> really is a <code class="docutils literal notranslate"><span class="pre">Phone</span></code>.</p></li>
+<li><p>Use <strong>composition</strong> when one thing is a <strong>part</strong> of another, or when you want to reuse code in many unrelated places: a <code class="docutils literal notranslate"><span class="pre">Classroom</span></code> has a <code class="docutils literal notranslate"><span class="pre">Teacher</span></code>; a <code class="docutils literal notranslate"><span class="pre">CameraPhone</span></code> has a <code class="docutils literal notranslate"><span class="pre">Camera</span></code>; a game has a board.</p></li>
+<li><p>When in doubt, prefer composition. It keeps classes simpler and more independent.</p></li>
+<li><p>Avoid inheriting from several classes at once (“multiple inheritance”) while you’re learning; it quickly becomes confusing.</p></li>
+</ol>
+</section>
+<section id="exercises">
+<h2><span class="section-number">18.7. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-predict-the-output">
+<h3><span class="section-number">18.7.1. </span>Exercise: predict the output<a class="headerlink" href="#exercise-predict-the-output" title="Link to this heading">#</a></h3>
+<p>Without running it, write down exactly what this prints. Then check in a cell.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Bell</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Testing the bell"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"DING"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"The bell stops"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SchoolBell</span><span class="p">(</span><span class="n">Bell</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"DING DING DING - time for class!"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Last ring of the day"</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Everyone goes home"</span><span class="p">)</span>
+
+<span class="n">old</span> <span class="o">=</span> <span class="n">Bell</span><span class="p">()</span>
+<span class="n">school</span> <span class="o">=</span> <span class="n">SchoolBell</span><span class="p">()</span>
+
+<span class="n">old</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+<span class="n">school</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+
+<span class="n">old</span><span class="o">.</span><span class="n">ring</span><span class="p">()</span>
+<span class="n">school</span><span class="o">.</span><span class="n">ring</span><span class="p">()</span>
+
+<span class="n">old</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="n">school</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Testing the bell
+Testing the bell
+DING
+DING DING DING - time for class!
+The bell stops
+Last ring of the day
+The bell stops
+Everyone goes home
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">school.test()</span></code> is <strong>implicit</strong> (inherited), <code class="docutils literal notranslate"><span class="pre">school.ring()</span></code> is <strong>overridden</strong>, and <code class="docutils literal notranslate"><span class="pre">school.stop()</span></code> <strong>alters</strong> the parent’s version by calling it through <code class="docutils literal notranslate"><span class="pre">super()</span></code>.</p>
+</div>
+</section>
+<section id="exercise-is-a-or-has-a">
+<h3><span class="section-number">18.7.2. </span>Exercise: is-a or has-a?<a class="headerlink" href="#exercise-is-a-or-has-a" title="Link to this heading">#</a></h3>
+<p>For each pair, say whether the relationship is <strong>is-a</strong> (inheritance) or <strong>has-a</strong> (composition).</p>
+<ol class="arabic simple">
+<li><p>Laptop and Computer</p></li>
+<li><p>Laptop and Keyboard</p></li>
+<li><p>Matatu and Vehicle</p></li>
+<li><p>Matatu and Driver</p></li>
+<li><p>Teacher and Person</p></li>
+<li><p>School and Teacher</p></li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<ol class="arabic simple">
+<li><p>A laptop <strong>is a</strong> computer → inheritance.</p></li>
+<li><p>A laptop <strong>has a</strong> keyboard → composition.</p></li>
+<li><p>A matatu <strong>is a</strong> vehicle → inheritance.</p></li>
+<li><p>A matatu <strong>has a</strong> driver → composition.</p></li>
+<li><p>A teacher <strong>is a</strong> person → inheritance.</p></li>
+<li><p>A school <strong>has</strong> teachers (many!) → composition, for example a list of <code class="docutils literal notranslate"><span class="pre">Teacher</span></code> objects stored in the school.</p></li>
+</ol>
+</div>
+</section>
+<section id="exercise-vehicles">
+<h3><span class="section-number">18.7.3. </span>Exercise: vehicles<a class="headerlink" href="#exercise-vehicles" title="Link to this heading">#</a></h3>
+<p>Write a parent class <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> with <code class="docutils literal notranslate"><span class="pre">__init__(self,</span> <span class="pre">name,</span> <span class="pre">wheels)</span></code> and a method <code class="docutils literal notranslate"><span class="pre">describe(self)</span></code> that returns <code class="docutils literal notranslate"><span class="pre">&quot;&lt;name&gt;</span> <span class="pre">has</span> <span class="pre">&lt;wheels&gt;</span> <span class="pre">wheels&quot;</span></code>. Write two child classes: <code class="docutils literal notranslate"><span class="pre">Bicycle</span></code>, whose <code class="docutils literal notranslate"><span class="pre">__init__</span></code> takes only a name and always has 2 wheels, and <code class="docutils literal notranslate"><span class="pre">Car</span></code>, whose <code class="docutils literal notranslate"><span class="pre">__init__</span></code> takes a name and an extra <code class="docutils literal notranslate"><span class="pre">seats</span></code> attribute and which <strong>alters</strong> <code class="docutils literal notranslate"><span class="pre">describe</span></code> to add <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">and</span> <span class="pre">&lt;seats&gt;</span> <span class="pre">seats&quot;</span></code>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Vehicle</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">wheels</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wheels</span> <span class="o">=</span> <span class="n">wheels</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> has </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">wheels</span><span class="si">}</span><span class="s2"> wheels"</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Bicycle</span><span class="p">(</span><span class="n">Vehicle</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Car</span><span class="p">(</span><span class="n">Vehicle</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">seats</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seats</span> <span class="o">=</span> <span class="n">seats</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">" and </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">seats</span><span class="si">}</span><span class="s2"> seats"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Bicycle</span><span class="p">(</span><span class="s2">"My bike"</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>    <span class="c1"># My bike has 2 wheels</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Car</span><span class="p">(</span><span class="s2">"Family car"</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>  <span class="c1"># Family car has 4 wheels and 7 seats</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="exercise-a-car-has-an-engine">
+<h3><span class="section-number">18.7.4. </span>Exercise: a car has an engine<a class="headerlink" href="#exercise-a-car-has-an-engine" title="Link to this heading">#</a></h3>
+<p>Use <strong>composition</strong>: write a class <code class="docutils literal notranslate"><span class="pre">Engine</span></code> with a method <code class="docutils literal notranslate"><span class="pre">start(self)</span></code> that prints <code class="docutils literal notranslate"><span class="pre">Engine</span> <span class="pre">starting...</span> <span class="pre">vroom!</span></code>, and a class <code class="docutils literal notranslate"><span class="pre">Car</span></code> whose <code class="docutils literal notranslate"><span class="pre">__init__</span></code> creates an <code class="docutils literal notranslate"><span class="pre">Engine</span></code> and stores it as <code class="docutils literal notranslate"><span class="pre">self.engine</span></code>. Give <code class="docutils literal notranslate"><span class="pre">Car</span></code> a method <code class="docutils literal notranslate"><span class="pre">drive(self)</span></code> that starts the engine and then prints <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">car</span> <span class="pre">is</span> <span class="pre">moving.</span></code></p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Engine</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Engine starting... vroom!"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Car</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">Engine</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"The car is moving."</span><span class="p">)</span>
+
+<span class="n">Car</span><span class="p">()</span><span class="o">.</span><span class="n">drive</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A car is not a kind of engine, so inheritance would be wrong here. The car <strong>has</strong> an engine and asks it to start.</p>
+</div>
+</section>
+<section id="exercise-the-class-register">
+<h3><span class="section-number">18.7.5. </span>Exercise: the class register<a class="headerlink" href="#exercise-the-class-register" title="Link to this heading">#</a></h3>
+<p>Extend the school example from the start of this topic:</p>
+<ol class="arabic simple">
+<li><p>Give <code class="docutils literal notranslate"><span class="pre">Person</span></code> a method <code class="docutils literal notranslate"><span class="pre">introduce(self)</span></code> that returns <code class="docutils literal notranslate"><span class="pre">&quot;I</span> <span class="pre">am</span> <span class="pre">&lt;name&gt;&quot;</span></code>.</p></li>
+<li><p><strong>Override</strong> it in <code class="docutils literal notranslate"><span class="pre">Student</span></code> to return <code class="docutils literal notranslate"><span class="pre">&quot;I</span> <span class="pre">am</span> <span class="pre">&lt;name&gt;,</span> <span class="pre">in</span> <span class="pre">Form</span> <span class="pre">&lt;form&gt;&quot;</span></code>, and in <code class="docutils literal notranslate"><span class="pre">Teacher</span></code> to <strong>alter</strong> it by adding <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">and</span> <span class="pre">I</span> <span class="pre">teach</span> <span class="pre">&lt;subject&gt;&quot;</span></code> to the parent’s version.</p></li>
+<li><p>Give <code class="docutils literal notranslate"><span class="pre">Classroom</span></code> a method <code class="docutils literal notranslate"><span class="pre">register(self)</span></code> that prints the classroom’s name, then the teacher’s introduction, then each student’s introduction.</p></li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">form</span> <span class="o">=</span> <span class="n">form</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                       <span class="c1"># override</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, in Form </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">form</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Teacher</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="n">subject</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                       <span class="c1"># alter</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">" and I teach </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">subject</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Classroom</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">teacher</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">teacher</span> <span class="o">=</span> <span class="n">teacher</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">students</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">teacher</span><span class="o">.</span><span class="n">introduce</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">students</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">introduce</span><span class="p">())</span>
+
+<span class="n">room</span> <span class="o">=</span> <span class="n">Classroom</span><span class="p">(</span><span class="s2">"Form 3 East"</span><span class="p">,</span> <span class="n">Teacher</span><span class="p">(</span><span class="s2">"Mr. Kamau"</span><span class="p">,</span> <span class="s2">"Maths"</span><span class="p">))</span>
+<span class="n">room</span><span class="o">.</span><span class="n">students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Student</span><span class="p">(</span><span class="s2">"Amina"</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">room</span><span class="o">.</span><span class="n">students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Student</span><span class="p">(</span><span class="s2">"Brian"</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">room</span><span class="o">.</span><span class="n">register</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Form 3 East
+  I am Mr. Kamau and I teach Maths
+  I am Amina, in Form 3
+  I am Brian, in Form 3
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">register</span></code> doesn’t care whether it’s talking to a teacher or a student: it calls <code class="docutils literal notranslate"><span class="pre">introduce()</span></code> on each, and the right version runs — polymorphism again.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="17_classes_and_objects.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Classes and Objects</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="projects/dna_sequences.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Project: DNA Sequences</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-a-and-has-a">18.1. Is-a and has-a</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-should-see">18.1.1. What you should see</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-ways-a-child-uses-its-parent">18.2. Three ways a child uses its parent</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicit-the-child-just-uses-the-parent-s-method">18.2.1. 1. Implicit: the child just uses the parent’s method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#override-the-child-replaces-the-parent-s-method">18.2.2. 2. Override: the child replaces the parent’s method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alter-the-child-adds-to-the-parent-s-method">18.2.3. 3. Alter: the child adds to the parent’s method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#super-in-init">18.3. super() in <strong>init</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-call-many-behaviours">18.4. One call, many behaviours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composition-using-other-objects-as-parts">18.5. Composition: using other objects as parts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-inheritance-or-composition">18.6. When to use inheritance or composition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">18.7. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-predict-the-output">18.7.1. Exercise: predict the output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-is-a-or-has-a">18.7.2. Exercise: is-a or has-a?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-vehicles">18.7.3. Exercise: vehicles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-a-car-has-an-engine">18.7.4. Exercise: a car has an engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-the-class-register">18.7.5. Exercise: the class register</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

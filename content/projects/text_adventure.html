@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>23. Project: Your Own Text Adventure &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/projects/text_adventure';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="24. Project: Tic Tac Toe" href="tic_tac_toe.html" />
+    <link rel="prev" title="22. Project: Strong Passwords" href="password_generator.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix/google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/common_errors.html">Common Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/glossary.html">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/projects/text_adventure.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project: Your Own Text Adventure</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-draw-your-map-first">23.1. Step 1: draw your map first</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-store-the-map-in-a-dictionary">23.2. Step 2: store the map in a dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-describe-a-room">23.3. Step 3: describe a room</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-moving-around">23.4. Step 4: moving around</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-picking-things-up">23.5. Step 5: picking things up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-the-game-loop">23.6. Step 6: the game loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-make-it-yours">23.7. Step 7: make it yours</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-your-own-text-adventure">
+<h1><span class="section-number">23. </span>Project: Your Own Text Adventure<a class="headerlink" href="#project-your-own-text-adventure" title="Link to this heading">#</a></h1>
+<p>In Topic 12 you played a small adventure made of functions. Now you’ll design and build your own — but this time the map of the game will be stored in <strong>dictionaries</strong>, so you can add rooms without writing new functions.</p>
+<p><strong>You will need:</strong> functions (Topic 6), decisions and loops (Topics 9–10), lists (Topic 11), strings (Topic 13) and dictionaries (Topic 14).</p>
+<section id="step-1-draw-your-map-first">
+<h2><span class="section-number">23.1. </span>Step 1: draw your map first<a class="headerlink" href="#step-1-draw-your-map-first" title="Link to this heading">#</a></h2>
+<p>Before writing any code, draw your game on paper: a box for each room, arrows for the exits (north, south, east, west), and notes about items and dangers. Programmers plan first and code second.</p>
+<p>The example game in this project has four rooms:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>            +-----------+
+            |  library  |  (a key is here)
+            +-----------+
+                  |
++-----------+   +-----------+   +-----------+
+|           |   |   hall    |---|  kitchen  |  (a lamp is here)
+|           |   |  (start)  |   +-----------+
++-----------+   +-----------+         |
+                                +-----------+
+                                |  garden   |  (a locked gate: the exit!)
+                                +-----------+
+</pre></div>
+</div>
+<p>To win, the player must find the <strong>key</strong> and use it at the garden gate.</p>
+</section>
+<section id="step-2-store-the-map-in-a-dictionary">
+<h2><span class="section-number">23.2. </span>Step 2: store the map in a dictionary<a class="headerlink" href="#step-2-store-the-map-in-a-dictionary" title="Link to this heading">#</a></h2>
+<p>Each room is a dictionary with a description, its exits and an optional item. All the rooms go into one big dictionary, keyed by the room’s name:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ROOMS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"hall"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"You are in a dusty hall. Doors lead north and east."</span><span class="p">,</span>
+        <span class="s2">"exits"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"north"</span><span class="p">:</span> <span class="s2">"library"</span><span class="p">,</span> <span class="s2">"east"</span><span class="p">:</span> <span class="s2">"kitchen"</span><span class="p">},</span>
+        <span class="s2">"item"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">"library"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Shelves of old books surround you. A door leads south."</span><span class="p">,</span>
+        <span class="s2">"exits"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"south"</span><span class="p">:</span> <span class="s2">"hall"</span><span class="p">},</span>
+        <span class="s2">"item"</span><span class="p">:</span> <span class="s2">"key"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">"kitchen"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"The kitchen smells of chai. Doors lead west and south."</span><span class="p">,</span>
+        <span class="s2">"exits"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"west"</span><span class="p">:</span> <span class="s2">"hall"</span><span class="p">,</span> <span class="s2">"south"</span><span class="p">:</span> <span class="s2">"garden"</span><span class="p">},</span>
+        <span class="s2">"item"</span><span class="p">:</span> <span class="s2">"lamp"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">"garden"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"A tall locked gate blocks the way out. The kitchen is north."</span><span class="p">,</span>
+        <span class="s2">"exits"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"north"</span><span class="p">:</span> <span class="s2">"kitchen"</span><span class="p">},</span>
+        <span class="s2">"item"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run the <code class="docutils literal notranslate"><span class="pre">ROOMS</span></code> cell, then test it: put each of these lines in its own cell (the last line of a cell is displayed automatically). What do they give?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ROOMS</span><span class="p">[</span><span class="s2">"hall"</span><span class="p">][</span><span class="s2">"exits"</span><span class="p">][</span><span class="s2">"east"</span><span class="p">]</span>
+<span class="n">ROOMS</span><span class="p">[</span><span class="s2">"library"</span><span class="p">][</span><span class="s2">"item"</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<p><code class="docutils literal notranslate"><span class="pre">ROOMS[&quot;hall&quot;][&quot;exits&quot;][&quot;east&quot;]</span></code> is <code class="docutils literal notranslate"><span class="pre">'kitchen'</span></code>: from the <code class="docutils literal notranslate"><span class="pre">&quot;hall&quot;</span></code> room, take its <code class="docutils literal notranslate"><span class="pre">&quot;exits&quot;</span></code> dictionary, and look up <code class="docutils literal notranslate"><span class="pre">&quot;east&quot;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ROOMS[&quot;library&quot;][&quot;item&quot;]</span></code> is <code class="docutils literal notranslate"><span class="pre">'key'</span></code>.</p>
+<p>Reading nested dictionaries from left to right like this is the key skill of the whole project.</p>
+</div>
+</section>
+<section id="step-3-describe-a-room">
+<h2><span class="section-number">23.3. </span>Step 3: describe a room<a class="headerlink" href="#step-3-describe-a-room" title="Link to this heading">#</a></h2>
+<p>Write <code class="docutils literal notranslate"><span class="pre">describe(room_name)</span></code> that prints the room’s description and, if the room contains an item, <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">see</span> <span class="pre">a</span> <span class="pre">&lt;item&gt;</span> <span class="pre">here.</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="s2">"library"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Shelves of old books surround you. A door leads south.
+You see a key here.
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">describe</span><span class="p">(</span><span class="n">room_name</span><span class="p">):</span>
+    <span class="n">room</span> <span class="o">=</span> <span class="n">ROOMS</span><span class="p">[</span><span class="n">room_name</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">room</span><span class="p">[</span><span class="s2">"description"</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">room</span><span class="p">[</span><span class="s2">"item"</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You see a </span><span class="si">{</span><span class="n">room</span><span class="p">[</span><span class="s1">'item'</span><span class="p">]</span><span class="si">}</span><span class="s2"> here."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="step-4-moving-around">
+<h2><span class="section-number">23.4. </span>Step 4: moving around<a class="headerlink" href="#step-4-moving-around" title="Link to this heading">#</a></h2>
+<p>Write <code class="docutils literal notranslate"><span class="pre">move(room_name,</span> <span class="pre">direction)</span></code> that returns the name of the room in that direction, or prints <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">can't</span> <span class="pre">go</span> <span class="pre">that</span> <span class="pre">way.</span></code> and returns the <strong>same</strong> room name if there’s no exit that way.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">move</span><span class="p">(</span><span class="s2">"hall"</span><span class="p">,</span> <span class="s2">"north"</span><span class="p">))</span>   <span class="c1"># library</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">move</span><span class="p">(</span><span class="s2">"hall"</span><span class="p">,</span> <span class="s2">"west"</span><span class="p">))</span>    <span class="c1"># You can't go that way.  then: hall</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="n">room_name</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+    <span class="n">exits</span> <span class="o">=</span> <span class="n">ROOMS</span><span class="p">[</span><span class="n">room_name</span><span class="p">][</span><span class="s2">"exits"</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">exits</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">exits</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"You can't go that way."</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">room_name</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="step-5-picking-things-up">
+<h2><span class="section-number">23.5. </span>Step 5: picking things up<a class="headerlink" href="#step-5-picking-things-up" title="Link to this heading">#</a></h2>
+<p>The player carries an <strong>inventory</strong>: a list of item names. Write <code class="docutils literal notranslate"><span class="pre">take(room_name,</span> <span class="pre">inventory)</span></code> that moves the room’s item (if any) into the inventory and sets the room’s item to <code class="docutils literal notranslate"><span class="pre">None</span></code>. If there’s nothing to take, print <code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">is</span> <span class="pre">nothing</span> <span class="pre">here</span> <span class="pre">to</span> <span class="pre">take.</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inventory</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">take</span><span class="p">(</span><span class="s2">"library"</span><span class="p">,</span> <span class="n">inventory</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inventory</span><span class="p">)</span>                   <span class="c1"># ['key']</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ROOMS</span><span class="p">[</span><span class="s2">"library"</span><span class="p">][</span><span class="s2">"item"</span><span class="p">])</span>    <span class="c1"># None</span>
+<span class="n">take</span><span class="p">(</span><span class="s2">"library"</span><span class="p">,</span> <span class="n">inventory</span><span class="p">)</span>         <span class="c1"># There is nothing here to take.</span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">take</span><span class="p">(</span><span class="n">room_name</span><span class="p">,</span> <span class="n">inventory</span><span class="p">):</span>
+    <span class="n">room</span> <span class="o">=</span> <span class="n">ROOMS</span><span class="p">[</span><span class="n">room_name</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">room</span><span class="p">[</span><span class="s2">"item"</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"There is nothing here to take."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">inventory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">room</span><span class="p">[</span><span class="s2">"item"</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"You take the </span><span class="si">{</span><span class="n">room</span><span class="p">[</span><span class="s1">'item'</span><span class="p">]</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+        <span class="n">room</span><span class="p">[</span><span class="s2">"item"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Because dictionaries and lists can be changed, this function updates both the room and the inventory directly.</p>
+</div>
+</section>
+<section id="step-6-the-game-loop">
+<h2><span class="section-number">23.6. </span>Step 6: the game loop<a class="headerlink" href="#step-6-the-game-loop" title="Link to this heading">#</a></h2>
+<p>Now write <code class="docutils literal notranslate"><span class="pre">main()</span></code>. The player starts in the hall. In a loop, read a command and act on it:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>What happens</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">look</span></code></p></td>
+<td><p>describe the current room</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">&lt;direction&gt;</span></code></p></td>
+<td><p>move, then describe the new room</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">take</span></code></p></td>
+<td><p>pick up the item in the room</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inventory</span></code></p></td>
+<td><p>list what the player carries</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">key</span></code></p></td>
+<td><p>in the garden, with the key: the player escapes and wins</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">quit</span></code></p></td>
+<td><p>end the game</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hint: <code class="docutils literal notranslate"><span class="pre">command.split()</span></code> turns <code class="docutils literal notranslate"><span class="pre">&quot;go</span> <span class="pre">north&quot;</span></code> into <code class="docutils literal notranslate"><span class="pre">[&quot;go&quot;,</span> <span class="pre">&quot;north&quot;]</span></code>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution - Click the button to reveal!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="s2">"hall"</span>
+    <span class="n">inventory</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Welcome! Type look, go &lt;direction&gt;, take, inventory, use key or quit."</span><span class="p">)</span>
+    <span class="n">describe</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"&gt; "</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"look"</span><span class="p">:</span>
+            <span class="n">describe</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"go"</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">move</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">words</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">describe</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"take"</span><span class="p">:</span>
+            <span class="n">take</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">inventory</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"inventory"</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inventory</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"You are carrying nothing."</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"You carry: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inventory</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">words</span> <span class="o">==</span> <span class="p">[</span><span class="s2">"use"</span><span class="p">,</span> <span class="s2">"key"</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">current</span> <span class="o">==</span> <span class="s2">"garden"</span> <span class="ow">and</span> <span class="s2">"key"</span> <span class="ow">in</span> <span class="n">inventory</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"The gate creaks open. You escape. You win!"</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Nothing happens."</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"quit"</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Goodbye!"</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"I don't understand that."</span><span class="p">)</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Welcome! Type look, go &lt;direction&gt;, take, inventory, use key or quit.
+You are in a dusty hall. Doors lead north and east.
+&gt; go north
+Shelves of old books surround you. A door leads south.
+You see a key here.
+&gt; take
+You take the key.
+&gt; go south
+You are in a dusty hall. Doors lead north and east.
+&gt; go east
+The kitchen smells of chai. Doors lead west and south.
+You see a lamp here.
+&gt; go south
+A tall locked gate blocks the way out. The kitchen is north.
+&gt; use key
+The gate creaks open. You escape. You win!
+</pre></div>
+</div>
+</div>
+</section>
+<section id="step-7-make-it-yours">
+<h2><span class="section-number">23.7. </span>Step 7: make it yours<a class="headerlink" href="#step-7-make-it-yours" title="Link to this heading">#</a></h2>
+<p>Now expand the game following your own paper map. Some ideas:</p>
+<ul class="simple">
+<li><p>Add at least three new rooms. Because the map is data, you only need to add entries to <code class="docutils literal notranslate"><span class="pre">ROOMS</span></code> and connect their exits — no new functions!</p></li>
+<li><p>Add a dark cellar where the player can only see the description if they carry the <code class="docutils literal notranslate"><span class="pre">lamp</span></code>.</p></li>
+<li><p>Add a counter of moves, and print how many moves the player needed to win.</p></li>
+<li><p>Add a danger: a room where going the wrong way ends the game.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Work the way Topic 12 recommends: make a to-do list of features, pick the easiest one, write a few lines, run the game, fix, and cross it off. Then pick the next one.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="password_generator.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Project: Strong Passwords</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tic_tac_toe.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Project: Tic Tac Toe</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-draw-your-map-first">23.1. Step 1: draw your map first</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-store-the-map-in-a-dictionary">23.2. Step 2: store the map in a dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-describe-a-room">23.3. Step 3: describe a room</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-moving-around">23.4. Step 4: moving around</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-picking-things-up">23.5. Step 5: picking things up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-the-game-loop">23.6. Step 6: the game loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-make-it-yours">23.7. Step 7: make it yours</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

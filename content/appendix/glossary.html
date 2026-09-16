@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Glossary &#8212; Python for Complete Beginners</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/focus-mode.css?v=dffebd1c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/appendix/glossary';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/focus-mode.js?v=08269374"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Common Errors" href="common_errors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python for Complete Beginners</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_first_program.html">1. Your First Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_numbers_and_math.html">2. Numbers and Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_variables_and_names.html">3. Variables and Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_strings_and_printing.html">4. Strings and Printing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_asking_questions.html">5. Asking the User Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_modules.html">7. Modules: Using and Sharing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_boolean_logic.html">8. True or False: Boolean Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_making_decisions.html">9. Making Decisions: if, elif and else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_loops.html">10. Loops: Doing Things Again and Again</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_lists.html">11. Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12_building_a_game.html">12. Building a Game: Branches and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13_strings_tuples_slices.html">13. Strings, Tuples and Slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14_dictionaries.html">14. Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_files.html">15. Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16_errors_and_exceptions.html">16. When Things Go Wrong: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17_classes_and_objects.html">17. Classes and Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../18_inheritance_and_composition.html">18. Is-a, Has-a: Inheritance and Composition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/dna_sequences.html">19. Project: DNA Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/collatz.html">20. Project: The Collatz Conjecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/task_manager.html">21. Project: A Task Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/password_generator.html">22. Project: Strong Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/text_adventure.html">23. Project: Your Own Text Adventure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/tic_tac_toe.html">24. Project: Tic Tac Toe</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="google_colab.html">Using Google Colab (No Laptop Needed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbols_and_keywords.html">Symbols and Keywords Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_errors.html">Common Errors</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/appendix/glossary.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Glossary</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="glossary">
+<h1>Glossary<a class="headerlink" href="#glossary" title="Link to this heading">#</a></h1>
+<p>Short definitions of the words used in this course, in alphabetical order. The topic number in brackets shows where each idea is introduced.</p>
+<dl class="simple myst">
+<dt>Algorithm</dt><dd><p>A finite, unambiguous sequence of steps that solves a class of problems. (Topic 1)</p>
+</dd>
+<dt>Append</dt><dd><p>To add an item at the end of a list, with <code class="docutils literal notranslate"><span class="pre">list.append(item)</span></code>. (Topic 10)</p>
+</dd>
+<dt>Argument</dt><dd><p>A value you give to a function when you call it, such as <code class="docutils literal notranslate"><span class="pre">5</span></code> in <code class="docutils literal notranslate"><span class="pre">double(5)</span></code>. (Topic 6)</p>
+</dd>
+<dt>Assignment</dt><dd><p>Giving a name to a value with <code class="docutils literal notranslate"><span class="pre">=</span></code>, as in <code class="docutils literal notranslate"><span class="pre">score</span> <span class="pre">=</span> <span class="pre">10</span></code>. The right side is worked out first, then stored under the name on the left. (Topic 3)</p>
+</dd>
+<dt>Attribute</dt><dd><p>A value stored on an object, such as <code class="docutils literal notranslate"><span class="pre">self.name</span></code>. (Topic 17)</p>
+</dd>
+<dt>Block</dt><dd><p>A group of lines indented under a line ending with <code class="docutils literal notranslate"><span class="pre">:</span></code> — the body of an <code class="docutils literal notranslate"><span class="pre">if</span></code>, a loop, a function or a class. (Topic 9)</p>
+</dd>
+<dt>Boolean</dt><dd><p>A value that is either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. (Topic 8)</p>
+</dd>
+<dt>Bug</dt><dd><p>A mistake in a program that makes it crash or give wrong results.</p>
+</dd>
+<dt>Call</dt><dd><p>To run a function by writing its name followed by parentheses, such as <code class="docutils literal notranslate"><span class="pre">print_none()</span></code>. (Topic 6)</p>
+</dd>
+<dt>Class</dt><dd><p>A blueprint for creating objects, defined with <code class="docutils literal notranslate"><span class="pre">class</span></code>. (Topic 17)</p>
+</dd>
+<dt>Comment</dt><dd><p>Text after <code class="docutils literal notranslate"><span class="pre">#</span></code> that Python ignores, used to explain code. (Topic 1)</p>
+</dd>
+<dt>Composition</dt><dd><p>Building a class out of other objects stored as attributes — a <strong>has-a</strong> relationship. (Topic 18)</p>
+</dd>
+<dt>Concatenation</dt><dd><p>Joining strings together with <code class="docutils literal notranslate"><span class="pre">+</span></code>. (Topic 4)</p>
+</dd>
+<dt>Condition</dt><dd><p>A Boolean expression that decides whether an <code class="docutils literal notranslate"><span class="pre">if</span></code> block runs or a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop continues. (Topic 9)</p>
+</dd>
+<dt>Constant</dt><dd><p>A variable whose value never changes, written in capitals by convention, such as <code class="docutils literal notranslate"><span class="pre">MAX_VALUE</span></code>. (Topic 6)</p>
+</dd>
+<dt>Debugging</dt><dd><p>Finding and fixing bugs. (Topic 16)</p>
+</dd>
+<dt>Dictionary</dt><dd><p>A collection of key–value pairs, used to look up a value by its key: <code class="docutils literal notranslate"><span class="pre">{&quot;milk&quot;:</span> <span class="pre">60}</span></code>. (Topic 14)</p>
+</dd>
+<dt>Docstring</dt><dd><p>A string in triple quotes just under a <code class="docutils literal notranslate"><span class="pre">def</span></code> line, documenting what the function does. (Topic 7)</p>
+</dd>
+<dt>Escape sequence</dt><dd><p>A backslash code that stands for a special character inside a string, such as <code class="docutils literal notranslate"><span class="pre">\n</span></code> for a new line. (Topic 4)</p>
+</dd>
+<dt>Exception</dt><dd><p>An error that happens while a program is running, such as <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>. (Topic 16)</p>
+</dd>
+<dt>Expression</dt><dd><p>A piece of code that has a value, such as <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">+</span> <span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">age</span> <span class="pre">&gt;=</span> <span class="pre">18</span></code>.</p>
+</dd>
+<dt>f-string</dt><dd><p>A string starting with <code class="docutils literal notranslate"><span class="pre">f</span></code> in which <code class="docutils literal notranslate"><span class="pre">{...}</span></code> parts are replaced by values: <code class="docutils literal notranslate"><span class="pre">f&quot;Hi</span> <span class="pre">{name}&quot;</span></code>. (Topic 4)</p>
+</dd>
+<dt>File object</dt><dd><p>What <code class="docutils literal notranslate"><span class="pre">open</span></code> gives you: an object you can read from or write to. (Topic 15)</p>
+</dd>
+<dt>Float</dt><dd><p>A number with a decimal point, such as <code class="docutils literal notranslate"><span class="pre">3.14</span></code>. (Topic 2)</p>
+</dd>
+<dt>Function</dt><dd><p>A named, reusable piece of code, defined with <code class="docutils literal notranslate"><span class="pre">def</span></code>. (Topic 6)</p>
+</dd>
+<dt>Import</dt><dd><p>Loading a module so you can use its functions, with <code class="docutils literal notranslate"><span class="pre">import</span></code> or <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">...</span> <span class="pre">import</span></code>. (Topic 7)</p>
+</dd>
+<dt>Index</dt><dd><p>The position of an item in a sequence, counting from 0. (Topic 11)</p>
+</dd>
+<dt>Infinite loop</dt><dd><p>A loop whose condition never becomes false, so it never ends. (Topic 10)</p>
+</dd>
+<dt>Inheritance</dt><dd><p>Creating a class that gets the attributes and methods of another class — an <strong>is-a</strong> relationship. (Topic 18)</p>
+</dd>
+<dt>Input</dt><dd><p>Data given to a program, for example typed by the user and read with <code class="docutils literal notranslate"><span class="pre">input()</span></code>. (Topic 5)</p>
+</dd>
+<dt>Instance</dt><dd><p>An object created from a class. (Topic 17)</p>
+</dd>
+<dt>Integer</dt><dd><p>A whole number, such as <code class="docutils literal notranslate"><span class="pre">42</span></code>. Its type is <code class="docutils literal notranslate"><span class="pre">int</span></code>. (Topic 2)</p>
+</dd>
+<dt>Interpreter</dt><dd><p>The program that reads and runs Python code. In Colab it runs on Google’s computers and shows the results below each cell; on your own computer, its interactive shell shows the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> prompt. (Topic 1)</p>
+</dd>
+<dt>Keyword</dt><dd><p>A word with a special meaning in Python, such as <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">def</span></code>, which can’t be used as a name. (Appendix)</p>
+</dd>
+<dt>List</dt><dd><p>An ordered, changeable collection of items: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>. (Topics 10–11)</p>
+</dd>
+<dt>Local variable</dt><dd><p>A variable created inside a function, which only exists while the function runs. (Topic 6)</p>
+</dd>
+<dt>Loop</dt><dd><p>Code that repeats: a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop or a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. (Topic 10)</p>
+</dd>
+<dt>Method</dt><dd><p>A function that belongs to an object or class, called with a dot: <code class="docutils literal notranslate"><span class="pre">words.append(&quot;x&quot;)</span></code>. (Topics 11 and 17)</p>
+</dd>
+<dt>Module</dt><dd><p>A Python file whose functions and variables can be imported by other programs. (Topic 7)</p>
+</dd>
+<dt>None</dt><dd><p>The special value meaning “nothing”, returned by functions that don’t use <code class="docutils literal notranslate"><span class="pre">return</span></code>. (Topic 6)</p>
+</dd>
+<dt>Object</dt><dd><p>A value that bundles data (attributes) and behaviour (methods). Everything in Python is an object. (Topic 17)</p>
+</dd>
+<dt>Parameter</dt><dd><p>A name listed in a function definition, which receives an argument when the function is called. (Topic 6)</p>
+</dd>
+<dt>Polymorphism</dt><dd><p>Different kinds of objects responding to the same method call in their own way. (Topic 18)</p>
+</dd>
+<dt>Program</dt><dd><p>A list of instructions that a computer can run. (Topic 1)</p>
+</dd>
+<dt>Prompt</dt><dd><p>The text shown to the user by <code class="docutils literal notranslate"><span class="pre">input(&quot;...&quot;)</span></code>, such as <code class="docutils literal notranslate"><span class="pre">&quot;What</span> <span class="pre">is</span> <span class="pre">your</span> <span class="pre">name?</span> <span class="pre">&quot;</span></code>. (Topic 5)</p>
+</dd>
+<dt>Pseudocode</dt><dd><p>A plan for a program written in plain language before writing the real code. (Topic 12)</p>
+</dd>
+<dt>Return value</dt><dd><p>The value a function sends back with <code class="docutils literal notranslate"><span class="pre">return</span></code>. (Topic 6)</p>
+</dd>
+<dt>Script</dt><dd><p>A Python program saved in a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file. (Topic 1)</p>
+</dd>
+<dt>Self</dt><dd><p>The first parameter of a method, standing for the object the method is working on. (Topic 17)</p>
+</dd>
+<dt>Slice</dt><dd><p>Part of a sequence taken with <code class="docutils literal notranslate"><span class="pre">sequence[start:stop:step]</span></code>. (Topic 13)</p>
+</dd>
+<dt>String</dt><dd><p>A piece of text, written between quotes. Its type is <code class="docutils literal notranslate"><span class="pre">str</span></code>. (Topic 4)</p>
+</dd>
+<dt>Syntax error</dt><dd><p>A mistake in the grammar of the code that stops Python from running it at all. (Topics 1 and 16)</p>
+</dd>
+<dt>Traceback</dt><dd><p>The report Python prints when a program crashes, showing where and why. Read it from the bottom up. (Topic 16)</p>
+</dd>
+<dt>Tuple</dt><dd><p>An ordered collection that can’t be changed: <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">4)</span></code>. (Topic 13)</p>
+</dd>
+<dt>Type</dt><dd><p>The kind of a value — <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, and so on. Check it with <code class="docutils literal notranslate"><span class="pre">type(x)</span></code>. (Topic 5)</p>
+</dd>
+<dt>Variable</dt><dd><p>A name that refers to a value. (Topic 3)</p>
+</dd>
+</dl>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="common_errors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Common Errors</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charles Ndung'u Ndegwa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>The hands-on teaching approach is inspired by Zed A. Shaw's <em>Learn Python the Hard Way</em>. All examples and exercises were written for this course.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
